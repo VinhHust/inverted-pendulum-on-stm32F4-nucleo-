@@ -2196,8 +2196,8 @@ void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
  80014a8:	2302      	movs	r3, #2
  80014aa:	623b      	str	r3, [r7, #32]
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
- 80014ac:	2300      	movs	r3, #0
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+ 80014ac:	2301      	movs	r3, #1
  80014ae:	627b      	str	r3, [r7, #36]	; 0x24
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
  80014b0:	2300      	movs	r3, #0
@@ -2254,8 +2254,8 @@ void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
  800150c:	2302      	movs	r3, #2
  800150e:	623b      	str	r3, [r7, #32]
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
- 8001510:	2300      	movs	r3, #0
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+ 8001510:	2301      	movs	r3, #1
  8001512:	627b      	str	r3, [r7, #36]	; 0x24
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
  8001514:	2300      	movs	r3, #0
