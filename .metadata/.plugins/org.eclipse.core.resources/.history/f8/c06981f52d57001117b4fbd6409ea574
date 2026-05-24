@@ -4,11 +4,6 @@
  *  Created on: May 24, 2026
  *      Author: vu thanh vinh
  */
-//FILE.H DÙNG ĐỂ KHAI BÁO, CHO BIẾT HÀM TỒN TẠI, TÊN GÌ, NHẬN THAM SỐ GÌ
-//FILE.C LÀ NƠI ĐỊNH NGHĨA, VIẾT NỘI DUNG CỦA HÀM
-
-
-
 
 #include <thucdonencoder.h>
 

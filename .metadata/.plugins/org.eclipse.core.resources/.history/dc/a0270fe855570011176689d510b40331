@@ -63,14 +63,6 @@ float cartposition = 0.0f;
 //define de thay the ten bien bang value moi khi quet qua chu ko cap phat bo nho
 #define chuvipuli 0.04f
 #define encoderpul 8000.0f
-
-
-//từ dòng này là thử viết kiểu chia ra file .c và file .h
-volatile static EncoderTypeDef encoder_inverted; //encodertypedef là kiểu dữ liệu đã định nghĩa ở file.h, giờ gọi ra và có tên biến là encoder_inverted với kiểu dữ liệu đã khai báo ở file.h
-float angular_position = 0.0;
-float angular_velocity = 0.0;
-
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -412,7 +404,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, 
 		sprintf(printAngle,"Gia tri goc pendulum la:%f,gia tri goc cart la:%f, vi tri cart la:%f\n\r",angleVal,angleVal1,cartposition); //luu gia tri muon in vao 1 mang
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t*)printAngle, strlen(printAngle));
 
-		update_encoder((EncoderTypeDef))
+
 	}
 	}
 
