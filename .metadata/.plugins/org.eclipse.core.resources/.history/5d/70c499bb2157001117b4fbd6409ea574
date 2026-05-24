@@ -13,7 +13,6 @@
 
 //struct là gom nhiều biến vào 1 phần duy nhất, truyền cả struct bằng 1 tham số
 //typedef là đặt biệt danh cho kiểu dữ liệu đã có, đêr khi gọi làị đỡ phải đánh lại struct
-
 typedef struct {
 	TIM_HandleTypeDef* tim_handler; //con trỏ tim_handler, TIM_HandleTypeDef lưu trữ toàn bộ cấu hình và trạng thái của timer
 	//con trỏ tim_handler trỏ đến struct của TIM
@@ -23,7 +22,6 @@ typedef struct {
 	uint8_t first_time; //cờ trạng thái, 1 nghĩa là lần đầu tiên chạy, 0 là đã chạy. dùng để khi lần đầu chạy chưa có dữ liệu cũ để tính vận tốc
 }EncoderTypeDef;
 
-void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer); //biến encoder là 1 con trỏ lưu địa chỉ ô nhớ (hay tức là con trỏ trỏ tới địa chỉ của ô nhớ) của biến có kiểu dữ liệu là encodertypedef(là kiểu dữ liệu tự định nghĩa mà vừa khai báo ở trên )
+void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer);
 void update_encoder(EncoderTypeDef *encoder); //BẮT BUỘC XEM LẠI VIDEO ĐỂ HIỂU RÕ HƠN VỀ CON TRỎ
-//đây mới chỉ là khai báo con trỏ chứ chưa phải là trỏ vào đối tượng nào cả
 #endif /* INC_THUCDONENCODER_H_ */

@@ -13,7 +13,6 @@
 
 //struct là gom nhiều biến vào 1 phần duy nhất, truyền cả struct bằng 1 tham số
 //typedef là đặt biệt danh cho kiểu dữ liệu đã có, đêr khi gọi làị đỡ phải đánh lại struct
-
 typedef struct {
 	TIM_HandleTypeDef* tim_handler; //con trỏ tim_handler, TIM_HandleTypeDef lưu trữ toàn bộ cấu hình và trạng thái của timer
 	//con trỏ tim_handler trỏ đến struct của TIM
