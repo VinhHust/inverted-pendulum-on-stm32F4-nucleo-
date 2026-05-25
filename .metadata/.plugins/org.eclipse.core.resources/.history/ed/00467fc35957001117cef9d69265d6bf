@@ -24,7 +24,6 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include <string.h>
-#include <thucdonencoder.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -67,7 +66,7 @@ float cartposition = 0.0f;
 
 
 //từ dòng này là thử viết kiểu chia ra file .c và file .h
-volatile static EncoderTypeDef encoder_inverted; //EncoderTypedef là kiểu dữ liệu đã định nghĩa ở file.h, giờ gọi ra và có tên biến là encoder_inverted với kiểu dữ liệu đã khai báo ở file.h
+volatile static EncoderTypeDef encoder_inverted; //encodertypedef là kiểu dữ liệu đã định nghĩa ở file.h, giờ gọi ra và có tên biến là encoder_inverted với kiểu dữ liệu đã khai báo ở file.h
 float angular_position = 0.0;
 float angular_velocity = 0.0;
 
@@ -125,17 +124,9 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-  //KHỞI TẠO ENCODER
 HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //tim2 la encoder pendulum
-HAL_TIM_Base_Start_IT(&htim3); 					//timer ngắt gián đoạn chu kì 5ms
+HAL_TIM_Base_Start_IT(&htim3); //discrete time
 HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL); //encoder of cart
-
-	//RESET CHO LẦN KHỞI TẠO ĐẦU TIÊN
-	//void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer), encoder và timer là 2 con trỏ
-reset_encoder((EncoderTypeDef*)&encoder_inverted, &htim2);
-
-
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -144,9 +135,6 @@ reset_encoder((EncoderTypeDef*)&encoder_inverted, &htim2);
   {
     /* USER CODE END WHILE */
 
-//vào struct encoder_inverted lấy thành phần bên trong struct đó, nó là biến thực lưu dữ liệu
-angular_position = encoder_inverted.angle_position;
-angular_velocity = encoder_inverted.angle_speed;
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -424,12 +412,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, 
 		sprintf(printAngle,"Gia tri goc pendulum la:%f,gia tri goc cart la:%f, vi tri cart la:%f\n\r",angleVal,angleVal1,cartposition); //luu gia tri muon in vao 1 mang
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t*)printAngle, strlen(printAngle));
 
-
-		//truyền địa chỉ của encoder_inverted vào, con trỏ encoder nhận địa chỉ đó và trỏ thẳng vào encoder_inverted
-		//con trỏ nắm giữ địa chỉ của encoder_inverted
-		//ở trên khai báo voltaile encodertypedef* nên phải ép kiểu thành (encodertypedef* để bỏ volatile đi)
-		update_encoder((EncoderTypeDef*)&encoder_inverted);
-
+		update_encoder((EncoderTypeDef))
 	}
 	}
 

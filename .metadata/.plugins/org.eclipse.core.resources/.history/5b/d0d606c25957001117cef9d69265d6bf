@@ -27,9 +27,5 @@ typedef struct {
 
 void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer); //biến encoder là 1 con trỏ lưu địa chỉ ô nhớ (hay tức là con trỏ trỏ tới địa chỉ của ô nhớ) của biến có kiểu dữ liệu là encodertypedef(là kiểu dữ liệu tự định nghĩa mà vừa khai báo ở trên )
 void update_encoder(EncoderTypeDef *encoder); //BẮT BUỘC XEM LẠI VIDEO ĐỂ HIỂU RÕ HƠN VỀ CON TRỎ
-//hàm update encoder nhận vào 1 con trỏ kiểu encodertypedef, đặt tên là encoder
-//Con trỏ kiểu EncoderTypeDef nghĩa là con trỏ chỉ được phép lưu địa chỉ của biến có kiểu dữ liệu là EncoderTypeDef
-
-
 //đây mới chỉ là khai báo con trỏ chứ chưa phải là trỏ vào đối tượng nào cả
 #endif /* INC_THUCDONENCODER_H_ */

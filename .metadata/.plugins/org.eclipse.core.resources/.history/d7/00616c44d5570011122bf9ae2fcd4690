@@ -24,7 +24,6 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include <string.h>
-#include <thucdonencoder.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -127,15 +126,13 @@ int main(void)
   /* USER CODE BEGIN 2 */
   //KHỞI TẠO ENCODER
 HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //tim2 la encoder pendulum
-HAL_TIM_Base_Start_IT(&htim3); 					//timer ngắt gián đoạn chu kì 5ms
+HAL_TIM_Base_Start_IT(&htim3); //discrete time
 HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL); //encoder of cart
 
-	//RESET CHO LẦN KHỞI TẠO ĐẦU TIÊN
-	//void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer), encoder và timer là 2 con trỏ
-reset_encoder((EncoderTypeDef*)&encoder_inverted, &htim2);
+//RESET CHO LẦN KHỞI TẠO ĐẦU TIÊN
+//void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer), encoder và timer là 2 con trỏ
 
-
-
+void reset_encoder((EncoderTypeDef*) &encoder_inverted, &htim2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -144,9 +141,6 @@ reset_encoder((EncoderTypeDef*)&encoder_inverted, &htim2);
   {
     /* USER CODE END WHILE */
 
-//vào struct encoder_inverted lấy thành phần bên trong struct đó, nó là biến thực lưu dữ liệu
-angular_position = encoder_inverted.angle_position;
-angular_velocity = encoder_inverted.angle_speed;
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -423,7 +417,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, 
 
 		sprintf(printAngle,"Gia tri goc pendulum la:%f,gia tri goc cart la:%f, vi tri cart la:%f\n\r",angleVal,angleVal1,cartposition); //luu gia tri muon in vao 1 mang
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t*)printAngle, strlen(printAngle));
-
 
 		//truyền địa chỉ của encoder_inverted vào, con trỏ encoder nhận địa chỉ đó và trỏ thẳng vào encoder_inverted
 		//con trỏ nắm giữ địa chỉ của encoder_inverted

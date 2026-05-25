@@ -143,8 +143,6 @@ reset_encoder((EncoderTypeDef*)&encoder_inverted, &htim2);
   while (1)
   {
     /* USER CODE END WHILE */
-
-//vào struct encoder_inverted lấy thành phần bên trong struct đó, nó là biến thực lưu dữ liệu
 angular_position = encoder_inverted.angle_position;
 angular_velocity = encoder_inverted.angle_speed;
     /* USER CODE BEGIN 3 */
@@ -423,7 +421,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, 
 
 		sprintf(printAngle,"Gia tri goc pendulum la:%f,gia tri goc cart la:%f, vi tri cart la:%f\n\r",angleVal,angleVal1,cartposition); //luu gia tri muon in vao 1 mang
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t*)printAngle, strlen(printAngle));
-
 
 		//truyền địa chỉ của encoder_inverted vào, con trỏ encoder nhận địa chỉ đó và trỏ thẳng vào encoder_inverted
 		//con trỏ nắm giữ địa chỉ của encoder_inverted
