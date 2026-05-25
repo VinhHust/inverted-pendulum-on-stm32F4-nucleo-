@@ -53,7 +53,7 @@ void update_encoder(EncoderTypeDef *encoder){
 			encoder->angle_speed = new_angle - encoder->angle_position; //nếu ko phải 2 trường hợp trên thì để tính vận tốc góc thì bằng đúng góc new-góc old
 		}
 		encoder->angle_position = new_angle; //lưu góc hiện tại(new angle) thành góc cũ(thành phần góc trong struct là angle pos)
-		encoder->angle_speed = (encoder->angle_speed)/DT;
+		encoder->angle_speed = (encoder->angle_speed)/DT
 	}
 
 }

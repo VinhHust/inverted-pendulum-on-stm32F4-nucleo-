@@ -67,10 +67,9 @@ float cartposition = 0.0f;
 
 
 //từ dòng này là thử viết kiểu chia ra file .c và file .h
-volatile static EncoderTypeDef encoder_inverted; //EncoderTypedef là kiểu dữ liệu đã định nghĩa ở file.h, gi�? g�?i ra và có tên biến là encoder_inverted với kiểu dữ liệu đã khai báo ở file.h
+volatile static EncoderTypeDef encoder_inverted; //EncoderTypedef là kiểu dữ liệu đã định nghĩa ở file.h, giờ gọi ra và có tên biến là encoder_inverted với kiểu dữ liệu đã khai báo ở file.h
 float angular_position = 0.0;
 float angular_velocity = 0.0;
-//2 biến này để lưu giá trị lôi ra từ struct
 
 
 /* USER CODE END PV */
@@ -131,8 +130,8 @@ HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //tim2 la encoder pendulum
 HAL_TIM_Base_Start_IT(&htim3); 					//timer ngắt gián đoạn chu kì 5ms
 HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL); //encoder of cart
 
-	//RESET CHO LẦN KHỞI TẠO �?ẦU TIÊN
-	//void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer), encoder và timer là 2 con tr�?
+	//RESET CHO LẦN KHỞI TẠO ĐẦU TIÊN
+	//void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer), encoder và timer là 2 con trỏ
 reset_encoder((EncoderTypeDef*)&encoder_inverted, &htim2);
 
 
@@ -145,6 +144,9 @@ reset_encoder((EncoderTypeDef*)&encoder_inverted, &htim2);
   {
     /* USER CODE END WHILE */
 
+//vào struct encoder_inverted lấy thành phần bên trong struct đó, nó là biến thực lưu dữ liệu
+angular_position = encoder_inverted.angle_position;
+angular_velocity = encoder_inverted.angle_speed;
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -404,7 +406,6 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
 
 }
 
@@ -424,9 +425,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, 
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t*)printAngle, strlen(printAngle));
 
 
-		//truy�?n địa chỉ của encoder_inverted vào, con tr�? encoder nhận địa chỉ đó và tr�? thẳng vào encoder_inverted
-		//con tr�? nắm giữ địa chỉ của encoder_inverted
-		//ở trên khai báo voltaile encodertypedef* nên phải ép kiểu thành (encodertypedef* để b�? volatile đi)
+		//truyền địa chỉ của encoder_inverted vào, con trỏ encoder nhận địa chỉ đó và trỏ thẳng vào encoder_inverted
+		//con trỏ nắm giữ địa chỉ của encoder_inverted
+		//ở trên khai báo voltaile encodertypedef* nên phải ép kiểu thành (encodertypedef* để bỏ volatile đi)
 		update_encoder((EncoderTypeDef*)&encoder_inverted);
 
 	}
