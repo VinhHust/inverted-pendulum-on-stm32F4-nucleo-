@@ -45,31 +45,17 @@
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
+TIM_HandleTypeDef htim4;
 
 UART_HandleTypeDef huart2;
 DMA_HandleTypeDef hdma_usart2_tx;
 
 /* USER CODE BEGIN PV */
-int counterVal = 0;
-int preCounterVal = 0;
-float angleVal = 0.0f; //lưu số thực và gán giá trị ban đầu = 0
-char printAngle[200]={'\0'}; //khai bao gia tri ban dau
-
-int counterVal1 = 0;
-int preCounterVal1 = 0;
-float angleVal1 = 0.0f;
-char printAngle1[200]={"\0"};
-float cartposition = 0.0f;
-
-//define de thay the ten bien bang value moi khi quet qua chu ko cap phat bo nho
-#define chuvipuli 0.04f
-#define encoderpul 8000.0f
-
 
 //từ dòng này là thử viết kiểu chia ra file .c và file .h
-volatile static EncoderTypeDef encoder_inverted; //EncoderTypedef là kiểu dữ liệu đã định nghĩa ở file.h, gi�? g�?i ra và có tên biến là encoder_inverted với kiểu dữ liệu đã khai báo ở file.h
-float angular_position = 0.0;
-float angular_velocity = 0.0;
+volatile static EncoderTypeDef encoder_inverted; //EncoderTypedef là kiểu dữ liệu đã định nghĩa ở file.h, gi�? g�?i ra và có tên biến là encoder_inverted với kiểu dữ liệu đã khai báo ở file.h
+volatile float angular_position = 0.0;
+volatile float angular_velocity = 0.0;
 //2 biến này để lưu giá trị lôi ra từ struct
 
 
@@ -83,6 +69,7 @@ static void MX_TIM2_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_TIM1_Init(void);
+static void MX_TIM4_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -105,7 +92,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+	HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -125,16 +112,20 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM3_Init();
   MX_TIM1_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
   //KHỞI TẠO ENCODER
-HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //tim2 la encoder pendulum
-HAL_TIM_Base_Start_IT(&htim3); 					//timer ngắt gián đoạn chu kì 5ms
-HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL); //encoder of cart
-
-	//RESET CHO LẦN KHỞI TẠO �?ẦU TIÊN
-	//void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer), encoder và timer là 2 con tr�?
+//RESET CHO LẦN KHỞI TẠO �?ẦU TIÊN
+//void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer), encoder và timer là 2 con tr�?
 reset_encoder((EncoderTypeDef*)&encoder_inverted, &htim2);
 
+HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //tim2 la encoder pendulum
+HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL); //encoder of cart
+
+	//RESET CHO LẦN KHỞI TẠO �?ẦU TIÊN
+	//void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer), encoder và timer là 2 con tr�?
+
+HAL_TIM_Base_Start_IT(&htim3); 					//timer ngắt gián đoạn chu kì 5ms
 
 
   /* USER CODE END 2 */
@@ -146,6 +137,7 @@ reset_encoder((EncoderTypeDef*)&encoder_inverted, &htim2);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
   }
   /* USER CODE END 3 */
 }
@@ -271,7 +263,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 65535;
+  htim2.Init.Period = ENCODER_RESOLUTION;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
@@ -345,6 +337,55 @@ static void MX_TIM3_Init(void)
 }
 
 /**
+  * @brief TIM4 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM4_Init(void)
+{
+
+  /* USER CODE BEGIN TIM4_Init 0 */
+
+  /* USER CODE END TIM4_Init 0 */
+
+  TIM_Encoder_InitTypeDef sConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM4_Init 1 */
+
+  /* USER CODE END TIM4_Init 1 */
+  htim4.Instance = TIM4;
+  htim4.Init.Prescaler = 0;
+  htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim4.Init.Period = 65535;
+  htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
+  sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC1Filter = 0;
+  sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC2Filter = 0;
+  if (HAL_TIM_Encoder_Init(&htim4, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM4_Init 2 */
+
+  /* USER CODE END TIM4_Init 2 */
+
+}
+
+/**
   * @brief USART2 Initialization Function
   * @param None
   * @retval None
@@ -412,23 +453,12 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, ham nay giu dia chi vung nho cua bo timer. callback duoc goi moi khi bat ki timer nao tran
 {
 	if (htim->Instance==TIM3){
-		counterVal =  (int16_t)TIM2->CNT; //lay gia tri thanh ghi phan cung CNT cua timer 2, lay gia tri bo dem tai thoi diem do gan vao counterValue
-		counterVal1 = (int16_t)TIM1->CNT;
-
-		angleVal = (360.0f/8000.0f)*counterVal;
-		angleVal1 = (360.0f/8000.0f)*counterVal1;
-
-		cartposition = (chuvipuli/encoderpul)*counterVal1;
-
-		sprintf(printAngle,"Gia tri goc pendulum la:%f,gia tri goc cart la:%f, vi tri cart la:%f\n\r",angleVal,angleVal1,cartposition); //luu gia tri muon in vao 1 mang
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t*)printAngle, strlen(printAngle));
-
-
-		//truy�?n địa chỉ của encoder_inverted vào, con tr�? encoder nhận địa chỉ đó và tr�? thẳng vào encoder_inverted
-		//con tr�? nắm giữ địa chỉ của encoder_inverted
-		//ở trên khai báo voltaile encodertypedef* nên phải ép kiểu thành (encodertypedef* để b�? volatile đi)
+		//truy�?n địa chỉ của encoder_inverted vào, con tr�? encoder nhận địa chỉ đó và tr�? thẳng vào encoder_inverted
+		//con tr�? nắm giữ địa chỉ của encoder_inverted
+		//ở trên khai báo voltaile encodertypedef* nên phải ép kiểu thành (encodertypedef* để b�? volatile đi)
 		update_encoder((EncoderTypeDef*)&encoder_inverted);
-
+		angular_position = encoder_inverted.angle_position;
+		angular_velocity = encoder_inverted.angle_speed;
 	}
 	}
 

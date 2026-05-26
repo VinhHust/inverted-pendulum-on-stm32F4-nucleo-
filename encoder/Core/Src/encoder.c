@@ -10,10 +10,9 @@
 
 
 
-#include <thucdonencoder.h>
+#include "thucdonencoder.h"
 
 #define twopi 6.28318530718f
-#define encoder_resolution 8000.0f
 #define DT 0.005f
 
 //hàm reset và khởi tạo
@@ -23,7 +22,7 @@ void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer){
 	//mũi tên tức là truy cập các thành viên nằm trong struct thông qua con trỏ encdoder
 	encoder->angle_speed=0;
 	encoder->angle_position=0;
-	encoder->encoder_scale=twopi/encoder_resolution;  //đơn vị là radian/xung
+	encoder->encoder_scale=twopi/ENCODER_RESOLUTION;  //đơn vị là radian/xung
 	encoder->tim_handler=timer;
 	encoder->first_time=1; //first time=1 tức là chưa có dữ liệu gì cả
 }
