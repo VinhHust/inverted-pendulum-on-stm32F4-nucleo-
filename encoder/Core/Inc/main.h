@@ -50,6 +50,8 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -59,6 +61,18 @@ void Error_Handler(void);
 
 /* Private defines -----------------------------------------------------------*/
 #define ENCODER_RESOLUTION 7999
+#define timer_encoder_c_a_pole_Pin GPIO_PIN_1
+#define timer_encoder_c_a_pole_GPIO_Port GPIOA
+#define CH_N_ENA_Pin GPIO_PIN_4
+#define CH_N_ENA_GPIO_Port GPIOA
+#define CH_N_DIRECTION_Pin GPIO_PIN_5
+#define CH_N_DIRECTION_GPIO_Port GPIOA
+#define timer___m_encoder_c_a_cart_Pin GPIO_PIN_8
+#define timer___m_encoder_c_a_cart_GPIO_Port GPIOA
+#define timer___m_encoder_c_a_cartA9_Pin GPIO_PIN_9
+#define timer___m_encoder_c_a_cartA9_GPIO_Port GPIOA
+#define Ph_t_xung_PWM_Pin GPIO_PIN_6
+#define Ph_t_xung_PWM_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
