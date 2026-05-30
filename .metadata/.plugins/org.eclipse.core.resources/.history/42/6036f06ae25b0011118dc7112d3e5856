@@ -51,26 +51,16 @@ static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
                                                           : (pclk_freq * 2U);
     return timer_clk;
 }
-//HÀM NÀY SẼ TRẢ VỀ TIMER CLOCK fCLK, THỰC RA PHẦN NÀY CÓ THỂ LẤY TỪ CẤU HÌNH TRONG FILE IOC CŨNG ĐƯỢC
-//On F446: TIM1, TIM8, TIM9, TIM10, TIM11 are on APB2. Others on APB1. */
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * @brief  CHO 1 TẦN SỐ PWM MONG MUỐN VÀ timerCLK(được tính ở trên trước), RỒI SAU ĐÓ TÍNH TOÁN RA PSC VÀ ARR ĐỂ TẠO RA TẦN SỐ fPWM SÁT NHẤT
+ * @brief  Given a desired PWM frequency and timer input clock, compute
+ *         PSC and ARR that produce the closest match with 50% duty support.
  *
- * Strategy: CHỌN PSC NHỎ NHẤT SAO CHO ARR VỪA VẶN TRONG CHUẨN 16 BIT
- * - bộ nhớ 16 bit chỉ có thể lưu được số tối đa là 2^16-1 là 65535. tức là ARR ko được vượt quá 65535
+ * Strategy: pick smallest PSC such that ARR fits in 16-bit (TIM3/4 are 16-bit,
  * TIM2/5 are 32-bit on F446 — we stay in 16-bit range for portability).
  *
  * Returns true on success, false if target frequency not achievable.
- * NẾU NHƯ TẦN SỐ KO ĐẠT ĐƯỢC THÌ SẼ BÁO LỖI
  */
-
-//HÀM DÙNG ĐỂ TÍNH TOÁN PSC VÀ ARR
 static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
                                   uint32_t target_freq_hz,
                                   uint32_t *psc_out,
@@ -79,52 +69,39 @@ static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
     if (target_freq_hz == 0U) return false;
 
     /* For 16-bit compatibility: ARR max = 65535.
-     * period_ticks = tim_clk / target_freq = fCLK/fPWM
+     * period_ticks = tim_clk / target_freq
      * We want: (PSC+1) * (ARR+1) = period_ticks
      * Pick PSC so that ARR+1 >= 100 (for duty-cycle resolution) and <= 65536. */
-/*VÍ DỤ
- * vdk đập 84M nhịp/s, cần phát 1000 xung/s cho PWM-> 84M/1K=84K, vậy cần 84000 nhịp/xung, tức là 84000 nhịp đâp để hoàn thành 1 chu kì pwm
- * 1 chu kì pwm gồm cạnh lên cạnh xuống của 1 xung
- */
 
-    uint64_t period_ticks = (uint64_t)tim_clk_hz / target_freq_hz;  //TỔNG SỐ NHỊP CẦN THIẾT CHO 1 CHU KÌ PWM
+    uint64_t period_ticks = (uint64_t)tim_clk_hz / target_freq_hz;
     if (period_ticks < 2ULL) return false; /* Frequency too high */
-    //Để tạo nên 1 xung pwm có cạnh lên và xuống thì PWM cần ít nhất 2 nhịp
 
-    uint32_t psc = 0U; //gán luôn PSC = 0, 0U nghĩa là đây là số nguyên ko dấu vì thanh ghi ko nhận giá trị âm
-    uint32_t arr_plus_1 = (uint32_t)period_ticks; //ARR gánh luôn period_ticks vì
+    uint32_t psc = 0U;
+    uint32_t arr_plus_1 = (uint32_t)period_ticks;
 
     while (arr_plus_1 > 65536U) {
-    	//timer là 16bit nên giá trị tối đa ko chứa được là 2^16-1=65535
-    	//nếu ARR>655535 thì phải tăng bộ chia psc lên để có 1 thằng khác gánh cùng
-        psc++; //tăng giá trị PSC lên 1 lần mỗi vòng lặp
-        arr_plus_1 = (uint32_t)(period_ticks / (psc + 1U)); //tính lại tổng số nhịp ARR phải gánh
+        psc++;
+        arr_plus_1 = (uint32_t)(period_ticks / (psc + 1U));
         if (psc > 65535U) return false; /* Frequency too low */
     }
 
     *psc_out = psc;
     *arr_out = arr_plus_1 - 1U;
     return true;
-    //sau hàm này thì có được bộ psc nhỏ nhất và arr lớn nhất để tạo xung PWM có độ phân giải cao nhất
 }
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//TÍNH SỐ XUNG PHÁT RA ĐỂ QUAY ĐƯỢC 1 VÒNG
-//struct Stepper_MicrostepMode_t đã khai báo ở file .h
 static uint16_t Stepper_PulsesPerRev(Stepper_MicrostepMode_t mode)
 {
-	//đem biến mode(chế độ vi bứoc hiện tại) đi kiểm tra
     switch (mode) {
-        case STEPPER_MICROSTEP_FULL:   return 200U; //nếu mode đang là full thì trả về số 200, tg tự bên dưới
+        case STEPPER_MICROSTEP_FULL:   return 200U;
         case STEPPER_MICROSTEP_HALF_A: return 400U;
         case STEPPER_MICROSTEP_HALF_B: return 400U;
-        default:                       return 200U; //default là trả về số 200
+        default:                       return 200U;
     }
 }
 
 /* ============================================================================
- * PUBLIC API IMPLEMENTATION //MẤY THẰNG CÓ THỂ GỌI TỪ BẤT CỨ FILE NÀO KHÁC
+ * PUBLIC API IMPLEMENTATION
  * ============================================================================ */
 
 Stepper_Status_t Stepper_Init(Stepper_Handle_t *hs)
