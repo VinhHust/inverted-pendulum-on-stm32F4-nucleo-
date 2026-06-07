@@ -2,9 +2,9 @@
  ******************************************************************************
  * @file    stepper_tb6600.h
  * @brief   TB6600 Stepper Driver Library for STM32F446RE
- * @author  Juan Kamari
+ * @author  Juan Kamari, modified for HBS57 driver
  *
-
+ */
 
 #ifndef STEPPER_TB6600_H
 #define STEPPER_TB6600_H
@@ -13,9 +13,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-/* ============================================================================
- * CONFIGURATION CONSTANTS
- * ============================================================================ */
 
 /* Motor characteristic: 17HS3401 is a 1.8 deg/step motor */
 #define STEPPER_MOTOR_STEP_ANGLE_DEG    (1.8f)

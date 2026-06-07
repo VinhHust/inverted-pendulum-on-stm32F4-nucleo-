@@ -39,8 +39,8 @@ typedef struct {
 
 
 
-void reset_encoder_cart(EncoderTypeDef *encoder_cart, TIM_HandleTypeDef*timer);
-void update_encoder_cart(EncoderTypeDef *encoder_cart);
+void reset_encoder_cart(CartEncoderTypeDef *encoder_cart, TIM_HandleTypeDef*timer);
+void update_encoder_cart(CartEncoderTypeDef *encoder_cart);
 
 
 void reset_encoder_pendulum(EncoderTypeDef *encoder_pendulum, TIM_HandleTypeDef*timer); //biến encoder là 1 con trỏ lưu địa chỉ ô nhớ (hay tức là con trỏ trỏ tới địa chỉ của ô nhớ) của biến có kiểu dữ liệu là encodertypedef(là kiểu dữ liệu tự định nghĩa mà vừa khai báo ở trên )

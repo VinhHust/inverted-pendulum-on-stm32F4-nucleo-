@@ -1,29 +1,8 @@
-11:34:11 **** Build of configuration Debug for project encoder ****
+13:17:42 **** Incremental Build of configuration Debug for project encoder ****
 make -j8 all 
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o"
 arm-none-eabi-gcc "../Core/Src/encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/encoder.d" -MT"Core/Src/encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/encoder.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
-arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
-arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
-arm-none-eabi-gcc "../Core/Src/system_stm32f4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/system_stm32f4xx.d" -MT"Core/Src/system_stm32f4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32f4xx.o"
 arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 In file included from ../Core/Src/librarytb6600github.c:8:
 ../Core/Inc/librarytb6600github.h:16:1: warning: "/*" within comment [-Wcomment]
    16 | /* ============================================================================
@@ -189,14 +168,1756 @@ In file included from ../Core/Src/librarytb6600github.c:8:
       |                                                       ^~~~
 make: *** [Core/Src/subdir.mk:42: Core/Src/librarytb6600github.o] Error 1
 make: *** Waiting for unfinished jobs....
+../Core/Src/encoder.c:66:6: error: conflicting types for 'reset_encoder_cart'
+   66 | void reset_encoder_cart(CartEncoderTypeDef *encoder_cart, TIM_HandleTypeDef*timer){
+      |      ^~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/encoder.c:13:
+../Core/Inc/thucdonencoder.h:42:6: note: previous declaration of 'reset_encoder_cart' was here
+   42 | void reset_encoder_cart(EncoderTypeDef *encoder_cart, TIM_HandleTypeDef*timer);
+      |      ^~~~~~~~~~~~~~~~~~
+../Core/Src/encoder.c: In function 'update_encoder_cart':
+../Core/Src/encoder.c:77:2: error: 'current_counter' undeclared (first use in this function)
+   77 |  current_counter = __HAL_TIM_GET_COUNTER(timer);
+      |  ^~~~~~~~~~~~~~~
+../Core/Src/encoder.c:77:2: note: each undeclared identifier is reported only once for each function it appears in
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Inc/thucdonencoder.h:12,
+                 from ../Core/Src/encoder.c:13:
+../Core/Src/encoder.c:77:42: error: 'timer' undeclared (first use in this function)
+   77 |  current_counter = __HAL_TIM_GET_COUNTER(timer);
+      |                                          ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1282:46: note: in definition of macro '__HAL_TIM_GET_COUNTER'
+ 1282 | #define __HAL_TIM_GET_COUNTER(__HANDLE__)  ((__HANDLE__)->Instance->CNT)
+      |                                              ^~~~~~~~~~
+../Core/Src/encoder.c:80:15: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'prev_counter'
+   80 |   encoder_cart->prev_counter = current_counter;
+      |               ^~
+../Core/Src/encoder.c:84:53: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'prev_counter'
+   84 |  int32_t count_diff = current_counter - encoder_cart->prev_counter;
+      |                                                     ^~
+../Core/Src/encoder.c:95:56: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'cart_scale'
+   95 |  float distance_diff = (float)count_diff * encoder_cart->cart_scale; //Ã©p kiá»ƒu Ä‘á»ƒ float*float=float
+      |                                                        ^~
+../Core/Src/encoder.c:96:16: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'linear_position'; did you mean 'angle_position'?
+   96 |  encoder_cart->linear_position += distance_diff;
+      |                ^~~~~~~~~~~~~~~
+      |                angle_position
+../Core/Src/encoder.c:97:14: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'linear_speed'
+   97 |  encoder_cart->linear_speed = distance_diff/DT;
+      |              ^~
+../Core/Src/encoder.c:98:14: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'prev_counter'
+   98 |  encoder_cart->prev_counter = current_counter;
+      |              ^~
+make: *** [Core/Src/subdir.mk:40: Core/Src/encoder.o] Error 1
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:122:24: warning: passing argument 1 of 'reset_encoder_pendulum' from incompatible pointer type [-Wincompatible-pointer-types]
-  122 | reset_encoder_pendulum((CartEncoderTypeDef*)&encoder_cart, &htim1);    //reset encoder cua cart
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                        |
-      |                        CartEncoderTypeDef * {aka struct <anonymous> *}
+../Core/Src/main.c:122:20: warning: passing argument 1 of 'reset_encoder_cart' from incompatible pointer type [-Wincompatible-pointer-types]
+  122 | reset_encoder_cart((CartEncoderTypeDef*)&encoder_cart, &htim1);    //reset encoder cua cart
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                    |
+      |                    CartEncoderTypeDef * {aka struct <anonymous> *}
 In file included from ../Core/Src/main.c:27:
-../Core/Inc/thucdonencoder.h:42:45: note: expected 'EncoderTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'CartEncoderTypeDef *' {aka 'struct <anonymous> *'}
-   42 | void reset_encoder_pendulum(EncoderTypeDef *encoder_pendulum, TIM_HandleTypeDef*timer); //biáº¿n encoder lÃ  1 con trá»? lÆ°u Ä‘á»‹a chá»‰ Ã´ nhá»› (hay tá»©c lÃ  con trá»? trá»? tá»›i Ä‘á»‹a chá»‰ cá»§a Ã´ nhá»›) cá»§a biáº¿n cÃ³ kiá»ƒu dá»¯ liá»‡u lÃ  encodertypedef(lÃ  kiá»ƒu dá»¯ liá»‡u tá»± Ä‘á»‹nh nghÄ©a mÃ  vá»«a khai bÃ¡o á»Ÿ trÃªn )
-      |                             ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+../Core/Inc/thucdonencoder.h:42:41: note: expected 'EncoderTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'CartEncoderTypeDef *' {aka 'struct <anonymous> *'}
+   42 | void reset_encoder_cart(EncoderTypeDef *encoder_cart, TIM_HandleTypeDef*timer);
+      |                         ~~~~~~~~~~~~~~~~^~~~~~~~~~~~
 "make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:18:38 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/encoder.d" -MT"Core/Src/encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/encoder.o"
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:16:1: warning: "/*" within comment [-Wcomment]
+   16 | /* ============================================================================
+      |  
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:59:5: error: unknown type name 'TIM_HandleTypeDef'
+   59 |     TIM_HandleTypeDef *htim;         //CON TRá»Ž HTIM, XÃ?C Ä?á»ŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:60:5: error: unknown type name 'uint32_t'
+   60 |     uint32_t           tim_channel;  //XÃ?C Ä?á»ŠNH XEM KÃŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:63:5: error: unknown type name 'GPIO_TypeDef'
+   63 |     GPIO_TypeDef      *dir_port; //con trá»? dir_port
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:64:5: error: unknown type name 'uint16_t'
+   64 |     uint16_t           dir_pin;  //biáº¿n dir pin
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:68:5: error: unknown type name 'GPIO_TypeDef'
+   68 |     GPIO_TypeDef      *ena_port;
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:69:5: error: unknown type name 'uint16_t'
+   69 |     uint16_t           ena_pin;
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:70:5: error: unknown type name 'bool'
+   70 |     bool               ena_active_low; /* true if TB6600 ENA is active-low */
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:73:5: error: unknown type name 'uint32_t'
+   73 |     uint32_t           timer_clock_hz;    //Táº¦N Sá»? XUNG APB Cá»¦A Ä?áº¦U VÃ€O TIMER Ä?ANG DÃ™NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:75:5: error: unknown type name 'uint16_t'
+   75 |     uint16_t           pulses_per_rev;    //Sá»? XUNG Cáº¦N PHÃ?T Ä?á»‚ Ä?I Ä?Æ¯á»¢C 1 VÃ’NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:77:5: error: unknown type name 'bool'
+   77 |     bool               running;    //Cá»œ TRáº NG THÃ?I
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:78:5: error: unknown type name 'bool'
+   78 |     bool               initialized;
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:122:55: error: unknown type name 'bool'
+  122 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable);
+      |                                                       ^~~~
+../Core/Inc/librarytb6600github.h:127:2: error: #endif without #if
+  127 | #endif /* STEPPER_TB6600_H */
+      |  ^~~~~
+../Core/Src/librarytb6600github.c:25:8: error: unknown type name 'uint32_t'
+   25 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |        ^~~~~~~~
+../Core/Src/librarytb6600github.c:25:41: error: unknown type name 'TIM_HandleTypeDef'
+   25 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |                                         ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:74:8: error: unknown type name 'bool'
+   74 | static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+      |        ^~~~
+../Core/Src/librarytb6600github.c:74:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   74 | static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:75:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   75 |                                   uint32_t target_freq_hz,
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:76:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   76 |                                   uint32_t *psc_out,
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:77:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   77 |                                   uint32_t *arr_out)
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:115:8: error: unknown type name 'uint16_t'
+  115 | static uint16_t Stepper_PulsesPerRev(Stepper_MicrostepMode_t mode)
+      |        ^~~~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Init':
+../Core/Src/librarytb6600github.c:141:26: warning: implicit declaration of function 'Stepper_GetTimerClockHz' [-Wimplicit-function-declaration]
+  141 |     hs->timer_clock_hz = Stepper_GetTimerClockHz(hs->htim);
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:150:26: error: 'false' undeclared (first use in this function)
+  150 |     hs->running        = false;
+      |                          ^~~~~
+../Core/Src/librarytb6600github.c:150:26: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/librarytb6600github.c:153:5: warning: implicit declaration of function 'Stepper_Enable' [-Wimplicit-function-declaration]
+  153 |     Stepper_Enable(hs, false);
+      |     ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:156:23: error: 'true' undeclared (first use in this function)
+  156 |     hs->initialized = true;
+      |                       ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetDirection':
+../Core/Src/librarytb6600github.c:192:5: warning: implicit declaration of function 'HAL_GPIO_WritePin' [-Wimplicit-function-declaration]
+  192 |     HAL_GPIO_WritePin(hs->dir_port, hs->dir_pin,
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:193:49: error: 'GPIO_PIN_SET' undeclared (first use in this function)
+  193 |                       (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+      |                                                 ^~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:193:64: error: 'GPIO_PIN_RESET' undeclared (first use in this function)
+  193 |                       (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+      |                                                                ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetSpeedRPM':
+../Core/Src/librarytb6600github.c:217:5: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+  217 |     uint32_t target_freq = (uint32_t)roundf(freq_f); //lÃ m trÃ²n thÃ nh sá»‘ nguyÃªn gáº§n nháº¥t
+      |     ^~~~~~~~
+      |     wint_t
+../Core/Src/librarytb6600github.c:217:29: error: 'uint32_t' undeclared (first use in this function); did you mean 'wint_t'?
+  217 |     uint32_t target_freq = (uint32_t)roundf(freq_f); //lÃ m trÃ²n thÃ nh sá»‘ nguyÃªn gáº§n nháº¥t
+      |                             ^~~~~~~~
+      |                             wint_t
+../Core/Src/librarytb6600github.c:217:38: error: expected ',' or ';' before 'roundf'
+  217 |     uint32_t target_freq = (uint32_t)roundf(freq_f); //lÃ m trÃ²n thÃ nh sá»‘ nguyÃªn gáº§n nháº¥t
+      |                                      ^~~~~~
+../Core/Src/librarytb6600github.c:226:13: error: expected ';' before 'psc'
+  226 |     uint32_t psc, arr;
+      |             ^~~~
+      |             ;
+../Core/Src/librarytb6600github.c:227:10: warning: implicit declaration of function 'Stepper_ComputePscArr' [-Wimplicit-function-declaration]
+  227 |     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+      |          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:227:66: error: 'psc' undeclared (first use in this function)
+  227 |     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+      |                                                                  ^~~
+../Core/Src/librarytb6600github.c:227:72: error: 'arr' undeclared (first use in this function)
+  227 |     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+      |                                                                        ^~~
+../Core/Src/encoder.c:66:6: error: conflicting types for 'reset_encoder_cart'
+   66 | void reset_encoder_cart(CartEncoderTypeDef *encoder_cart, TIM_HandleTypeDef*timer){
+      |      ^~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/encoder.c:13:
+../Core/Inc/thucdonencoder.h:42:6: note: previous declaration of 'reset_encoder_cart' was here
+   42 | void reset_encoder_cart(EncoderTypeDef *encoder_cart, TIM_HandleTypeDef*timer);
+      |      ^~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:234:5: warning: implicit declaration of function '__HAL_TIM_SET_PRESCALER' [-Wimplicit-function-declaration]
+  234 |     __HAL_TIM_SET_PRESCALER(hs->htim, psc);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Inc/thucdonencoder.h:12,
+                 from ../Core/Src/encoder.c:13:
+../Core/Src/encoder.c: In function 'update_encoder_cart':
+../Core/Src/encoder.c:77:48: error: 'timer' undeclared (first use in this function)
+   77 |  float current_counter = __HAL_TIM_GET_COUNTER(timer);
+      |                                                ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1282:46: note: in definition of macro '__HAL_TIM_GET_COUNTER'
+ 1282 | #define __HAL_TIM_GET_COUNTER(__HANDLE__)  ((__HANDLE__)->Instance->CNT)
+      |                                              ^~~~~~~~~~
+../Core/Src/encoder.c:77:48: note: each undeclared identifier is reported only once for each function it appears in
+   77 |  float current_counter = __HAL_TIM_GET_COUNTER(timer);
+      |                                                ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1282:46: note: in definition of macro '__HAL_TIM_GET_COUNTER'
+ 1282 | #define __HAL_TIM_GET_COUNTER(__HANDLE__)  ((__HANDLE__)->Instance->CNT)
+      |                                              ^~~~~~~~~~
+../Core/Src/librarytb6600github.c:235:5: warning: implicit declaration of function '__HAL_TIM_SET_AUTORELOAD' [-Wimplicit-function-declaration]
+  235 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/encoder.c:80:15: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'prev_counter'
+   80 |   encoder_cart->prev_counter = current_counter;
+      |               ^~
+../Core/Src/encoder.c:84:53: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'prev_counter'
+   84 |  int32_t count_diff = current_counter - encoder_cart->prev_counter;
+      |                                                     ^~
+../Core/Src/librarytb6600github.c:236:5: warning: implicit declaration of function '__HAL_TIM_SET_COMPARE' [-Wimplicit-function-declaration]
+  236 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:241:13: error: request for member 'Instance' in something not a structure or union
+  241 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |             ^~
+../Core/Src/encoder.c:95:56: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'cart_scale'
+   95 |  float distance_diff = (float)count_diff * encoder_cart->cart_scale; //Ã©p kiá»ƒu Ä‘á»ƒ float*float=float
+      |                                                        ^~
+../Core/Src/librarytb6600github.c:241:31: error: 'TIM_EGR_UG' undeclared (first use in this function)
+  241 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |                               ^~~~~~~~~~
+../Core/Src/encoder.c:96:16: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'linear_position'; did you mean 'angle_position'?
+   96 |  encoder_cart->linear_position += distance_diff;
+      |                ^~~~~~~~~~~~~~~
+      |                angle_position
+../Core/Src/librarytb6600github.c:216:11: warning: unused variable 'freq_f' [-Wunused-variable]
+  216 |     float freq_f = (rpm / 60.0f) * (float)hs->pulses_per_rev;
+      |           ^~~~~~
+../Core/Src/encoder.c:97:14: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'linear_speed'
+   97 |  encoder_cart->linear_speed = distance_diff/DT;
+      |              ^~
+../Core/Src/encoder.c:98:14: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'prev_counter'
+   98 |  encoder_cart->prev_counter = current_counter;
+      |              ^~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Start':
+../Core/Src/librarytb6600github.c:252:9: warning: implicit declaration of function 'HAL_TIM_PWM_Start' [-Wimplicit-function-declaration]
+  252 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |         ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:252:57: error: 'HAL_OK' undeclared (first use in this function)
+  252 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                                                         ^~~~~~
+../Core/Src/librarytb6600github.c:255:19: error: 'true' undeclared (first use in this function)
+  255 |     hs->running = true;
+      |                   ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Stop':
+../Core/Src/librarytb6600github.c:262:9: warning: implicit declaration of function 'HAL_TIM_PWM_Stop' [-Wimplicit-function-declaration]
+  262 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |         ^~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:262:56: error: 'HAL_OK' undeclared (first use in this function)
+  262 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                                                        ^~~~~~
+../Core/Src/librarytb6600github.c:265:19: error: 'false' undeclared (first use in this function)
+  265 |     hs->running = false;
+      |                   ^~~~~
+../Core/Src/librarytb6600github.c: At top level:
+../Core/Src/librarytb6600github.c:269:55: error: unknown type name 'bool'
+  269 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable)
+      |                                                       ^~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/encoder.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:42: Core/Src/librarytb6600github.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:18:56 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/encoder.d" -MT"Core/Src/encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/encoder.o"
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:16:1: warning: "/*" within comment [-Wcomment]
+   16 | /* ============================================================================
+      |  
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:59:5: error: unknown type name 'TIM_HandleTypeDef'
+   59 |     TIM_HandleTypeDef *htim;         //CON TRá»Ž HTIM, XÃ?C Ä?á»ŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:60:5: error: unknown type name 'uint32_t'
+   60 |     uint32_t           tim_channel;  //XÃ?C Ä?á»ŠNH XEM KÃŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:63:5: error: unknown type name 'GPIO_TypeDef'
+   63 |     GPIO_TypeDef      *dir_port; //con trá»? dir_port
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:64:5: error: unknown type name 'uint16_t'
+   64 |     uint16_t           dir_pin;  //biáº¿n dir pin
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:68:5: error: unknown type name 'GPIO_TypeDef'
+   68 |     GPIO_TypeDef      *ena_port;
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:69:5: error: unknown type name 'uint16_t'
+   69 |     uint16_t           ena_pin;
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:70:5: error: unknown type name 'bool'
+   70 |     bool               ena_active_low; /* true if TB6600 ENA is active-low */
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:73:5: error: unknown type name 'uint32_t'
+   73 |     uint32_t           timer_clock_hz;    //Táº¦N Sá»? XUNG APB Cá»¦A Ä?áº¦U VÃ€O TIMER Ä?ANG DÃ™NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:75:5: error: unknown type name 'uint16_t'
+   75 |     uint16_t           pulses_per_rev;    //Sá»? XUNG Cáº¦N PHÃ?T Ä?á»‚ Ä?I Ä?Æ¯á»¢C 1 VÃ’NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:77:5: error: unknown type name 'bool'
+   77 |     bool               running;    //Cá»œ TRáº NG THÃ?I
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:78:5: error: unknown type name 'bool'
+   78 |     bool               initialized;
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:122:55: error: unknown type name 'bool'
+  122 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable);
+      |                                                       ^~~~
+../Core/Inc/librarytb6600github.h:127:2: error: #endif without #if
+  127 | #endif /* STEPPER_TB6600_H */
+      |  ^~~~~
+../Core/Src/librarytb6600github.c:25:8: error: unknown type name 'uint32_t'
+   25 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |        ^~~~~~~~
+../Core/Src/librarytb6600github.c:25:41: error: unknown type name 'TIM_HandleTypeDef'
+   25 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |                                         ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:74:8: error: unknown type name 'bool'
+   74 | static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+      |        ^~~~
+../Core/Src/librarytb6600github.c:74:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   74 | static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:75:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   75 |                                   uint32_t target_freq_hz,
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:76:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   76 |                                   uint32_t *psc_out,
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:77:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   77 |                                   uint32_t *arr_out)
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:115:8: error: unknown type name 'uint16_t'
+  115 | static uint16_t Stepper_PulsesPerRev(Stepper_MicrostepMode_t mode)
+      |        ^~~~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Init':
+../Core/Src/librarytb6600github.c:141:26: warning: implicit declaration of function 'Stepper_GetTimerClockHz' [-Wimplicit-function-declaration]
+  141 |     hs->timer_clock_hz = Stepper_GetTimerClockHz(hs->htim);
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:150:26: error: 'false' undeclared (first use in this function)
+  150 |     hs->running        = false;
+      |                          ^~~~~
+../Core/Src/librarytb6600github.c:150:26: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/librarytb6600github.c:153:5: warning: implicit declaration of function 'Stepper_Enable' [-Wimplicit-function-declaration]
+  153 |     Stepper_Enable(hs, false);
+      |     ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:156:23: error: 'true' undeclared (first use in this function)
+  156 |     hs->initialized = true;
+      |                       ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetDirection':
+../Core/Src/librarytb6600github.c:192:5: warning: implicit declaration of function 'HAL_GPIO_WritePin' [-Wimplicit-function-declaration]
+  192 |     HAL_GPIO_WritePin(hs->dir_port, hs->dir_pin,
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:193:49: error: 'GPIO_PIN_SET' undeclared (first use in this function)
+  193 |                       (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+      |                                                 ^~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:193:64: error: 'GPIO_PIN_RESET' undeclared (first use in this function)
+  193 |                       (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+      |                                                                ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetSpeedRPM':
+../Core/Src/librarytb6600github.c:217:5: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+  217 |     uint32_t target_freq = (uint32_t)roundf(freq_f); //lÃ m trÃ²n thÃ nh sá»‘ nguyÃªn gáº§n nháº¥t
+      |     ^~~~~~~~
+      |     wint_t
+../Core/Src/librarytb6600github.c:217:29: error: 'uint32_t' undeclared (first use in this function); did you mean 'wint_t'?
+  217 |     uint32_t target_freq = (uint32_t)roundf(freq_f); //lÃ m trÃ²n thÃ nh sá»‘ nguyÃªn gáº§n nháº¥t
+      |                             ^~~~~~~~
+      |                             wint_t
+../Core/Src/librarytb6600github.c:217:38: error: expected ',' or ';' before 'roundf'
+  217 |     uint32_t target_freq = (uint32_t)roundf(freq_f); //lÃ m trÃ²n thÃ nh sá»‘ nguyÃªn gáº§n nháº¥t
+      |                                      ^~~~~~
+../Core/Src/librarytb6600github.c:226:13: error: expected ';' before 'psc'
+  226 |     uint32_t psc, arr;
+      |             ^~~~
+      |             ;
+../Core/Src/librarytb6600github.c:227:10: warning: implicit declaration of function 'Stepper_ComputePscArr' [-Wimplicit-function-declaration]
+  227 |     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+      |          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:227:66: error: 'psc' undeclared (first use in this function)
+  227 |     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+      |                                                                  ^~~
+../Core/Src/librarytb6600github.c:227:72: error: 'arr' undeclared (first use in this function)
+  227 |     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+      |                                                                        ^~~
+../Core/Src/librarytb6600github.c:234:5: warning: implicit declaration of function '__HAL_TIM_SET_PRESCALER' [-Wimplicit-function-declaration]
+  234 |     __HAL_TIM_SET_PRESCALER(hs->htim, psc);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:235:5: warning: implicit declaration of function '__HAL_TIM_SET_AUTORELOAD' [-Wimplicit-function-declaration]
+  235 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/encoder.c:66:6: error: conflicting types for 'reset_encoder_cart'
+   66 | void reset_encoder_cart(CartEncoderTypeDef *encoder_cart, TIM_HandleTypeDef*timer){
+      |      ^~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/encoder.c:13:
+../Core/Inc/thucdonencoder.h:42:6: note: previous declaration of 'reset_encoder_cart' was here
+   42 | void reset_encoder_cart(EncoderTypeDef *encoder_cart, TIM_HandleTypeDef*timer);
+      |      ^~~~~~~~~~~~~~~~~~
+../Core/Src/encoder.c: In function 'update_encoder_cart':
+../Core/Src/encoder.c:80:15: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'prev_counter'
+   80 |   encoder_cart->prev_counter = current_counter;
+      |               ^~
+../Core/Src/encoder.c:84:53: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'prev_counter'
+   84 |  int32_t count_diff = current_counter - encoder_cart->prev_counter;
+      |                                                     ^~
+../Core/Src/encoder.c:95:56: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'cart_scale'
+   95 |  float distance_diff = (float)count_diff * encoder_cart->cart_scale; //Ã©p kiá»ƒu Ä‘á»ƒ float*float=float
+      |                                                        ^~
+../Core/Src/librarytb6600github.c:236:5: warning: implicit declaration of function '__HAL_TIM_SET_COMPARE' [-Wimplicit-function-declaration]
+  236 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/encoder.c:96:16: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'linear_position'; did you mean 'angle_position'?
+   96 |  encoder_cart->linear_position += distance_diff;
+      |                ^~~~~~~~~~~~~~~
+      |                angle_position
+../Core/Src/librarytb6600github.c:241:13: error: request for member 'Instance' in something not a structure or union
+  241 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |             ^~
+../Core/Src/encoder.c:97:14: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'linear_speed'
+   97 |  encoder_cart->linear_speed = distance_diff/DT;
+      |              ^~
+../Core/Src/encoder.c:98:14: error: 'EncoderTypeDef' {aka 'struct <anonymous>'} has no member named 'prev_counter'
+   98 |  encoder_cart->prev_counter = current_counter;
+      |              ^~
+../Core/Src/librarytb6600github.c:241:31: error: 'TIM_EGR_UG' undeclared (first use in this function)
+  241 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |                               ^~~~~~~~~~
+../Core/Src/librarytb6600github.c:216:11: warning: unused variable 'freq_f' [-Wunused-variable]
+  216 |     float freq_f = (rpm / 60.0f) * (float)hs->pulses_per_rev;
+      |           ^~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Start':
+../Core/Src/librarytb6600github.c:252:9: warning: implicit declaration of function 'HAL_TIM_PWM_Start' [-Wimplicit-function-declaration]
+  252 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |         ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:252:57: error: 'HAL_OK' undeclared (first use in this function)
+  252 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                                                         ^~~~~~
+../Core/Src/librarytb6600github.c:255:19: error: 'true' undeclared (first use in this function)
+  255 |     hs->running = true;
+      |                   ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Stop':
+../Core/Src/librarytb6600github.c:262:9: warning: implicit declaration of function 'HAL_TIM_PWM_Stop' [-Wimplicit-function-declaration]
+  262 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |         ^~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:262:56: error: 'HAL_OK' undeclared (first use in this function)
+  262 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                                                        ^~~~~~
+../Core/Src/librarytb6600github.c:265:19: error: 'false' undeclared (first use in this function)
+  265 |     hs->running = false;
+      |                   ^~~~~
+../Core/Src/librarytb6600github.c: At top level:
+../Core/Src/librarytb6600github.c:269:55: error: unknown type name 'bool'
+  269 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable)
+      |                                                       ^~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/encoder.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:42: Core/Src/librarytb6600github.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:19:41 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/encoder.d" -MT"Core/Src/encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/encoder.o"
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:16:1: warning: "/*" within comment [-Wcomment]
+   16 | /* ============================================================================
+      |  
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:59:5: error: unknown type name 'TIM_HandleTypeDef'
+   59 |     TIM_HandleTypeDef *htim;         //CON TRá»Ž HTIM, XÃ?C Ä?á»ŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:60:5: error: unknown type name 'uint32_t'
+   60 |     uint32_t           tim_channel;  //XÃ?C Ä?á»ŠNH XEM KÃŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:63:5: error: unknown type name 'GPIO_TypeDef'
+   63 |     GPIO_TypeDef      *dir_port; //con trá»? dir_port
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:64:5: error: unknown type name 'uint16_t'
+   64 |     uint16_t           dir_pin;  //biáº¿n dir pin
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:68:5: error: unknown type name 'GPIO_TypeDef'
+   68 |     GPIO_TypeDef      *ena_port;
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:69:5: error: unknown type name 'uint16_t'
+   69 |     uint16_t           ena_pin;
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:70:5: error: unknown type name 'bool'
+   70 |     bool               ena_active_low; /* true if TB6600 ENA is active-low */
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:73:5: error: unknown type name 'uint32_t'
+   73 |     uint32_t           timer_clock_hz;    //Táº¦N Sá»? XUNG APB Cá»¦A Ä?áº¦U VÃ€O TIMER Ä?ANG DÃ™NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:75:5: error: unknown type name 'uint16_t'
+   75 |     uint16_t           pulses_per_rev;    //Sá»? XUNG Cáº¦N PHÃ?T Ä?á»‚ Ä?I Ä?Æ¯á»¢C 1 VÃ’NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:77:5: error: unknown type name 'bool'
+   77 |     bool               running;    //Cá»œ TRáº NG THÃ?I
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:78:5: error: unknown type name 'bool'
+   78 |     bool               initialized;
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:122:55: error: unknown type name 'bool'
+  122 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable);
+      |                                                       ^~~~
+../Core/Inc/librarytb6600github.h:127:2: error: #endif without #if
+  127 | #endif /* STEPPER_TB6600_H */
+      |  ^~~~~
+../Core/Src/librarytb6600github.c:25:8: error: unknown type name 'uint32_t'
+   25 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |        ^~~~~~~~
+../Core/Src/librarytb6600github.c:25:41: error: unknown type name 'TIM_HandleTypeDef'
+   25 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |                                         ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:74:8: error: unknown type name 'bool'
+   74 | static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+      |        ^~~~
+../Core/Src/librarytb6600github.c:74:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   74 | static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:75:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   75 |                                   uint32_t target_freq_hz,
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:76:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   76 |                                   uint32_t *psc_out,
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:77:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   77 |                                   uint32_t *arr_out)
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:115:8: error: unknown type name 'uint16_t'
+  115 | static uint16_t Stepper_PulsesPerRev(Stepper_MicrostepMode_t mode)
+      |        ^~~~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Init':
+../Core/Src/librarytb6600github.c:141:26: warning: implicit declaration of function 'Stepper_GetTimerClockHz' [-Wimplicit-function-declaration]
+  141 |     hs->timer_clock_hz = Stepper_GetTimerClockHz(hs->htim);
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:150:26: error: 'false' undeclared (first use in this function)
+  150 |     hs->running        = false;
+      |                          ^~~~~
+../Core/Src/librarytb6600github.c:150:26: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/librarytb6600github.c:153:5: warning: implicit declaration of function 'Stepper_Enable' [-Wimplicit-function-declaration]
+  153 |     Stepper_Enable(hs, false);
+      |     ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:156:23: error: 'true' undeclared (first use in this function)
+  156 |     hs->initialized = true;
+      |                       ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetDirection':
+../Core/Src/librarytb6600github.c:192:5: warning: implicit declaration of function 'HAL_GPIO_WritePin' [-Wimplicit-function-declaration]
+  192 |     HAL_GPIO_WritePin(hs->dir_port, hs->dir_pin,
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:193:49: error: 'GPIO_PIN_SET' undeclared (first use in this function)
+  193 |                       (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+      |                                                 ^~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:193:64: error: 'GPIO_PIN_RESET' undeclared (first use in this function)
+  193 |                       (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+      |                                                                ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetSpeedRPM':
+../Core/Src/librarytb6600github.c:217:5: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+  217 |     uint32_t target_freq = (uint32_t)roundf(freq_f); //lÃ m trÃ²n thÃ nh sá»‘ nguyÃªn gáº§n nháº¥t
+      |     ^~~~~~~~
+      |     wint_t
+../Core/Src/librarytb6600github.c:217:29: error: 'uint32_t' undeclared (first use in this function); did you mean 'wint_t'?
+  217 |     uint32_t target_freq = (uint32_t)roundf(freq_f); //lÃ m trÃ²n thÃ nh sá»‘ nguyÃªn gáº§n nháº¥t
+      |                             ^~~~~~~~
+      |                             wint_t
+../Core/Src/librarytb6600github.c:217:38: error: expected ',' or ';' before 'roundf'
+  217 |     uint32_t target_freq = (uint32_t)roundf(freq_f); //lÃ m trÃ²n thÃ nh sá»‘ nguyÃªn gáº§n nháº¥t
+      |                                      ^~~~~~
+../Core/Src/librarytb6600github.c:226:13: error: expected ';' before 'psc'
+  226 |     uint32_t psc, arr;
+      |             ^~~~
+      |             ;
+../Core/Src/librarytb6600github.c:227:10: warning: implicit declaration of function 'Stepper_ComputePscArr' [-Wimplicit-function-declaration]
+  227 |     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+      |          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:227:66: error: 'psc' undeclared (first use in this function)
+  227 |     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+      |                                                                  ^~~
+../Core/Src/librarytb6600github.c:227:72: error: 'arr' undeclared (first use in this function)
+  227 |     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+      |                                                                        ^~~
+../Core/Src/librarytb6600github.c:234:5: warning: implicit declaration of function '__HAL_TIM_SET_PRESCALER' [-Wimplicit-function-declaration]
+  234 |     __HAL_TIM_SET_PRESCALER(hs->htim, psc);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:235:5: warning: implicit declaration of function '__HAL_TIM_SET_AUTORELOAD' [-Wimplicit-function-declaration]
+  235 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/encoder.c:66:6: error: conflicting types for 'reset_encoder_cart'
+   66 | void reset_encoder_cart(CartEncoderTypeDef *encoder_cart, TIM_HandleTypeDef*timer){
+      |      ^~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/encoder.c:13:
+../Core/Inc/thucdonencoder.h:42:6: note: previous declaration of 'reset_encoder_cart' was here
+   42 | void reset_encoder_cart(EncoderTypeDef *encoder_cart, TIM_HandleTypeDef*timer);
+      |      ^~~~~~~~~~~~~~~~~~
+../Core/Src/encoder.c:76:6: error: conflicting types for 'update_encoder_cart'
+   76 | void update_encoder_cart(CartEncoderTypeDef *encoder_cart){
+      |      ^~~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/encoder.c:13:
+../Core/Inc/thucdonencoder.h:43:6: note: previous declaration of 'update_encoder_cart' was here
+   43 | void update_encoder_cart(EncoderTypeDef *encoder_cart);
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:236:5: warning: implicit declaration of function '__HAL_TIM_SET_COMPARE' [-Wimplicit-function-declaration]
+  236 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:241:13: error: request for member 'Instance' in something not a structure or union
+  241 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |             ^~
+../Core/Src/librarytb6600github.c:241:31: error: 'TIM_EGR_UG' undeclared (first use in this function)
+  241 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |                               ^~~~~~~~~~
+../Core/Src/librarytb6600github.c:216:11: warning: unused variable 'freq_f' [-Wunused-variable]
+  216 |     float freq_f = (rpm / 60.0f) * (float)hs->pulses_per_rev;
+      |           ^~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Start':
+../Core/Src/librarytb6600github.c:252:9: warning: implicit declaration of function 'HAL_TIM_PWM_Start' [-Wimplicit-function-declaration]
+  252 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |         ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:252:57: error: 'HAL_OK' undeclared (first use in this function)
+  252 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                                                         ^~~~~~
+../Core/Src/librarytb6600github.c:255:19: error: 'true' undeclared (first use in this function)
+  255 |     hs->running = true;
+      |                   ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Stop':
+../Core/Src/librarytb6600github.c:262:9: warning: implicit declaration of function 'HAL_TIM_PWM_Stop' [-Wimplicit-function-declaration]
+  262 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |         ^~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:262:56: error: 'HAL_OK' undeclared (first use in this function)
+  262 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                                                        ^~~~~~
+../Core/Src/librarytb6600github.c:265:19: error: 'false' undeclared (first use in this function)
+  265 |     hs->running = false;
+      |                   ^~~~~
+../Core/Src/librarytb6600github.c: At top level:
+../Core/Src/librarytb6600github.c:269:55: error: unknown type name 'bool'
+  269 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable)
+      |                                                       ^~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/encoder.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:42: Core/Src/librarytb6600github.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:20:20 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/encoder.d" -MT"Core/Src/encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/encoder.o"
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:16:1: warning: "/*" within comment [-Wcomment]
+   16 | /* ============================================================================
+      |  
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:59:5: error: unknown type name 'TIM_HandleTypeDef'
+   59 |     TIM_HandleTypeDef *htim;         //CON TRá»Ž HTIM, XÃ?C Ä?á»ŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:60:5: error: unknown type name 'uint32_t'
+   60 |     uint32_t           tim_channel;  //XÃ?C Ä?á»ŠNH XEM KÃŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:63:5: error: unknown type name 'GPIO_TypeDef'
+   63 |     GPIO_TypeDef      *dir_port; //con trá»? dir_port
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:64:5: error: unknown type name 'uint16_t'
+   64 |     uint16_t           dir_pin;  //biáº¿n dir pin
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:68:5: error: unknown type name 'GPIO_TypeDef'
+   68 |     GPIO_TypeDef      *ena_port;
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:69:5: error: unknown type name 'uint16_t'
+   69 |     uint16_t           ena_pin;
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:70:5: error: unknown type name 'bool'
+   70 |     bool               ena_active_low; /* true if TB6600 ENA is active-low */
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:73:5: error: unknown type name 'uint32_t'
+   73 |     uint32_t           timer_clock_hz;    //Táº¦N Sá»? XUNG APB Cá»¦A Ä?áº¦U VÃ€O TIMER Ä?ANG DÃ™NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:75:5: error: unknown type name 'uint16_t'
+   75 |     uint16_t           pulses_per_rev;    //Sá»? XUNG Cáº¦N PHÃ?T Ä?á»‚ Ä?I Ä?Æ¯á»¢C 1 VÃ’NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:77:5: error: unknown type name 'bool'
+   77 |     bool               running;    //Cá»œ TRáº NG THÃ?I
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:78:5: error: unknown type name 'bool'
+   78 |     bool               initialized;
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:122:55: error: unknown type name 'bool'
+  122 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable);
+      |                                                       ^~~~
+../Core/Inc/librarytb6600github.h:127:2: error: #endif without #if
+  127 | #endif /* STEPPER_TB6600_H */
+      |  ^~~~~
+../Core/Src/librarytb6600github.c:25:8: error: unknown type name 'uint32_t'
+   25 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |        ^~~~~~~~
+../Core/Src/librarytb6600github.c:25:41: error: unknown type name 'TIM_HandleTypeDef'
+   25 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |                                         ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:74:8: error: unknown type name 'bool'
+   74 | static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+      |        ^~~~
+../Core/Src/librarytb6600github.c:74:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   74 | static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:75:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   75 |                                   uint32_t target_freq_hz,
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:76:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   76 |                                   uint32_t *psc_out,
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:77:35: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+   77 |                                   uint32_t *arr_out)
+      |                                   ^~~~~~~~
+      |                                   wint_t
+../Core/Src/librarytb6600github.c:115:8: error: unknown type name 'uint16_t'
+  115 | static uint16_t Stepper_PulsesPerRev(Stepper_MicrostepMode_t mode)
+      |        ^~~~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Init':
+../Core/Src/librarytb6600github.c:141:26: warning: implicit declaration of function 'Stepper_GetTimerClockHz' [-Wimplicit-function-declaration]
+  141 |     hs->timer_clock_hz = Stepper_GetTimerClockHz(hs->htim);
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:150:26: error: 'false' undeclared (first use in this function)
+  150 |     hs->running        = false;
+      |                          ^~~~~
+../Core/Src/librarytb6600github.c:150:26: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/librarytb6600github.c:153:5: warning: implicit declaration of function 'Stepper_Enable' [-Wimplicit-function-declaration]
+  153 |     Stepper_Enable(hs, false);
+      |     ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:156:23: error: 'true' undeclared (first use in this function)
+  156 |     hs->initialized = true;
+      |                       ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetDirection':
+../Core/Src/librarytb6600github.c:192:5: warning: implicit declaration of function 'HAL_GPIO_WritePin' [-Wimplicit-function-declaration]
+  192 |     HAL_GPIO_WritePin(hs->dir_port, hs->dir_pin,
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:193:49: error: 'GPIO_PIN_SET' undeclared (first use in this function)
+  193 |                       (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+      |                                                 ^~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:193:64: error: 'GPIO_PIN_RESET' undeclared (first use in this function)
+  193 |                       (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+      |                                                                ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetSpeedRPM':
+../Core/Src/librarytb6600github.c:217:5: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+  217 |     uint32_t target_freq = (uint32_t)roundf(freq_f); //lÃ m trÃ²n thÃ nh sá»‘ nguyÃªn gáº§n nháº¥t
+      |     ^~~~~~~~
+      |     wint_t
+../Core/Src/librarytb6600github.c:217:29: error: 'uint32_t' undeclared (first use in this function); did you mean 'wint_t'?
+  217 |     uint32_t target_freq = (uint32_t)roundf(freq_f); //lÃ m trÃ²n thÃ nh sá»‘ nguyÃªn gáº§n nháº¥t
+      |                             ^~~~~~~~
+      |                             wint_t
+../Core/Src/librarytb6600github.c:217:38: error: expected ',' or ';' before 'roundf'
+  217 |     uint32_t target_freq = (uint32_t)roundf(freq_f); //lÃ m trÃ²n thÃ nh sá»‘ nguyÃªn gáº§n nháº¥t
+      |                                      ^~~~~~
+../Core/Src/librarytb6600github.c:226:13: error: expected ';' before 'psc'
+  226 |     uint32_t psc, arr;
+      |             ^~~~
+      |             ;
+../Core/Src/librarytb6600github.c:227:10: warning: implicit declaration of function 'Stepper_ComputePscArr' [-Wimplicit-function-declaration]
+  227 |     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+      |          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:227:66: error: 'psc' undeclared (first use in this function)
+  227 |     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+      |                                                                  ^~~
+../Core/Src/librarytb6600github.c:227:72: error: 'arr' undeclared (first use in this function)
+  227 |     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+      |                                                                        ^~~
+../Core/Src/librarytb6600github.c:234:5: warning: implicit declaration of function '__HAL_TIM_SET_PRESCALER' [-Wimplicit-function-declaration]
+  234 |     __HAL_TIM_SET_PRESCALER(hs->htim, psc);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:235:5: warning: implicit declaration of function '__HAL_TIM_SET_AUTORELOAD' [-Wimplicit-function-declaration]
+  235 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:236:5: warning: implicit declaration of function '__HAL_TIM_SET_COMPARE' [-Wimplicit-function-declaration]
+  236 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:241:13: error: request for member 'Instance' in something not a structure or union
+  241 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |             ^~
+../Core/Src/librarytb6600github.c:241:31: error: 'TIM_EGR_UG' undeclared (first use in this function)
+  241 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |                               ^~~~~~~~~~
+../Core/Src/librarytb6600github.c:216:11: warning: unused variable 'freq_f' [-Wunused-variable]
+  216 |     float freq_f = (rpm / 60.0f) * (float)hs->pulses_per_rev;
+      |           ^~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Start':
+../Core/Src/librarytb6600github.c:252:9: warning: implicit declaration of function 'HAL_TIM_PWM_Start' [-Wimplicit-function-declaration]
+  252 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |         ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:252:57: error: 'HAL_OK' undeclared (first use in this function)
+  252 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                                                         ^~~~~~
+../Core/Src/librarytb6600github.c:255:19: error: 'true' undeclared (first use in this function)
+  255 |     hs->running = true;
+      |                   ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Stop':
+../Core/Src/librarytb6600github.c:262:9: warning: implicit declaration of function 'HAL_TIM_PWM_Stop' [-Wimplicit-function-declaration]
+  262 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |         ^~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:262:56: error: 'HAL_OK' undeclared (first use in this function)
+  262 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                                                        ^~~~~~
+../Core/Src/librarytb6600github.c:265:19: error: 'false' undeclared (first use in this function)
+  265 |     hs->running = false;
+      |                   ^~~~~
+../Core/Src/librarytb6600github.c: At top level:
+../Core/Src/librarytb6600github.c:269:55: error: unknown type name 'bool'
+  269 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable)
+      |                                                       ^~~~
+make: *** [Core/Src/subdir.mk:42: Core/Src/librarytb6600github.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:21:55 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:16:1: warning: "/*" within comment [-Wcomment]
+   16 | /* ============================================================================
+      |  
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:59:5: error: unknown type name 'TIM_HandleTypeDef'
+   59 |     TIM_HandleTypeDef *htim;         //CON TRá»Ž HTIM, XÃ?C Ä?á»ŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:60:5: error: unknown type name 'uint32_t'
+   60 |     uint32_t           tim_channel;  //XÃ?C Ä?á»ŠNH XEM KÃŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:63:5: error: unknown type name 'GPIO_TypeDef'
+   63 |     GPIO_TypeDef      *dir_port; //con trá»? dir_port
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:64:5: error: unknown type name 'uint16_t'
+   64 |     uint16_t           dir_pin;  //biáº¿n dir pin
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:68:5: error: unknown type name 'GPIO_TypeDef'
+   68 |     GPIO_TypeDef      *ena_port;
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:69:5: error: unknown type name 'uint16_t'
+   69 |     uint16_t           ena_pin;
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:70:5: error: unknown type name 'bool'
+   70 |     bool               ena_active_low; /* true if TB6600 ENA is active-low */
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:73:5: error: unknown type name 'uint32_t'
+   73 |     uint32_t           timer_clock_hz;    //Táº¦N Sá»? XUNG APB Cá»¦A Ä?áº¦U VÃ€O TIMER Ä?ANG DÃ™NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:75:5: error: unknown type name 'uint16_t'
+   75 |     uint16_t           pulses_per_rev;    //Sá»? XUNG Cáº¦N PHÃ?T Ä?á»‚ Ä?I Ä?Æ¯á»¢C 1 VÃ’NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:77:5: error: unknown type name 'bool'
+   77 |     bool               running;    //Cá»œ TRáº NG THÃ?I
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:78:5: error: unknown type name 'bool'
+   78 |     bool               initialized;
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:122:55: error: unknown type name 'bool'
+  122 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable);
+      |                                                       ^~~~
+../Core/Inc/librarytb6600github.h:127:2: error: #endif without #if
+  127 | #endif /* STEPPER_TB6600_H */
+      |  ^~~~~
+../Core/Src/librarytb6600github.c:25:41: error: unknown type name 'TIM_HandleTypeDef'
+   25 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |                                         ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:74:8: error: unknown type name 'bool'
+   74 | static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+      |        ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_ComputePscArr':
+../Core/Src/librarytb6600github.c:79:38: error: 'false' undeclared (first use in this function)
+   79 |     if (target_freq_hz == 0U) return false;
+      |                                      ^~~~~
+../Core/Src/librarytb6600github.c:79:38: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/librarytb6600github.c:107:12: error: 'true' undeclared (first use in this function)
+  107 |     return true;
+      |            ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Init':
+../Core/Src/librarytb6600github.c:141:26: warning: implicit declaration of function 'Stepper_GetTimerClockHz' [-Wimplicit-function-declaration]
+  141 |     hs->timer_clock_hz = Stepper_GetTimerClockHz(hs->htim);
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:150:26: error: 'false' undeclared (first use in this function)
+  150 |     hs->running        = false;
+      |                          ^~~~~
+../Core/Src/librarytb6600github.c:153:5: warning: implicit declaration of function 'Stepper_Enable' [-Wimplicit-function-declaration]
+  153 |     Stepper_Enable(hs, false);
+      |     ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:156:23: error: 'true' undeclared (first use in this function)
+  156 |     hs->initialized = true;
+      |                       ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetDirection':
+../Core/Src/librarytb6600github.c:192:5: warning: implicit declaration of function 'HAL_GPIO_WritePin' [-Wimplicit-function-declaration]
+  192 |     HAL_GPIO_WritePin(hs->dir_port, hs->dir_pin,
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:193:49: error: 'GPIO_PIN_SET' undeclared (first use in this function)
+  193 |                       (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+      |                                                 ^~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:193:64: error: 'GPIO_PIN_RESET' undeclared (first use in this function)
+  193 |                       (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+      |                                                                ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetSpeedRPM':
+../Core/Src/librarytb6600github.c:234:5: warning: implicit declaration of function '__HAL_TIM_SET_PRESCALER' [-Wimplicit-function-declaration]
+  234 |     __HAL_TIM_SET_PRESCALER(hs->htim, psc);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:235:5: warning: implicit declaration of function '__HAL_TIM_SET_AUTORELOAD' [-Wimplicit-function-declaration]
+  235 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:236:5: warning: implicit declaration of function '__HAL_TIM_SET_COMPARE' [-Wimplicit-function-declaration]
+  236 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:241:13: error: request for member 'Instance' in something not a structure or union
+  241 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |             ^~
+../Core/Src/librarytb6600github.c:241:31: error: 'TIM_EGR_UG' undeclared (first use in this function)
+  241 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |                               ^~~~~~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Start':
+../Core/Src/librarytb6600github.c:252:9: warning: implicit declaration of function 'HAL_TIM_PWM_Start' [-Wimplicit-function-declaration]
+  252 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |         ^~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:252:57: error: 'HAL_OK' undeclared (first use in this function)
+  252 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                                                         ^~~~~~
+../Core/Src/librarytb6600github.c:255:19: error: 'true' undeclared (first use in this function)
+  255 |     hs->running = true;
+      |                   ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Stop':
+../Core/Src/librarytb6600github.c:262:9: warning: implicit declaration of function 'HAL_TIM_PWM_Stop' [-Wimplicit-function-declaration]
+  262 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |         ^~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:262:56: error: 'HAL_OK' undeclared (first use in this function)
+  262 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                                                        ^~~~~~
+../Core/Src/librarytb6600github.c:265:19: error: 'false' undeclared (first use in this function)
+  265 |     hs->running = false;
+      |                   ^~~~~
+../Core/Src/librarytb6600github.c: At top level:
+../Core/Src/librarytb6600github.c:269:55: error: unknown type name 'bool'
+  269 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable)
+      |                                                       ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_ComputePscArr':
+../Core/Src/librarytb6600github.c:109:1: warning: control reaches end of non-void function [-Wreturn-type]
+  109 | }
+      | ^
+make: *** [Core/Src/subdir.mk:42: Core/Src/librarytb6600github.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:22:36 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:16:1: warning: "/*" within comment [-Wcomment]
+   16 | /* ============================================================================
+      |  
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:59:5: error: unknown type name 'TIM_HandleTypeDef'
+   59 |     TIM_HandleTypeDef *htim;         //CON TRá»Ž HTIM, XÃ?C Ä?á»ŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:60:5: error: unknown type name 'uint32_t'
+   60 |     uint32_t           tim_channel;  //XÃ?C Ä?á»ŠNH XEM KÃŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:63:5: error: unknown type name 'GPIO_TypeDef'
+   63 |     GPIO_TypeDef      *dir_port; //con trá»? dir_port
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:64:5: error: unknown type name 'uint16_t'
+   64 |     uint16_t           dir_pin;  //biáº¿n dir pin
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:68:5: error: unknown type name 'GPIO_TypeDef'
+   68 |     GPIO_TypeDef      *ena_port;
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:69:5: error: unknown type name 'uint16_t'
+   69 |     uint16_t           ena_pin;
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:70:5: error: unknown type name 'bool'
+   70 |     bool               ena_active_low; /* true if TB6600 ENA is active-low */
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:73:5: error: unknown type name 'uint32_t'
+   73 |     uint32_t           timer_clock_hz;    //Táº¦N Sá»? XUNG APB Cá»¦A Ä?áº¦U VÃ€O TIMER Ä?ANG DÃ™NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:75:5: error: unknown type name 'uint16_t'
+   75 |     uint16_t           pulses_per_rev;    //Sá»? XUNG Cáº¦N PHÃ?T Ä?á»‚ Ä?I Ä?Æ¯á»¢C 1 VÃ’NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:77:5: error: unknown type name 'bool'
+   77 |     bool               running;    //Cá»œ TRáº NG THÃ?I
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:78:5: error: unknown type name 'bool'
+   78 |     bool               initialized;
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:122:55: error: unknown type name 'bool'
+  122 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable);
+      |                                                       ^~~~
+../Core/Inc/librarytb6600github.h:127:2: error: #endif without #if
+  127 | #endif /* STEPPER_TB6600_H */
+      |  ^~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_GetTimerClockHz':
+../Core/Src/librarytb6600github.c:38:5: error: unknown type name 'bool'
+   38 |     bool is_apb2 = (tim == TIM1 || tim == TIM8 ||
+      |     ^~~~
+../Core/Src/librarytb6600github.c: At top level:
+../Core/Src/librarytb6600github.c:75:8: error: unknown type name 'bool'
+   75 | static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+      |        ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_ComputePscArr':
+../Core/Src/librarytb6600github.c:80:38: error: 'false' undeclared (first use in this function)
+   80 |     if (target_freq_hz == 0U) return false;
+      |                                      ^~~~~
+../Core/Src/librarytb6600github.c:80:38: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/librarytb6600github.c:108:12: error: 'true' undeclared (first use in this function)
+  108 |     return true;
+      |            ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Init':
+../Core/Src/librarytb6600github.c:142:52: warning: passing argument 1 of 'Stepper_GetTimerClockHz' from incompatible pointer type [-Wincompatible-pointer-types]
+  142 |     hs->timer_clock_hz = Stepper_GetTimerClockHz(hs->htim);
+      |                                                  ~~^~~~~~
+      |                                                    |
+      |                                                    int *
+../Core/Src/librarytb6600github.c:26:60: note: expected 'TIM_HandleTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+   26 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |                                         ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/librarytb6600github.c:151:26: error: 'false' undeclared (first use in this function)
+  151 |     hs->running        = false;
+      |                          ^~~~~
+../Core/Src/librarytb6600github.c:154:5: warning: implicit declaration of function 'Stepper_Enable' [-Wimplicit-function-declaration]
+  154 |     Stepper_Enable(hs, false);
+      |     ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:157:23: error: 'true' undeclared (first use in this function)
+  157 |     hs->initialized = true;
+      |                       ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetDirection':
+../Core/Src/librarytb6600github.c:193:25: warning: passing argument 1 of 'HAL_GPIO_WritePin' from incompatible pointer type [-Wincompatible-pointer-types]
+  193 |     HAL_GPIO_WritePin(hs->dir_port, hs->dir_pin,
+      |                       ~~^~~~~~~~~~
+      |                         |
+      |                         int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:278,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h:236:38: note: expected 'GPIO_TypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+  236 | void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
+      |                        ~~~~~~~~~~~~~~^~~~~
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetSpeedRPM':
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1267:75: error: request for member 'Instance' in something not a structure or union
+ 1267 | #define __HAL_TIM_SET_PRESCALER(__HANDLE__, __PRESC__)       ((__HANDLE__)->Instance->PSC = (__PRESC__))
+      |                                                                           ^~
+../Core/Src/librarytb6600github.c:235:5: note: in expansion of macro '__HAL_TIM_SET_PRESCALER'
+  235 |     __HAL_TIM_SET_PRESCALER(hs->htim, psc);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1292:17: error: request for member 'Instance' in something not a structure or union
+ 1292 |     (__HANDLE__)->Instance->ARR = (__AUTORELOAD__);  \
+      |                 ^~
+../Core/Src/librarytb6600github.c:236:5: note: in expansion of macro '__HAL_TIM_SET_AUTORELOAD'
+  236 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1293:17: error: request for member 'Init' in something not a structure or union
+ 1293 |     (__HANDLE__)->Init.Period = (__AUTORELOAD__);    \
+      |                 ^~
+../Core/Src/librarytb6600github.c:236:5: note: in expansion of macro '__HAL_TIM_SET_AUTORELOAD'
+  236 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1388:52: error: request for member 'Instance' in something not a structure or union
+ 1388 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                                    ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  237 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1389:52: error: request for member 'Instance' in something not a structure or union
+ 1389 |    ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCR2 = (__COMPARE__)) :\
+      |                                                    ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  237 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1390:52: error: request for member 'Instance' in something not a structure or union
+ 1390 |    ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCR3 = (__COMPARE__)) :\
+      |                                                    ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  237 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1391:17: error: request for member 'Instance' in something not a structure or union
+ 1391 |    ((__HANDLE__)->Instance->CCR4 = (__COMPARE__)))
+      |                 ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  237 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:242:13: error: request for member 'Instance' in something not a structure or union
+  242 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |             ^~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Start':
+../Core/Src/librarytb6600github.c:253:29: warning: passing argument 1 of 'HAL_TIM_PWM_Start' from incompatible pointer type [-Wincompatible-pointer-types]
+  253 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                           ~~^~~~~~
+      |                             |
+      |                             int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1918:56: note: expected 'TIM_HandleTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+ 1918 | HAL_StatusTypeDef HAL_TIM_PWM_Start(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/librarytb6600github.c:256:19: error: 'true' undeclared (first use in this function)
+  256 |     hs->running = true;
+      |                   ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Stop':
+../Core/Src/librarytb6600github.c:263:28: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+  263 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                          ~~^~~~~~
+      |                            |
+      |                            int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1919:55: note: expected 'TIM_HandleTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+ 1919 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/librarytb6600github.c:266:19: error: 'false' undeclared (first use in this function)
+  266 |     hs->running = false;
+      |                   ^~~~~
+../Core/Src/librarytb6600github.c: At top level:
+../Core/Src/librarytb6600github.c:270:55: error: unknown type name 'bool'
+  270 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable)
+      |                                                       ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_ComputePscArr':
+../Core/Src/librarytb6600github.c:110:1: warning: control reaches end of non-void function [-Wreturn-type]
+  110 | }
+      | ^
+make: *** [Core/Src/subdir.mk:42: Core/Src/librarytb6600github.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:22:49 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:16:1: warning: "/*" within comment [-Wcomment]
+   16 | /* ============================================================================
+      |  
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:59:5: error: unknown type name 'TIM_HandleTypeDef'
+   59 |     TIM_HandleTypeDef *htim;         //CON TRá»Ž HTIM, XÃ?C Ä?á»ŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:60:5: error: unknown type name 'uint32_t'
+   60 |     uint32_t           tim_channel;  //XÃ?C Ä?á»ŠNH XEM KÃŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:63:5: error: unknown type name 'GPIO_TypeDef'
+   63 |     GPIO_TypeDef      *dir_port; //con trá»? dir_port
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:64:5: error: unknown type name 'uint16_t'
+   64 |     uint16_t           dir_pin;  //biáº¿n dir pin
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:68:5: error: unknown type name 'GPIO_TypeDef'
+   68 |     GPIO_TypeDef      *ena_port;
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:69:5: error: unknown type name 'uint16_t'
+   69 |     uint16_t           ena_pin;
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:70:5: error: unknown type name 'bool'
+   70 |     bool               ena_active_low; /* true if TB6600 ENA is active-low */
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:73:5: error: unknown type name 'uint32_t'
+   73 |     uint32_t           timer_clock_hz;    //Táº¦N Sá»? XUNG APB Cá»¦A Ä?áº¦U VÃ€O TIMER Ä?ANG DÃ™NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:75:5: error: unknown type name 'uint16_t'
+   75 |     uint16_t           pulses_per_rev;    //Sá»? XUNG Cáº¦N PHÃ?T Ä?á»‚ Ä?I Ä?Æ¯á»¢C 1 VÃ’NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:77:5: error: unknown type name 'bool'
+   77 |     bool               running;    //Cá»œ TRáº NG THÃ?I
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:78:5: error: unknown type name 'bool'
+   78 |     bool               initialized;
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:122:55: error: unknown type name 'bool'
+  122 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable);
+      |                                                       ^~~~
+../Core/Inc/librarytb6600github.h:127:2: error: #endif without #if
+  127 | #endif /* STEPPER_TB6600_H */
+      |  ^~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_GetTimerClockHz':
+../Core/Src/librarytb6600github.c:38:5: error: unknown type name 'bool'
+   38 |     bool is_apb2 = (tim == TIM1 || tim == TIM8 ||
+      |     ^~~~
+../Core/Src/librarytb6600github.c: At top level:
+../Core/Src/librarytb6600github.c:75:8: error: unknown type name 'bool'
+   75 | static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+      |        ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_ComputePscArr':
+../Core/Src/librarytb6600github.c:80:38: error: 'false' undeclared (first use in this function)
+   80 |     if (target_freq_hz == 0U) return false;
+      |                                      ^~~~~
+../Core/Src/librarytb6600github.c:80:38: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/librarytb6600github.c:108:12: error: 'true' undeclared (first use in this function)
+  108 |     return true;
+      |            ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Init':
+../Core/Src/librarytb6600github.c:142:52: warning: passing argument 1 of 'Stepper_GetTimerClockHz' from incompatible pointer type [-Wincompatible-pointer-types]
+  142 |     hs->timer_clock_hz = Stepper_GetTimerClockHz(hs->htim);
+      |                                                  ~~^~~~~~
+      |                                                    |
+      |                                                    int *
+../Core/Src/librarytb6600github.c:26:60: note: expected 'TIM_HandleTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+   26 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |                                         ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/librarytb6600github.c:151:26: error: 'false' undeclared (first use in this function)
+  151 |     hs->running        = false;
+      |                          ^~~~~
+../Core/Src/librarytb6600github.c:154:5: warning: implicit declaration of function 'Stepper_Enable' [-Wimplicit-function-declaration]
+  154 |     Stepper_Enable(hs, false);
+      |     ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:157:23: error: 'true' undeclared (first use in this function)
+  157 |     hs->initialized = true;
+      |                       ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetDirection':
+../Core/Src/librarytb6600github.c:193:25: warning: passing argument 1 of 'HAL_GPIO_WritePin' from incompatible pointer type [-Wincompatible-pointer-types]
+  193 |     HAL_GPIO_WritePin(hs->dir_port, hs->dir_pin,
+      |                       ~~^~~~~~~~~~
+      |                         |
+      |                         int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:278,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h:236:38: note: expected 'GPIO_TypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+  236 | void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
+      |                        ~~~~~~~~~~~~~~^~~~~
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetSpeedRPM':
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1267:75: error: request for member 'Instance' in something not a structure or union
+ 1267 | #define __HAL_TIM_SET_PRESCALER(__HANDLE__, __PRESC__)       ((__HANDLE__)->Instance->PSC = (__PRESC__))
+      |                                                                           ^~
+../Core/Src/librarytb6600github.c:235:5: note: in expansion of macro '__HAL_TIM_SET_PRESCALER'
+  235 |     __HAL_TIM_SET_PRESCALER(hs->htim, psc);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1292:17: error: request for member 'Instance' in something not a structure or union
+ 1292 |     (__HANDLE__)->Instance->ARR = (__AUTORELOAD__);  \
+      |                 ^~
+../Core/Src/librarytb6600github.c:236:5: note: in expansion of macro '__HAL_TIM_SET_AUTORELOAD'
+  236 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1293:17: error: request for member 'Init' in something not a structure or union
+ 1293 |     (__HANDLE__)->Init.Period = (__AUTORELOAD__);    \
+      |                 ^~
+../Core/Src/librarytb6600github.c:236:5: note: in expansion of macro '__HAL_TIM_SET_AUTORELOAD'
+  236 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1388:52: error: request for member 'Instance' in something not a structure or union
+ 1388 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                                    ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  237 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1389:52: error: request for member 'Instance' in something not a structure or union
+ 1389 |    ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCR2 = (__COMPARE__)) :\
+      |                                                    ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  237 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1390:52: error: request for member 'Instance' in something not a structure or union
+ 1390 |    ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCR3 = (__COMPARE__)) :\
+      |                                                    ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  237 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1391:17: error: request for member 'Instance' in something not a structure or union
+ 1391 |    ((__HANDLE__)->Instance->CCR4 = (__COMPARE__)))
+      |                 ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  237 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:242:13: error: request for member 'Instance' in something not a structure or union
+  242 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |             ^~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Start':
+../Core/Src/librarytb6600github.c:253:29: warning: passing argument 1 of 'HAL_TIM_PWM_Start' from incompatible pointer type [-Wincompatible-pointer-types]
+  253 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                           ~~^~~~~~
+      |                             |
+      |                             int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1918:56: note: expected 'TIM_HandleTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+ 1918 | HAL_StatusTypeDef HAL_TIM_PWM_Start(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/librarytb6600github.c:256:19: error: 'true' undeclared (first use in this function)
+  256 |     hs->running = true;
+      |                   ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Stop':
+../Core/Src/librarytb6600github.c:263:28: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+  263 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                          ~~^~~~~~
+      |                            |
+      |                            int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1919:55: note: expected 'TIM_HandleTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+ 1919 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/librarytb6600github.c:266:19: error: 'false' undeclared (first use in this function)
+  266 |     hs->running = false;
+      |                   ^~~~~
+../Core/Src/librarytb6600github.c: At top level:
+../Core/Src/librarytb6600github.c:270:55: error: unknown type name 'bool'
+  270 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable)
+      |                                                       ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_ComputePscArr':
+../Core/Src/librarytb6600github.c:110:1: warning: control reaches end of non-void function [-Wreturn-type]
+  110 | }
+      | ^
+make: *** [Core/Src/subdir.mk:42: Core/Src/librarytb6600github.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:23:01 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:16:1: warning: "/*" within comment [-Wcomment]
+   16 | /* ============================================================================
+      |  
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:59:5: error: unknown type name 'TIM_HandleTypeDef'
+   59 |     TIM_HandleTypeDef *htim;         //CON TRá»Ž HTIM, XÃ?C Ä?á»ŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:60:5: error: unknown type name 'uint32_t'
+   60 |     uint32_t           tim_channel;  //XÃ?C Ä?á»ŠNH XEM KÃŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:63:5: error: unknown type name 'GPIO_TypeDef'
+   63 |     GPIO_TypeDef      *dir_port; //con trá»? dir_port
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:64:5: error: unknown type name 'uint16_t'
+   64 |     uint16_t           dir_pin;  //biáº¿n dir pin
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:68:5: error: unknown type name 'GPIO_TypeDef'
+   68 |     GPIO_TypeDef      *ena_port;
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:69:5: error: unknown type name 'uint16_t'
+   69 |     uint16_t           ena_pin;
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:70:5: error: unknown type name 'bool'
+   70 |     bool               ena_active_low; /* true if TB6600 ENA is active-low */
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:73:5: error: unknown type name 'uint32_t'
+   73 |     uint32_t           timer_clock_hz;    //Táº¦N Sá»? XUNG APB Cá»¦A Ä?áº¦U VÃ€O TIMER Ä?ANG DÃ™NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:75:5: error: unknown type name 'uint16_t'
+   75 |     uint16_t           pulses_per_rev;    //Sá»? XUNG Cáº¦N PHÃ?T Ä?á»‚ Ä?I Ä?Æ¯á»¢C 1 VÃ’NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:77:5: error: unknown type name 'bool'
+   77 |     bool               running;    //Cá»œ TRáº NG THÃ?I
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:78:5: error: unknown type name 'bool'
+   78 |     bool               initialized;
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:122:55: error: unknown type name 'bool'
+  122 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable);
+      |                                                       ^~~~
+../Core/Inc/librarytb6600github.h:127:2: error: #endif without #if
+  127 | #endif /* STEPPER_TB6600_H */
+      |  ^~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_GetTimerClockHz':
+../Core/Src/librarytb6600github.c:38:5: error: unknown type name 'bool'
+   38 |     bool is_apb2 = (tim == TIM1 || tim == TIM8 ||
+      |     ^~~~
+../Core/Src/librarytb6600github.c: At top level:
+../Core/Src/librarytb6600github.c:75:8: error: unknown type name 'bool'
+   75 | static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+      |        ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_ComputePscArr':
+../Core/Src/librarytb6600github.c:80:38: error: 'false' undeclared (first use in this function)
+   80 |     if (target_freq_hz == 0U) return false;
+      |                                      ^~~~~
+../Core/Src/librarytb6600github.c:80:38: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/librarytb6600github.c:108:12: error: 'true' undeclared (first use in this function)
+  108 |     return true;
+      |            ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Init':
+../Core/Src/librarytb6600github.c:142:52: warning: passing argument 1 of 'Stepper_GetTimerClockHz' from incompatible pointer type [-Wincompatible-pointer-types]
+  142 |     hs->timer_clock_hz = Stepper_GetTimerClockHz(hs->htim);
+      |                                                  ~~^~~~~~
+      |                                                    |
+      |                                                    int *
+../Core/Src/librarytb6600github.c:26:60: note: expected 'TIM_HandleTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+   26 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |                                         ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/librarytb6600github.c:151:26: error: 'false' undeclared (first use in this function)
+  151 |     hs->running        = false;
+      |                          ^~~~~
+../Core/Src/librarytb6600github.c:154:5: warning: implicit declaration of function 'Stepper_Enable' [-Wimplicit-function-declaration]
+  154 |     Stepper_Enable(hs, false);
+      |     ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:157:23: error: 'true' undeclared (first use in this function)
+  157 |     hs->initialized = true;
+      |                       ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetDirection':
+../Core/Src/librarytb6600github.c:193:25: warning: passing argument 1 of 'HAL_GPIO_WritePin' from incompatible pointer type [-Wincompatible-pointer-types]
+  193 |     HAL_GPIO_WritePin(hs->dir_port, hs->dir_pin,
+      |                       ~~^~~~~~~~~~
+      |                         |
+      |                         int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:278,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h:236:38: note: expected 'GPIO_TypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+  236 | void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
+      |                        ~~~~~~~~~~~~~~^~~~~
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetSpeedRPM':
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1267:75: error: request for member 'Instance' in something not a structure or union
+ 1267 | #define __HAL_TIM_SET_PRESCALER(__HANDLE__, __PRESC__)       ((__HANDLE__)->Instance->PSC = (__PRESC__))
+      |                                                                           ^~
+../Core/Src/librarytb6600github.c:235:5: note: in expansion of macro '__HAL_TIM_SET_PRESCALER'
+  235 |     __HAL_TIM_SET_PRESCALER(hs->htim, psc);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1292:17: error: request for member 'Instance' in something not a structure or union
+ 1292 |     (__HANDLE__)->Instance->ARR = (__AUTORELOAD__);  \
+      |                 ^~
+../Core/Src/librarytb6600github.c:236:5: note: in expansion of macro '__HAL_TIM_SET_AUTORELOAD'
+  236 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1293:17: error: request for member 'Init' in something not a structure or union
+ 1293 |     (__HANDLE__)->Init.Period = (__AUTORELOAD__);    \
+      |                 ^~
+../Core/Src/librarytb6600github.c:236:5: note: in expansion of macro '__HAL_TIM_SET_AUTORELOAD'
+  236 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1388:52: error: request for member 'Instance' in something not a structure or union
+ 1388 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                                    ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  237 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1389:52: error: request for member 'Instance' in something not a structure or union
+ 1389 |    ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCR2 = (__COMPARE__)) :\
+      |                                                    ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  237 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1390:52: error: request for member 'Instance' in something not a structure or union
+ 1390 |    ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCR3 = (__COMPARE__)) :\
+      |                                                    ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  237 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1391:17: error: request for member 'Instance' in something not a structure or union
+ 1391 |    ((__HANDLE__)->Instance->CCR4 = (__COMPARE__)))
+      |                 ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  237 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:242:13: error: request for member 'Instance' in something not a structure or union
+  242 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |             ^~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Start':
+../Core/Src/librarytb6600github.c:253:29: warning: passing argument 1 of 'HAL_TIM_PWM_Start' from incompatible pointer type [-Wincompatible-pointer-types]
+  253 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                           ~~^~~~~~
+      |                             |
+      |                             int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1918:56: note: expected 'TIM_HandleTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+ 1918 | HAL_StatusTypeDef HAL_TIM_PWM_Start(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/librarytb6600github.c:256:19: error: 'true' undeclared (first use in this function)
+  256 |     hs->running = true;
+      |                   ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Stop':
+../Core/Src/librarytb6600github.c:263:28: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+  263 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                          ~~^~~~~~
+      |                            |
+      |                            int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1919:55: note: expected 'TIM_HandleTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+ 1919 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/librarytb6600github.c:266:19: error: 'false' undeclared (first use in this function)
+  266 |     hs->running = false;
+      |                   ^~~~~
+../Core/Src/librarytb6600github.c: At top level:
+../Core/Src/librarytb6600github.c:270:55: error: unknown type name 'bool'
+  270 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable)
+      |                                                       ^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_ComputePscArr':
+../Core/Src/librarytb6600github.c:110:1: warning: control reaches end of non-void function [-Wreturn-type]
+  110 | }
+      | ^
+make: *** [Core/Src/subdir.mk:42: Core/Src/librarytb6600github.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:25:23 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:16:1: warning: "/*" within comment [-Wcomment]
+   16 | /* ============================================================================
+      |  
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:59:5: error: unknown type name 'TIM_HandleTypeDef'
+   59 |     TIM_HandleTypeDef *htim;         //CON TRá»Ž HTIM, XÃ?C Ä?á»ŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:60:5: error: unknown type name 'uint32_t'
+   60 |     uint32_t           tim_channel;  //XÃ?C Ä?á»ŠNH XEM KÃŠNH TIMER NÃ€O Ä?ANG PHÃ?T XUNG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:63:5: error: unknown type name 'GPIO_TypeDef'
+   63 |     GPIO_TypeDef      *dir_port; //con trá»? dir_port
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:64:5: error: unknown type name 'uint16_t'
+   64 |     uint16_t           dir_pin;  //biáº¿n dir pin
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:68:5: error: unknown type name 'GPIO_TypeDef'
+   68 |     GPIO_TypeDef      *ena_port;
+      |     ^~~~~~~~~~~~
+../Core/Inc/librarytb6600github.h:69:5: error: unknown type name 'uint16_t'
+   69 |     uint16_t           ena_pin;
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:70:5: error: unknown type name 'bool'
+   70 |     bool               ena_active_low; /* true if TB6600 ENA is active-low */
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:73:5: error: unknown type name 'uint32_t'
+   73 |     uint32_t           timer_clock_hz;    //Táº¦N Sá»? XUNG APB Cá»¦A Ä?áº¦U VÃ€O TIMER Ä?ANG DÃ™NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:75:5: error: unknown type name 'uint16_t'
+   75 |     uint16_t           pulses_per_rev;    //Sá»? XUNG Cáº¦N PHÃ?T Ä?á»‚ Ä?I Ä?Æ¯á»¢C 1 VÃ’NG
+      |     ^~~~~~~~
+../Core/Inc/librarytb6600github.h:77:5: error: unknown type name 'bool'
+   77 |     bool               running;    //Cá»œ TRáº NG THÃ?I
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:78:5: error: unknown type name 'bool'
+   78 |     bool               initialized;
+      |     ^~~~
+../Core/Inc/librarytb6600github.h:122:55: error: unknown type name 'bool'
+  122 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable);
+      |                                                       ^~~~
+../Core/Inc/librarytb6600github.h:127:2: error: #endif without #if
+  127 | #endif /* STEPPER_TB6600_H */
+      |  ^~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Init':
+../Core/Src/librarytb6600github.c:143:52: warning: passing argument 1 of 'Stepper_GetTimerClockHz' from incompatible pointer type [-Wincompatible-pointer-types]
+  143 |     hs->timer_clock_hz = Stepper_GetTimerClockHz(hs->htim);
+      |                                                  ~~^~~~~~
+      |                                                    |
+      |                                                    int *
+../Core/Src/librarytb6600github.c:27:60: note: expected 'TIM_HandleTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+   27 | static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+      |                                         ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/librarytb6600github.c:155:5: warning: implicit declaration of function 'Stepper_Enable' [-Wimplicit-function-declaration]
+  155 |     Stepper_Enable(hs, false);
+      |     ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetDirection':
+../Core/Src/librarytb6600github.c:194:25: warning: passing argument 1 of 'HAL_GPIO_WritePin' from incompatible pointer type [-Wincompatible-pointer-types]
+  194 |     HAL_GPIO_WritePin(hs->dir_port, hs->dir_pin,
+      |                       ~~^~~~~~~~~~
+      |                         |
+      |                         int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:278,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h:236:38: note: expected 'GPIO_TypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+  236 | void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
+      |                        ~~~~~~~~~~~~~~^~~~~
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Core/Src/librarytb6600github.c: In function 'Stepper_SetSpeedRPM':
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1267:75: error: request for member 'Instance' in something not a structure or union
+ 1267 | #define __HAL_TIM_SET_PRESCALER(__HANDLE__, __PRESC__)       ((__HANDLE__)->Instance->PSC = (__PRESC__))
+      |                                                                           ^~
+../Core/Src/librarytb6600github.c:236:5: note: in expansion of macro '__HAL_TIM_SET_PRESCALER'
+  236 |     __HAL_TIM_SET_PRESCALER(hs->htim, psc);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1292:17: error: request for member 'Instance' in something not a structure or union
+ 1292 |     (__HANDLE__)->Instance->ARR = (__AUTORELOAD__);  \
+      |                 ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_AUTORELOAD'
+  237 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1293:17: error: request for member 'Init' in something not a structure or union
+ 1293 |     (__HANDLE__)->Init.Period = (__AUTORELOAD__);    \
+      |                 ^~
+../Core/Src/librarytb6600github.c:237:5: note: in expansion of macro '__HAL_TIM_SET_AUTORELOAD'
+  237 |     __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1388:52: error: request for member 'Instance' in something not a structure or union
+ 1388 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                                    ^~
+../Core/Src/librarytb6600github.c:238:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  238 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1389:52: error: request for member 'Instance' in something not a structure or union
+ 1389 |    ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCR2 = (__COMPARE__)) :\
+      |                                                    ^~
+../Core/Src/librarytb6600github.c:238:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  238 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1390:52: error: request for member 'Instance' in something not a structure or union
+ 1390 |    ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCR3 = (__COMPARE__)) :\
+      |                                                    ^~
+../Core/Src/librarytb6600github.c:238:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  238 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1391:17: error: request for member 'Instance' in something not a structure or union
+ 1391 |    ((__HANDLE__)->Instance->CCR4 = (__COMPARE__)))
+      |                 ^~
+../Core/Src/librarytb6600github.c:238:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  238 |     __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:243:13: error: request for member 'Instance' in something not a structure or union
+  243 |     hs->htim->Instance->EGR = TIM_EGR_UG;
+      |             ^~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Start':
+../Core/Src/librarytb6600github.c:254:29: warning: passing argument 1 of 'HAL_TIM_PWM_Start' from incompatible pointer type [-Wincompatible-pointer-types]
+  254 |     if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                           ~~^~~~~~
+      |                             |
+      |                             int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1918:56: note: expected 'TIM_HandleTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+ 1918 | HAL_StatusTypeDef HAL_TIM_PWM_Start(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Stop':
+../Core/Src/librarytb6600github.c:264:28: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+  264 |     if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+      |                          ~~^~~~~~
+      |                            |
+      |                            int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:402,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1919:55: note: expected 'TIM_HandleTypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+ 1919 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/librarytb6600github.c: At top level:
+../Core/Src/librarytb6600github.c:271:18: error: conflicting types for 'Stepper_Enable'
+  271 | Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable)
+      |                  ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c:155:5: note: previous implicit declaration of 'Stepper_Enable' was here
+  155 |     Stepper_Enable(hs, false);
+      |     ^~~~~~~~~~~~~~
+../Core/Src/librarytb6600github.c: In function 'Stepper_Enable':
+../Core/Src/librarytb6600github.c:280:25: warning: passing argument 1 of 'HAL_GPIO_WritePin' from incompatible pointer type [-Wincompatible-pointer-types]
+  280 |     HAL_GPIO_WritePin(hs->ena_port, hs->ena_pin, state);
+      |                       ~~^~~~~~~~~~
+      |                         |
+      |                         int *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:278,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/librarytb6600github.c:11:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h:236:38: note: expected 'GPIO_TypeDef *' {aka 'struct <anonymous> *'} but argument is of type 'int *'
+  236 | void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
+      |                        ~~~~~~~~~~~~~~^~~~~
+make: *** [Core/Src/subdir.mk:42: Core/Src/librarytb6600github.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:27:07 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:16:1: warning: "/*" within comment [-Wcomment]
+   16 | /* ============================================================================
+      |  
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:130:2: error: #endif without #if
+  130 | #endif /* STEPPER_TB6600_H */
+      |  ^~~~~
+make: *** [Core/Src/subdir.mk:42: Core/Src/librarytb6600github.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:28:16 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:16:1: warning: "/*" within comment [-Wcomment]
+   16 | /* ============================================================================
+      |  
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\LOQ\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  33052	    484	   2100	  35636	   8b34	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
+13:29:20 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+In file included from ../Core/Src/librarytb6600github.c:8:
+../Core/Inc/librarytb6600github.h:9:1: warning: "/*" within comment [-Wcomment]
+    9 | /* ============================================================================
+      |  
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\LOQ\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  33052	    484	   2100	  35636	   8b34	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
+13:29:47 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/librarytb6600github.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/librarytb6600github.d" -MT"Core/Src/librarytb6600github.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/librarytb6600github.o"
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\LOQ\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  33052	    484	   2100	  35636	   8b34	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 

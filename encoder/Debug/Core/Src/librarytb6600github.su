@@ -1,0 +1,11 @@
+librarytb6600github.c:27:17:Stepper_GetTimerClockHz	64	static
+librarytb6600github.c:76:13:Stepper_ComputePscArr	40	static
+librarytb6600github.c:117:17:Stepper_PulsesPerRev	16	static
+librarytb6600github.c:133:18:Stepper_Init	16	static
+librarytb6600github.c:165:18:Stepper_SetMicrostep	16	static
+librarytb6600github.c:190:18:Stepper_SetDirection	16	static
+librarytb6600github.c:202:18:Stepper_SetSpeedRPM	32	static
+librarytb6600github.c:249:18:Stepper_Start	16	static
+librarytb6600github.c:261:18:Stepper_Stop	16	static
+librarytb6600github.c:271:18:Stepper_Enable	24	static
+librarytb6600github.c:284:18:Stepper_GetMaxRPM	16	static

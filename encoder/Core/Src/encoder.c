@@ -73,8 +73,8 @@ void reset_encoder_cart(CartEncoderTypeDef *encoder_cart, TIM_HandleTypeDef*time
 	encoder_cart->prev_counter = __HAL_TIM_GET_COUNTER(timer); //lay gia tri encoder ngay luc reset de luu vao prev_encoder
 }
 
-void update_encoder_cart(EncoderTypeDef *encoder_cart){
-	current_counter = __HAL_TIM_GET_COUNTER(timer);
+void update_encoder_cart(CartEncoderTypeDef *encoder_cart){
+	float current_counter = __HAL_TIM_GET_COUNTER(encoder_cart->tim_handler);
 
 	if(encoder_cart->first_time==1){
 		encoder_cart->prev_counter = current_counter;

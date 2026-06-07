@@ -7,7 +7,9 @@
 
 #include <librarytb6600github.h>
 #include <math.h>
-
+#include <stdint.h>
+#include "main.h"
+#include <stdbool.h>
 /* ============================================================================
  * PRIVATE HELPERS
  * ============================================================================ */
