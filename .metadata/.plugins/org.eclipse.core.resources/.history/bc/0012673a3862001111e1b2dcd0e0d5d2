@@ -1,0 +1,103 @@
+/*
+ * encoder.c
+ *
+ *  Created on: May 24, 2026
+ *      Author: vu thanh vinh
+ */
+//FILE.H DÙNG ĐỂ KHAI BÁO, CHO BIẾT HÀM TỒN TẠI, TÊN GÌ, NHẬN THAM SỐ GÌ
+//FILE.C LÀ NƠI ĐỊNH NGHĨA, VIẾT NỘI DUNG CỦA HÀM
+
+
+
+
+#include "thucdonencoder.h"
+
+#define twopi 6.28318530718f
+#define DT 0.005f
+#define chuvipuli 120
+
+//hàm reset và khởi tạo
+//hàm này gán giá trị ban đầu cho toàn bộ struct
+//encoder scale: mỗi rad tương ứng với bao nhiêu xung
+
+
+//XỬ LÍ ENCODER CỦA PENDULUM
+void reset_encoder_pendulum(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer){
+	//mũi tên tức là truy cập các thành viên nằm trong struct thông qua con trỏ encdoder
+	encoder->angle_speed=0;
+	encoder->angle_position=0;
+	encoder->encoder_scale=twopi/ENCODER_RESOLUTION;  //đơn vị là radian/xung
+	encoder->tim_handler=timer;
+	encoder->first_time=1; //first time=1 tức là chưa có dữ liệu gì cả
+}
+
+//hàm cập nhật góc
+void update_encoder_pendulum(EncoderTypeDef *encoder_pendulum){
+	//đọc số xung hiện tại từ timer 2 và dùng encoder scale để nhân chuyển xung sang radian
+	float new_angle = (float) __HAL_TIM_GET_COUNTER(encoder_pendulum->tim_handler)*encoder_pendulum->encoder_scale;
+
+	if(encoder_pendulum->first_time == 1){
+		//lần đầu tiên chạy
+		encoder_pendulum->angle_speed=0;
+		encoder_pendulum->first_time=0; //sau lần chạy đầu tiên thì gán cờ first time = 0
+		encoder_pendulum->angle_position=new_angle;
+	}
+	else //nếu ko phải lần đầu tiên
+	{
+		if(new_angle - encoder_pendulum->angle_position >twopi/2){
+			//new_angle là biến cục bộ trong hàm update encoder còn con trỏ encoder->angle_pos là thành phần trong struct gốc(dữ liệu góc cũ)
+			//phần if này để nếu góc vượt quá 2pi thì góc ko tiếp tục tăng mà sẽ nhảy về 0, đi quá 2pi thì sẽ trừ đi 2pi để về 0
+			encoder_pendulum->angle_speed = new_angle - encoder_pendulum->angle_position - twopi;
+		}
+		else if(new_angle - encoder_pendulum->angle_position < -twopi/2){
+			encoder_pendulum->angle_speed = new_angle - encoder_pendulum->angle_position + twopi; //NHỚ ĐỌC KĨ LẠI VỀ 2 TRƯỜNG HỢP QUAY QUÁ NÀY
+		}
+		else{
+			encoder_pendulum->angle_speed = new_angle - encoder_pendulum->angle_position; //nếu ko phải 2 trường hợp trên thì để tính vận tốc góc thì bằng đúng góc new-góc old
+		}
+		encoder_pendulum->angle_position = new_angle; //lưu góc hiện tại(new angle) thành góc cũ(thành phần góc trong struct là angle pos)
+		encoder_pendulum->angle_speed = (encoder_pendulum->angle_speed)/DT;
+	}
+
+}
+
+
+//XỬ LÍ ENCODER CỦA CART
+void reset_encoder_cart(CartEncoderTypeDef *encoder, TIM_HandleTypeDef*timer){
+	//mũi tên tức là truy cập các thành viên nằm trong struct thông qua con trỏ encdoder
+	encoder->linear_speed=0;
+	encoder->linear_position=0;
+	encoder->cart_scale=chuvipuli/ENCODER_RESOLUTION;  //đơn vị là mm/xung
+	encoder->tim_handler=timer;
+	encoder->first_time=1; //flag first time bao la lan dau tien chay
+	encoder->prev_counter = __HAL_TIM_GET_COUNTER(timer); //lay gia tri encoder ngay luc reset de luu vao prev_encoder
+}
+
+void update_encoder_cart(EncoderTypeDef *encoder){
+	current_counter = __HAL_TIM_GET_COUNTER(timer);
+
+	if(encoder->first_time==1){
+		encoder->prev_counter = current_counter;
+		encoder->first_time = 0;
+	}
+	//tính delta của timer
+	int32_t count_diff = current_counter - encoder->prev_counter;
+
+	//xử lí overflow và underflow giống encoder của pendulum
+	if(count_diff>4000){
+		//trường hợp counter đi từ 10 đến 7990
+		count_diff = count_diff - 8000;
+	}
+	else if(count_diff<-4000){
+		count_diff = count_diff + 8000;
+	}
+
+	float distance_diff = (float)count_diff * cart_encoder->cart_scale; //ép kiểu để float*float=float
+	cart_encoder->linear_position += distance_diff;
+}
+
+
+
+
+
+

@@ -46,8 +46,8 @@ typedef enum {
 
 //TRẢ VỀ TRẠNG THÁI CỦA HÀM
 typedef enum {
-    STEPPER_OK             = 0,
-    STEPPER_ERR_NULL       = -1,
+    STEPPER_OK             = 0, //chạy tốt thì trả về 0
+    STEPPER_ERR_NULL       = -1,//lỗi timer thì -1
     STEPPER_ERR_RANGE      = -2,
     STEPPER_ERR_TIM_CONFIG = -3,
     STEPPER_ERR_HAL        = -4

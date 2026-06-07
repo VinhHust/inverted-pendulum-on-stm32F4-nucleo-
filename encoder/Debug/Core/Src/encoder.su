@@ -1,2 +1,2 @@
-encoder.c:21:6:reset_encoder	16	static
-encoder.c:31:6:update_encoder	24	static
+encoder.c:21:6:reset_encoder_pendulum	16	static
+encoder.c:31:6:update_encoder_pendulum	24	static

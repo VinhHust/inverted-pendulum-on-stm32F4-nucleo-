@@ -53,9 +53,10 @@ DMA_HandleTypeDef hdma_usart2_tx;
 /* USER CODE BEGIN PV */
 
 //từ dòng này là thử viết kiểu chia ra file .c và file .h
-volatile static EncoderTypeDef encoder_inverted; //EncoderTypedef là kiểu dữ liệu đã định nghĩa ở file.h, gi�? g�?i ra và có tên biến là encoder_inverted với kiểu dữ liệu đã khai báo ở file.h
-volatile float angular_position = 0.0;
-volatile float angular_velocity = 0.0;
+volatile static EncoderTypeDef encoder_pendulum; //EncoderTypedef là kiểu dữ liệu đã định nghĩa ở file.h, gi�? g�?i ra và có tên biến là encoder_inverted với kiểu dữ liệu đã khai báo ở file.h
+volatile static CartEncoderTypeDef encoder_cart; 	//bien luu tru gia tri encoder cua cart
+volatile float angular_position_pendulum = 0.0;
+volatile float angular_velocity_pendulum = 0.0;
 //2 biến này để lưu giá trị lôi ra từ struct
 
 
@@ -117,14 +118,12 @@ int main(void)
   //KHỞI TẠO ENCODER
 //RESET CHO LẦN KHỞI TẠO �?ẦU TIÊN
 //void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer), encoder và timer là 2 con tr�?
-reset_encoder((EncoderTypeDef*)&encoder_inverted, &htim2);
+reset_encoder_pendulum((EncoderTypeDef*)&encoder_pendulum, &htim2);
+reset_encoder_cart((CartEncoderTypeDef*)&encoder_cart, &htim1);    //reset encoder cua cart
+
 
 HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //tim2 la encoder pendulum
 HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL); //encoder of cart
-
-	//RESET CHO LẦN KHỞI TẠO �?ẦU TIÊN
-	//void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer), encoder và timer là 2 con tr�?
-
 HAL_TIM_Base_Start_IT(&htim3); 					//timer ngắt gián đoạn chu kì 5ms
 
 
@@ -213,7 +212,7 @@ static void MX_TIM1_Init(void)
   htim1.Instance = TIM1;
   htim1.Init.Prescaler = 0;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 65535;
+  htim1.Init.Period = ENCODER_RESOLUTION;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -477,12 +476,12 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, ham nay giu dia chi vung nho cua bo timer. callback duoc goi moi khi bat ki timer nao tran
 {
 	if (htim->Instance==TIM3){
-		//truy�?n địa chỉ của encoder_inverted vào, con tr�? encoder nhận địa chỉ đó và tr�? thẳng vào encoder_inverted
+		//truy�?n địa chỉ của encoder_pendulum vào, con tr�? encoder nhận địa chỉ đó và tr�? thẳng vào encoder_inverted
 		//con tr�? nắm giữ địa chỉ của encoder_inverted
 		//ở trên khai báo voltaile encodertypedef* nên phải ép kiểu thành (encodertypedef* để b�? volatile đi)
-		update_encoder((EncoderTypeDef*)&encoder_inverted);
-		angular_position = encoder_inverted.angle_position;
-		angular_velocity = encoder_inverted.angle_speed;
+		update_encoder_pendulum((EncoderTypeDef*)&encoder_pendulum);
+		angular_position_pendulum = encoder_pendulum.angle_position;
+		angular_velocity_pendulum = encoder_pendulum.angle_speed;
 	}
 	}
 

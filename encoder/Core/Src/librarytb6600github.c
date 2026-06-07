@@ -127,18 +127,25 @@ static uint16_t Stepper_PulsesPerRev(Stepper_MicrostepMode_t mode)
  * PUBLIC API IMPLEMENTATION //MẤY THẰNG CÓ THỂ GỌI TỪ BẤT CỨ FILE NÀO KHÁC
  * ============================================================================ */
 
-Stepper_Status_t Stepper_Init(Stepper_Handle_t *hs)
+//Stepper_Status_t typedef trạng thái đã khai báo bên .h,
+Stepper_Status_t Stepper_Init(Stepper_Handle_t *hs) //hàm initial nhận vào con trỏ hs trỏ vào kiểu dữ liệu Stepper_Handle_t
 {
+	//nếu ko khai báo cấu trúc motor hoặc quên ko gán timer thì trả về lỗi
     if (hs == NULL || hs->htim == NULL) return STEPPER_ERR_NULL;
 
+
+
     /* Cache the timer clock — this is the cornerstone of flexibility.
+     *PHẦN NÀY DÙNG ĐỂ TỰ NHẬN DIỆN TẦN SỐ CLOCK MỖI KHI THAY ĐỔI TRONG CUBEMX
      * User can change clock tree in CubeMX and this still works. */
     hs->timer_clock_hz = Stepper_GetTimerClockHz(hs->htim);
     if (hs->timer_clock_hz == 0U) return STEPPER_ERR_TIM_CONFIG;
 
-    /* Default state */
+
+
+    /* Default state */ //CHẾ ĐỘ MẶC ĐỊNH
     hs->microstep      = STEPPER_MICROSTEP_FULL;
-    hs->pulses_per_rev = Stepper_PulsesPerRev(hs->microstep);
+    hs->pulses_per_rev = Stepper_PulsesPerRev(hs->microstep); //TRẢ VỀ GIÁ TRỊ RỒI DÙNG CON TRỎ HS ĐỂ LƯU VÀO MICROSTEP
     hs->current_rpm    = 0.0f;
     hs->running        = false;
 
@@ -147,21 +154,27 @@ Stepper_Status_t Stepper_Init(Stepper_Handle_t *hs)
     Stepper_SetDirection(hs, STEPPER_DIR_CW);
 
     hs->initialized = true;
-    return STEPPER_OK;
+    return STEPPER_OK; //SAU BƯỚC CÀI ĐẶT CÁC GIÁ TRỊ MẶC ĐỊNH BAN ĐẦU THÌ BÁO CỜ OK
 }
 
+
+
+//HÀM CÓ NHIỆM VỤ THAY ĐỔI CHẾ ĐỘ VI BƯỚC CỦA ĐỘNG CƠ
 Stepper_Status_t Stepper_SetMicrostep(Stepper_Handle_t *hs,
                                       Stepper_MicrostepMode_t mode)
 {
+	//nếu chưa khởi tạo thì hàm trả về ERROR
     if (hs == NULL || !hs->initialized) return STEPPER_ERR_NULL;
+
     if (mode != STEPPER_MICROSTEP_FULL &&
         mode != STEPPER_MICROSTEP_HALF_A &&
         mode != STEPPER_MICROSTEP_HALF_B) {
         return STEPPER_ERR_RANGE;
+        //nếu giá trị không phải 3 mode chạy đã khai báo trước thì trả về lỗi RANGE ERROR
     }
 
-    hs->microstep      = mode;
-    hs->pulses_per_rev = Stepper_PulsesPerRev(mode);
+    hs->microstep      = mode; //lưu chế độ vi bước vào biến quản lí (con trỏ struct trỏ vào biến quản lí đó)
+    hs->pulses_per_rev = Stepper_PulsesPerRev(mode); //tính số xung cần thiết để quay được 1 vòng
 
     /* If already running, recompute PWM frequency for new pulses/rev
      * so that RPM stays consistent. */
@@ -171,6 +184,7 @@ Stepper_Status_t Stepper_SetMicrostep(Stepper_Handle_t *hs,
     return STEPPER_OK;
 }
 
+//cài đặt chiều quay
 Stepper_Status_t Stepper_SetDirection(Stepper_Handle_t *hs,
                                       Stepper_Direction_t dir)
 {
@@ -178,11 +192,11 @@ Stepper_Status_t Stepper_SetDirection(Stepper_Handle_t *hs,
     HAL_GPIO_WritePin(hs->dir_port, hs->dir_pin,
                       (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
     /* TB6600 needs >= 5 us DIR setup before next PUL edge.
-     * If you call this right before Start() at 100+ kHz pulse rate,
-     * consider adding a small delay. For typical use cases it's fine. */
+     * If you call this right before Start() at 100+ kHz pulse rate, */
     return STEPPER_OK;
 }
 
+//hàm điều khiển tốc độ động cơ
 Stepper_Status_t Stepper_SetSpeedRPM(Stepper_Handle_t *hs, float rpm)
 {
     if (hs == NULL || !hs->initialized) return STEPPER_ERR_NULL;
@@ -192,17 +206,23 @@ Stepper_Status_t Stepper_SetSpeedRPM(Stepper_Handle_t *hs, float rpm)
         hs->current_rpm = 0.0f;
         return Stepper_Stop(hs);
     }
+    //3 thằng if ở trên dùng để đảm bảo ko bị 1. con trỏ hs được cấp phát 2. giá trị tốc độ quay ko được âm 3. nếu set tốc độ =0 thì ngắt pwm
 
+
+    //Phần chuyển RPM sang tần số xung để cấp vào chân pul
     /* Convert RPM to pulse frequency:
      *   f_pulse = (RPM / 60) * pulses_per_rev                      */
-    float freq_f = (rpm / 60.0f) * (float)hs->pulses_per_rev;
-    uint32_t target_freq = (uint32_t)roundf(freq_f);
 
+    float freq_f = (rpm / 60.0f) * (float)hs->pulses_per_rev;
+    uint32_t target_freq = (uint32_t)roundf(freq_f); //làm tròn thành số nguyên gần nhất
+
+    //phần này dùng để kiểm tra giới hạn của phần cứng nếu tần số quá thấp hoặc quá cao
     if (target_freq < TB6600_MIN_PULSE_FREQ_HZ ||
         target_freq > TB6600_MAX_PULSE_FREQ_HZ) {
         return STEPPER_ERR_RANGE;
     }
 
+    //Phần này dùng để tính toán psc và arr bằng hàm computePscArr ở trên
     uint32_t psc, arr;
     if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
         return STEPPER_ERR_TIM_CONFIG;

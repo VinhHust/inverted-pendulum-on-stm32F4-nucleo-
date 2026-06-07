@@ -25,8 +25,26 @@ typedef struct {
 	uint8_t first_time; //cờ trạng thái, 1 nghĩa là lần đầu tiên chạy, 0 là đã chạy. dùng để khi lần đầu chạy chưa có dữ liệu cũ để tính vận tốc
 }EncoderTypeDef;
 
-void reset_encoder(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer); //biến encoder là 1 con trỏ lưu địa chỉ ô nhớ (hay tức là con trỏ trỏ tới địa chỉ của ô nhớ) của biến có kiểu dữ liệu là encodertypedef(là kiểu dữ liệu tự định nghĩa mà vừa khai báo ở trên )
-void update_encoder(EncoderTypeDef *encoder); //BẮT BUỘC XEM LẠI VIDEO ĐỂ HIỂU RÕ HƠN VỀ CON TRỎ
+//sruct cho cart
+typedef struct {
+	TIM_HandleTypeDef* tim_handler;
+	float linear_position;  // Vị trí thẳng (VD: mét hoặc mm)
+	float linear_speed;     // Vận tốc thẳng (m/s hoặc mm/s)
+	float cart_scale;       // Hệ số quy đổi: Xung -> Khoảng cách (Meters/Pulse)
+	int32_t prev_counter;  // Lưu giá trị đếm xung của chu kỳ trước
+	uint8_t first_time;
+} CartEncoderTypeDef;
+
+
+
+
+
+void reset_encoder_cart(EncoderTypeDef *encoder_cart, TIM_HandleTypeDef*timer);
+void update_encoder_cart(EncoderTypeDef *encoder_cart);
+
+
+void reset_encoder_pendulum(EncoderTypeDef *encoder_pendulum, TIM_HandleTypeDef*timer); //biến encoder là 1 con trỏ lưu địa chỉ ô nhớ (hay tức là con trỏ trỏ tới địa chỉ của ô nhớ) của biến có kiểu dữ liệu là encodertypedef(là kiểu dữ liệu tự định nghĩa mà vừa khai báo ở trên )
+void update_encoder_pendulum(EncoderTypeDef *encoder_pendulum); //BẮT BUỘC XEM LẠI VIDEO ĐỂ HIỂU RÕ HƠN VỀ CON TRỎ
 //hàm update encoder nhận vào 1 con trỏ kiểu encodertypedef, đặt tên là encoder
 //Con trỏ kiểu EncoderTypeDef nghĩa là con trỏ chỉ được phép lưu địa chỉ của biến có kiểu dữ liệu là EncoderTypeDef
 
