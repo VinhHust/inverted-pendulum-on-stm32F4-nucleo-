@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdio.h>
+#include <stdio.h> //thư viện dùng cho nhập xuất dữ liệu
 #include <string.h>
 #include <thucdonencoder.h>
 /* USER CODE END Includes */
@@ -57,8 +57,10 @@ volatile static EncoderTypeDef encoder_pendulum; //EncoderTypedef là kiểu d�
 volatile static CartEncoderTypeDef encoder_cart; 	//bien luu tru gia tri encoder cua cart
 volatile float angular_position_pendulum = 0.0;
 volatile float angular_velocity_pendulum = 0.0;
-//2 biến này để lưu giá trị lôi ra từ struct
 
+volatile float cart_position = 0.0;
+volatile float cart_velocity = 0.0;
+//2 biến này để lưu giá trị lôi ra từ struct
 
 /* USER CODE END PV */
 
@@ -482,9 +484,23 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, 
 		update_encoder_pendulum((EncoderTypeDef*)&encoder_pendulum);
 		angular_position_pendulum = encoder_pendulum.angle_position;
 		angular_velocity_pendulum = encoder_pendulum.angle_speed;
+
+		update_encoder_cart((CartEncoderTypeDef*)&encoder_cart);
+		cart_position = encoder_cart.linear_position;
+		cart_velocity = encoder_cart.linear_speed;
+		//nếu thao tác với con trỏ dùng ->, còn khi thao tác với biến gốc thì dùng dấu . để truy cập
+		printf("%f %f\n", cart_position, angular_position_pendulum);
+
 	}
 	}
 
+//hàm này dùng cho in lên SMV để nhìn đồ thị
+int _write(int file, char *ptr, int len){
+    for(int i = 0; i < len; i++){
+        ITM_SendChar(*ptr++);
+    }
+    return len;
+}
 /* USER CODE END 4 */
 
 /**

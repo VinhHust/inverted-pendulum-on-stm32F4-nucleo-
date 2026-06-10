@@ -14,7 +14,7 @@
 
 #define twopi 6.28318530718f
 #define DT 0.005f
-#define chuvipuli 120
+#define chuvipuli 120.0f
 
 //hàm reset và khởi tạo
 //hàm này gán giá trị ban đầu cho toàn bộ struct
@@ -79,8 +79,12 @@ void update_encoder_cart(CartEncoderTypeDef *encoder_cart){
 	if(encoder_cart->first_time==1){
 		encoder_cart->prev_counter = current_counter;
 		encoder_cart->first_time = 0;
+		return;
+		//lí do để return ở đây cuối đoạn if này: lần chạy đầu tiên first time=1 thì return để
+		//skip qua phần countdiff vì chưa có giá trị prev_counter
+		//còn các lần sau thì first time =0 nên nó sẽ nhảy thẳng sang phần countdiff
 	}
-	//tính delta của timer
+	//tính delta của timer: tính độ lệch counter giữa 2 lần đọc
 	int32_t count_diff = current_counter - encoder_cart->prev_counter;
 
 	//xử lí overflow và underflow giống encoder của pendulum
