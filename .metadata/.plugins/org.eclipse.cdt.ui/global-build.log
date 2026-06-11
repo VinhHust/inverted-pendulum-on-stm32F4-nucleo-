@@ -1,14 +1,14 @@
-18:35:39 **** Incremental Build of configuration Debug for project encoder ****
+15:42:51 **** Incremental Build of configuration Debug for project encoder ****
 make -j8 all 
 arm-none-eabi-size   encoder.elf 
    text	   data	    bss	    dec	    hex	filename
-  33484	    484	   2108	  36076	   8cec	encoder.elf
+  34236	    484	   2132	  36852	   8ff4	encoder.elf
 Finished building: default.size.stdout
  
-18:35:41 **** Incremental Build of configuration Debug for project encoder ****
+15:43:11 **** Incremental Build of configuration Debug for project encoder ****
 make -j8 all 
 arm-none-eabi-size   encoder.elf 
    text	   data	    bss	    dec	    hex	filename
-  33484	    484	   2108	  36076	   8cec	encoder.elf
+  34236	    484	   2132	  36852	   8ff4	encoder.elf
 Finished building: default.size.stdout
  

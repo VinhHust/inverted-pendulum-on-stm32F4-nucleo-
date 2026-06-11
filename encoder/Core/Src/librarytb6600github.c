@@ -146,8 +146,8 @@ Stepper_Status_t Stepper_Init(Stepper_Handle_t *hs) //hàm initial nhận vào c
 
 
     /* Default state */ //CHẾ ĐỘ MẶC ĐỊNH
-    hs->microstep      = STEPPER_MICROSTEP_FULL;
-    hs->pulses_per_rev = Stepper_PulsesPerRev(hs->microstep); //TRẢ VỀ GIÁ TRỊ RỒI DÙNG CON TRỎ HS ĐỂ LƯU VÀO MICROSTEP
+    hs->microstep      = STEPPER_MICROSTEP_HALF_A;
+    hs->pulses_per_rev = 400U; //TRẢ VỀ GIÁ TRỊ RỒI DÙNG CON TRỎ HS ĐỂ LƯU VÀO MICROSTEP
     hs->current_rpm    = 0.0f;
     hs->running        = false;
 
@@ -192,10 +192,55 @@ Stepper_Status_t Stepper_SetDirection(Stepper_Handle_t *hs,
 {
     if (hs == NULL) return STEPPER_ERR_NULL;
     HAL_GPIO_WritePin(hs->dir_port, hs->dir_pin,
-                      (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+                      (dir == STEPPER_DIR_CW) ? GPIO_PIN_RESET : GPIO_PIN_SET);
     /* TB6600 needs >= 5 us DIR setup before next PUL edge.
      * If you call this right before Start() at 100+ kHz pulse rate, */
     return STEPPER_OK;
+}
+
+
+
+//HÀM ĐỂ ĐIỀU KHIỂN ĐỘNG CƠ STEPPER BẰNG CÁCH CỐ ĐỊNH PSC VÀ THAY ĐỔI ARR
+void Stepper_UpdateCartFrequency(Stepper_Handle_t *hs, uint32_t target_freq_hz)
+{
+    /* === DỪNG MOTOR KHI TẦN SỐ = 0 ===
+     * KHÔNG dùng ARR=0 vì sẽ tạo xung tần số cực cao thay vì dừng.
+     * Gọi PWM_Stop để tắt hẳn output, counter vẫn chạy ngầm — OK. */
+    if (target_freq_hz == 0) {
+        HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel);
+        hs->running = false;
+        return;
+    }
+
+    /* === TÍNH ARR ===
+     * Đọc PSC thực tế từ thanh ghi (tin cậy hơn dùng macro vì
+     * PSC đã được CubeMX cố định và không thay đổi runtime)
+     *
+     * timer_counting_freq = fTIMER / (PSC + 1)
+     * ARR = (timer_counting_freq / target_freq_hz) - 1            */
+    uint32_t current_psc          = hs->htim->Instance->PSC;
+    uint32_t timer_counting_freq  = hs->timer_clock_hz / (current_psc + 1U);
+    uint32_t new_arr              = (timer_counting_freq / target_freq_hz) - 1U;
+
+    /* === GIỚI HẠN AN TOÀN ===
+     * ARR > 65535: tần số quá thấp so với PSC đã chọn -> giữ mức chậm nhất
+     * ARR < 2    : tần số quá cao                     -> giữ mức nhanh nhất an toàn */
+    if (new_arr > 65535U) new_arr = 65535U;
+    if (new_arr < 2U)     new_arr = 2U;
+
+    /* === CẬP NHẬT ARR VÀ CCR ===
+     * Duty cycle 50% đảm bảo độ rộng xung >= 5us ở mọi tần số
+     * trong dải hợp lệ (<= 100kHz với PSC = 89, fTIMER = 90MHz)
+     * TUYỆT ĐỐI KHÔNG có EGR = TIM_EGR_UG ở đây                 */
+ // PHẦN NÀY LÀ PHẦN THAY ĐỔI THANH GHI ARR
+    __HAL_TIM_SET_AUTORELOAD(hs->htim, new_arr);
+    __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (new_arr + 1U) / 2U);
+
+    /* Nếu trước đó motor bị dừng (rpm=0), khởi động lại PWM */
+    if (!hs->running) {
+        HAL_TIM_PWM_Start(hs->htim, hs->tim_channel);
+        hs->running = true;
+    }
 }
 
 //hàm điều khiển tốc độ động cơ

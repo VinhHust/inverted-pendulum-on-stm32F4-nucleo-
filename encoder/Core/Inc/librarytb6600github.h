@@ -121,4 +121,16 @@ Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable);
 //TÍNH TỐC ĐỘ MAX
 Stepper_Status_t Stepper_GetMaxRPM(const Stepper_Handle_t *hs, float *max_rpm_out);
 
+/* Khai báo hàm realtime — thêm vào cuối file .h trước #endif */
+
+/**
+ * @brief Cập nhật tốc độ cart realtime trong vòng điều khiển kín.
+ *        Chỉ thay đổi ARR, không dùng EGR, an toàn trong ISR.
+ *        PSC phải được cố định trong CubeMX trước (không thay đổi runtime).
+ *
+ * @param hs             Con trỏ Stepper_Handle_t của cart
+ * @param target_freq_hz Tần số xung (Hz) — 0 để dừng motor
+ */
+void Stepper_UpdateCartFrequency(Stepper_Handle_t *hs, uint32_t target_freq_hz);
+
 #endif /* STEPPER_TB6600_H */

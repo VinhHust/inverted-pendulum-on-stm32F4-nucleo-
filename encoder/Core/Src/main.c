@@ -24,7 +24,9 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h> //thư viện dùng cho nhập xuất dữ liệu
 #include <string.h>
-#include <thucdonencoder.h>
+#include "thucdonencoder.h"
+#include "librarytb6600github.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,10 +56,13 @@ DMA_HandleTypeDef hdma_usart2_tx;
 
 //từ dòng này là thử viết kiểu chia ra file .c và file .h
 volatile static EncoderTypeDef encoder_pendulum; //EncoderTypedef là kiểu dữ liệu đã định nghĩa ở file.h, gi�? g�?i ra và có tên biến là encoder_inverted với kiểu dữ liệu đã khai báo ở file.h
-volatile static CartEncoderTypeDef encoder_cart; 	//bien luu tru gia tri encoder cua cart
+volatile static CartEncoderTypeDef encoder_cart;
+Stepper_Handle_t stepper_cart;
+
+//bien luu tru gia tri encoder cua pendulum
 volatile float angular_position_pendulum = 0.0;
 volatile float angular_velocity_pendulum = 0.0;
-
+//biến của cart
 volatile float cart_position = 0.0;
 volatile float cart_velocity = 0.0;
 //2 biến này để lưu giá trị lôi ra từ struct
@@ -128,6 +133,17 @@ HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //tim2 la encoder pendulum
 HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL); //encoder of cart
 HAL_TIM_Base_Start_IT(&htim3); 					//timer ngắt gián đoạn chu kì 5ms
 
+//KHAI BÁO PHẦN ĐIỀU KHIỂN ĐỘNG CƠ QUA DRIVER
+stepper_cart.htim = &htim4;                    // TIM4 phát xung
+  stepper_cart.tim_channel = TIM_CHANNEL_1;      // Kênh 1
+  stepper_cart.dir_port = CH_N_DIRECTION_GPIO_Port; // Chân DIR
+  stepper_cart.dir_pin = CH_N_DIRECTION_Pin;
+  stepper_cart.ena_port = ch_n_ena_GPIO_Port;       // Chân ENA
+  stepper_cart.ena_pin = ch_n_ena_Pin;
+  stepper_cart.ena_active_low = false;            // ENA thường tác động mức THẤP
+
+  Stepper_Init(&stepper_cart);                   // Khởi tạo thư viện
+  Stepper_Enable(&stepper_cart, true);           // Kích hoạt Driver (cấp dòng giữ motor)
 
   /* USER CODE END 2 */
 
@@ -135,6 +151,8 @@ HAL_TIM_Base_Start_IT(&htim3); 					//timer ngắt gián đoạn chu kì 5ms
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  Stepper_SetDirection(&stepper_cart, STEPPER_DIR_CW);
+	    Stepper_UpdateCartFrequency(&stepper_cart, 2000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -383,7 +401,7 @@ static void MX_TIM4_Init(void)
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
   sConfigOC.Pulse = 500;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
   {
@@ -460,14 +478,14 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(CH_N_ENA_GPIO_Port, CH_N_ENA_Pin, GPIO_PIN_SET);
-
-  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(CH_N_DIRECTION_GPIO_Port, CH_N_DIRECTION_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : CH_N_ENA_Pin CH_N_DIRECTION_Pin */
-  GPIO_InitStruct.Pin = CH_N_ENA_Pin|CH_N_DIRECTION_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(ch_n_ena_GPIO_Port, ch_n_ena_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pins : CH_N_DIRECTION_Pin ch_n_ena_Pin */
+  GPIO_InitStruct.Pin = CH_N_DIRECTION_Pin|ch_n_ena_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -475,32 +493,32 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, ham nay giu dia chi vung nho cua bo timer. callback duoc goi moi khi bat ki timer nao tran
-{
-	if (htim->Instance==TIM3){
-		//truy�?n địa chỉ của encoder_pendulum vào, con tr�? encoder nhận địa chỉ đó và tr�? thẳng vào encoder_inverted
-		//con tr�? nắm giữ địa chỉ của encoder_inverted
-		//ở trên khai báo voltaile encodertypedef* nên phải ép kiểu thành (encodertypedef* để b�? volatile đi)
-		update_encoder_pendulum((EncoderTypeDef*)&encoder_pendulum);
-		angular_position_pendulum = encoder_pendulum.angle_position;
-		angular_velocity_pendulum = encoder_pendulum.angle_speed;
-
-		update_encoder_cart((CartEncoderTypeDef*)&encoder_cart);
-		cart_position = encoder_cart.linear_position;
-		cart_velocity = encoder_cart.linear_speed;
-		//nếu thao tác với con trỏ dùng ->, còn khi thao tác với biến gốc thì dùng dấu . để truy cập
-		printf("%f %f\n", cart_position, angular_position_pendulum);
-
-	}
-	}
-
-//hàm này dùng cho in lên SMV để nhìn đồ thị
-int _write(int file, char *ptr, int len){
-    for(int i = 0; i < len; i++){
-        ITM_SendChar(*ptr++);
-    }
-    return len;
-}
+//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, ham nay giu dia chi vung nho cua bo timer. callback duoc goi moi khi bat ki timer nao tran
+//{
+//	if (htim->Instance==TIM3){
+//		//truy�?n địa chỉ của encoder_pendulum vào, con tr�? encoder nhận địa chỉ đó và tr�? thẳng vào encoder_inverted
+//		//con tr�? nắm giữ địa chỉ của encoder_inverted
+//		//ở trên khai báo voltaile encodertypedef* nên phải ép kiểu thành (encodertypedef* để b�? volatile đi)
+//		update_encoder_pendulum((EncoderTypeDef*)&encoder_pendulum);
+//		angular_position_pendulum = encoder_pendulum.angle_position;
+//		angular_velocity_pendulum = encoder_pendulum.angle_speed;
+//
+//		update_encoder_cart((CartEncoderTypeDef*)&encoder_cart);
+//		cart_position = encoder_cart.linear_position;
+//		cart_velocity = encoder_cart.linear_speed;
+//		//nếu thao tác với con tr�? dùng ->, còn khi thao tác với biến gốc thì dùng dấu . để truy cập
+//		printf("%f %f\n", cart_position, angular_position_pendulum);
+//
+//	}
+//	}
+//
+////hàm này dùng cho in lên SMV để nhìn đồ thị
+//int _write(int file, char *ptr, int len){
+//    for(int i = 0; i < len; i++){
+//        ITM_SendChar(*ptr++);
+//    }
+//    return len;
+//}
 /* USER CODE END 4 */
 
 /**
