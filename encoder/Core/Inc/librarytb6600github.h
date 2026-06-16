@@ -64,7 +64,7 @@ typedef struct {
     //CHÂN ENABLE TRÊN DRIVER
     GPIO_TypeDef      *ena_port;
     uint16_t           ena_pin;
-    bool               ena_active_low; /* true if TB6600 ENA is active-low */
+    bool               ena_active_low; /* true if TB6600 ENA is active-low, ĐÚNG NẾU CHÂN ENA LÀ KÍCH ÂM  */
 
     //TRẠNG THÁI
     uint32_t           timer_clock_hz;    //TẦN SỐ XUNG APB CỦA ĐẦU VÀO TIMER ĐANG DÙNG

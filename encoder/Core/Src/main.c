@@ -133,26 +133,71 @@ HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //tim2 la encoder pendulum
 HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL); //encoder of cart
 HAL_TIM_Base_Start_IT(&htim3); 					//timer ngắt gián đoạn chu kì 5ms
 
-//KHAI BÁO PHẦN ĐIỀU KHIỂN ĐỘNG CƠ QUA DRIVER
+//KHAI B�?O PHẦN �?IỀU KHIỂN �?ỘNG CƠ QUA DRIVER
 stepper_cart.htim = &htim4;                    // TIM4 phát xung
   stepper_cart.tim_channel = TIM_CHANNEL_1;      // Kênh 1
   stepper_cart.dir_port = CH_N_DIRECTION_GPIO_Port; // Chân DIR
   stepper_cart.dir_pin = CH_N_DIRECTION_Pin;
   stepper_cart.ena_port = ch_n_ena_GPIO_Port;       // Chân ENA
   stepper_cart.ena_pin = ch_n_ena_Pin;
-  stepper_cart.ena_active_low = false;            // ENA thường tác động mức THẤP
+  stepper_cart.ena_active_low = false;            // ENA thư�?ng tác động mức THẤP
 
   Stepper_Init(&stepper_cart);                   // Khởi tạo thư viện
   Stepper_Enable(&stepper_cart, true);           // Kích hoạt Driver (cấp dòng giữ motor)
+
+
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
-  {
-	  Stepper_SetDirection(&stepper_cart, STEPPER_DIR_CW);
-	    Stepper_UpdateCartFrequency(&stepper_cart, 2000);
+  {// ====================================================================
+      // --- PHA 1: CHẠY SANG CCW (SIÊU CHẬM & ÊM) ---
+      // ====================================================================
+      Stepper_SetDirection(&stepper_cart, STEPPER_DIR_CCW);
+
+      // 1.1 Tăng tốc rất từ tốn từ 500Hz lên 1000Hz
+      for(uint32_t f = 500; f <= 1000; f += 50) {
+          Stepper_UpdateCartFrequency(&stepper_cart, f);
+          HAL_Delay(20); // Delay 20ms để xe từ từ nhích tốc độ lên
+      }
+
+      // 1.2 Giữ tốc độ 1000Hz bò đi một đoạn ngắn trong 150ms
+      HAL_Delay(150);
+
+      // 1.3 GIẢM TỐC thật nhẹ nhàng từ 1000Hz về lại 500Hz
+      for(uint32_t f = 1000; f >= 500; f -= 50) {
+          Stepper_UpdateCartFrequency(&stepper_cart, f);
+          HAL_Delay(20); // Rà phanh chậm rãi
+      }
+
+      // Khoảng trễ nhỏ cho Driver ổn định hướng quay
+      for(volatile int i=0; i<50; i++);
+
+
+      // ====================================================================
+      // --- PHA 2: ĐẢO CHIỀU SANG CW (SIÊU CHẬM & ÊM) ---
+      // ====================================================================
+      Stepper_SetDirection(&stepper_cart, STEPPER_DIR_CW);
+
+      // 2.1 Tăng tốc từ từ theo chiều ngược lại (500Hz -> 1000Hz)
+      for(uint32_t f = 500; f <= 1000; f += 50) {
+          Stepper_UpdateCartFrequency(&stepper_cart, f);
+          HAL_Delay(20);
+      }
+
+      // 2.2 Giữ tốc độ 1000Hz bò đi
+      HAL_Delay(150);
+
+      // 2.3 Giảm tốc từ từ về lại mức sàn 500Hz
+      for(uint32_t f = 1000; f >= 500; f -= 50) {
+          Stepper_UpdateCartFrequency(&stepper_cart, f);
+          HAL_Delay(20);
+      }
+
+      // Khoảng trễ nhỏ trước khi lặp lại vòng lặp while
+      for(volatile int i=0; i<50; i++);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
