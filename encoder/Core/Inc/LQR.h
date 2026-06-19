@@ -18,6 +18,7 @@ typedef struct
 	Stepper_Handle_t* stepper;	 //con trỏ tới struct chứa các tham số của động cơ
 	EncoderTypeDef *pend_enc; //con trỏ tới struct chứa các biến của encoder cho pend
 	CartEncoderTypeDef *cart_enc; //con trỏ tới struct chứa các biến của encoder cho cart
+	float current_accel;
 }InvertedPendulumTypeDef;
 
 
@@ -26,7 +27,7 @@ typedef struct
 void init_pendulum(InvertedPendulumTypeDef* pendulum);
 
 //hàm tín toán LQR và điều khiển động cơ, gọi trong ngắt lấy mẫu
-void run_pendulum(InvertedPendulumTypeDef* pendulum);
+float run_pendulum(InvertedPendulumTypeDef* pendulum);
 
 
 #endif /* INC_LQR_H_ */
