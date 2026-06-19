@@ -1,0 +1,33 @@
+/*
+ * VeltoFreq.c
+ *
+ *  Created on: Jun 19, 2026
+ *      Author: Vu Thanh Vinh
+ */
+
+#include "velotofreq.h"
+stepper_command_t Func_VeltoFreq(float vtarget){
+	stepper_command_t cmd;
+if (vtarget >= 0.0f){
+	cmd.direction = DIR_CW_RIGHT;
+}
+else {
+        cmd.direction = DIR_CCW_LEFT;
+    }
+float v_mag = fabsf(vtarget);
+cmd.freq_hz = (uint32_t)(v_mag * Kratio);
+return cmd;
+}
+
+//function nhận vào tần số và chiều quay và đưa ra vận tốc
+float Func_FreqToVel(bool Stepper_Direction_t, Direction_t current_dir)
+
+{
+	float vmag = (float)target_freq_hz * (1.0f / Kratio);
+	if (current_dir == DIR_CCW_LEFT) {
+		return -vmag;
+	}
+	else {
+		return vmag;
+	}
+}

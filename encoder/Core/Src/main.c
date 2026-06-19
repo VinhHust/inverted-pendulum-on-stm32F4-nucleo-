@@ -18,6 +18,7 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include <HBS57.h>
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -25,7 +26,6 @@
 #include <stdio.h> //thư viện dùng cho nhập xuất dữ liệu
 #include <string.h>
 #include "thucdonencoder.h"
-#include "librarytb6600github.h"
 
 /* USER CODE END Includes */
 
@@ -152,52 +152,10 @@ stepper_cart.htim = &htim4;                    // TIM4 phát xung
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
-  {// ====================================================================
-      // --- PHA 1: CHẠY SANG CCW (SIÊU CHẬM & ÊM) ---
-      // ====================================================================
+  {
       Stepper_SetDirection(&stepper_cart, STEPPER_DIR_CCW);
+      Stepper_UpdateCartFrequency(&stepper_cart, 1000);
 
-      // 1.1 Tăng tốc rất từ tốn từ 500Hz lên 1000Hz
-      for(uint32_t f = 500; f <= 1000; f += 50) {
-          Stepper_UpdateCartFrequency(&stepper_cart, f);
-          HAL_Delay(20); // Delay 20ms để xe từ từ nhích tốc độ lên
-      }
-
-      // 1.2 Giữ tốc độ 1000Hz bò đi một đoạn ngắn trong 150ms
-      HAL_Delay(150);
-
-      // 1.3 GIẢM TỐC thật nhẹ nhàng từ 1000Hz về lại 500Hz
-      for(uint32_t f = 1000; f >= 500; f -= 50) {
-          Stepper_UpdateCartFrequency(&stepper_cart, f);
-          HAL_Delay(20); // Rà phanh chậm rãi
-      }
-
-      // Khoảng trễ nhỏ cho Driver ổn định hướng quay
-      for(volatile int i=0; i<50; i++);
-
-
-      // ====================================================================
-      // --- PHA 2: ĐẢO CHIỀU SANG CW (SIÊU CHẬM & ÊM) ---
-      // ====================================================================
-      Stepper_SetDirection(&stepper_cart, STEPPER_DIR_CW);
-
-      // 2.1 Tăng tốc từ từ theo chiều ngược lại (500Hz -> 1000Hz)
-      for(uint32_t f = 500; f <= 1000; f += 50) {
-          Stepper_UpdateCartFrequency(&stepper_cart, f);
-          HAL_Delay(20);
-      }
-
-      // 2.2 Giữ tốc độ 1000Hz bò đi
-      HAL_Delay(150);
-
-      // 2.3 Giảm tốc từ từ về lại mức sàn 500Hz
-      for(uint32_t f = 1000; f >= 500; f -= 50) {
-          Stepper_UpdateCartFrequency(&stepper_cart, f);
-          HAL_Delay(20);
-      }
-
-      // Khoảng trễ nhỏ trước khi lặp lại vòng lặp while
-      for(volatile int i=0; i<50; i++);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

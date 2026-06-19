@@ -1,0 +1,340 @@
+/**
+ ******************************************************************************
+ * @file    stepper_tb6600.c
+ * @brief   TB6600 Stepper Driver Library - Implementation
+ ******************************************************************************
+ */
+
+
+//PHẦN NÀY
+#include <librarytb6600github.h>
+#include <math.h>
+#include <stdint.h>
+#include "main.h"
+#include <stdbool.h>
+/* ============================================================================
+ * PRIVATE HELPERS
+ * ============================================================================ */
+
+/**
+ * @brief  Read the input clock frequency for the timer associated with hs->htim.
+ *
+ * STM32F446RE timer clocks:
+ *   - APB1 timers (TIM2/3/4/5/6/7/12/13/14): PCLK1 x (1 or 2 depending on PSC)
+ *   - APB2 timers (TIM1/8/9/10/11):          PCLK2 x (1 or 2 depending on PSC)
+ *
+ * This function queries HAL RCC to get actual values — making the library
+ * resilient to any clock tree configuration user chose in CubeMX.
+ */
+static uint32_t Stepper_GetTimerClockHz(TIM_HandleTypeDef *htim)
+{
+    uint32_t pclk_freq;
+    uint32_t apb_prescaler;
+    RCC_ClkInitTypeDef clk_cfg;
+    uint32_t flash_latency;
+
+    HAL_RCC_GetClockConfig(&clk_cfg, &flash_latency);
+
+    /* Determine which APB bus this timer is on.
+     * On F446: TIM1, TIM8, TIM9, TIM10, TIM11 are on APB2. Others on APB1. */
+    TIM_TypeDef *tim = htim->Instance;
+    bool is_apb2 = (tim == TIM1 || tim == TIM8 ||
+                    tim == TIM9 || tim == TIM10 || tim == TIM11);
+
+    if (is_apb2) {
+        pclk_freq     = HAL_RCC_GetPCLK2Freq();
+        apb_prescaler = clk_cfg.APB2CLKDivider;
+    } else {
+        pclk_freq     = HAL_RCC_GetPCLK1Freq();
+        apb_prescaler = clk_cfg.APB1CLKDivider;
+    }
+
+    /* If APB prescaler is 1 -> timer clk = PCLK.
+     * If APB prescaler is not 1 -> timer clk = PCLK x 2 (STM32 rule). */
+    uint32_t timer_clk = (apb_prescaler == RCC_HCLK_DIV1) ? pclk_freq
+                                                          : (pclk_freq * 2U);
+    return timer_clk;
+}
+//HÀM NÀY SẼ TRẢ VỀ TIMER CLOCK fCLK, THỰC RA PHẦN NÀY CÓ THỂ LẤY TỪ CẤU HÌNH TRONG FILE IOC CŨNG ĐƯỢC
+//On F446: TIM1, TIM8, TIM9, TIM10, TIM11 are on APB2. Others on APB1. */
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @brief  CHO 1 TẦN SỐ PWM MONG MUỐN VÀ timerCLK(được tính ở trên trước), RỒI SAU ĐÓ TÍNH TOÁN RA PSC VÀ ARR ĐỂ TẠO RA TẦN SỐ fPWM SÁT NHẤT
+ *
+ * Strategy: CHỌN PSC NHỎ NHẤT SAO CHO ARR VỪA VẶN TRONG CHUẨN 16 BIT
+ * - bộ nhớ 16 bit chỉ có thể lưu được số tối đa là 2^16-1 là 65535. tức là ARR ko được vượt quá 65535
+ * TIM2/5 are 32-bit on F446 — we stay in 16-bit range for portability).
+ *
+ * Returns true on success, false if target frequency not achievable.
+ * NẾU NHƯ TẦN SỐ KO ĐẠT ĐƯỢC THÌ SẼ BÁO LỖI
+ */
+
+//HÀM DÙNG ĐỂ TÍNH TOÁN PSC VÀ ARR
+static bool Stepper_ComputePscArr(uint32_t tim_clk_hz,
+                                  uint32_t target_freq_hz,
+                                  uint32_t *psc_out,
+                                  uint32_t *arr_out)
+{
+    if (target_freq_hz == 0U) return false;
+
+    /* For 16-bit compatibility: ARR max = 65535.
+     * period_ticks = tim_clk / target_freq = fCLK/fPWM
+     * We want: (PSC+1) * (ARR+1) = period_ticks
+     * Pick PSC so that ARR+1 >= 100 (for duty-cycle resolution) and <= 65536. */
+/*VÍ DỤ
+ * vdk đập 84M nhịp/s, cần phát 1000 xung/s cho PWM-> 84M/1K=84K, vậy cần 84000 nhịp/xung, tức là 84000 nhịp đâp để hoàn thành 1 chu kì pwm
+ * 1 chu kì pwm gồm cạnh lên cạnh xuống của 1 xung
+ */
+
+    uint64_t period_ticks = (uint64_t)tim_clk_hz / target_freq_hz;  //TỔNG SỐ NHỊP CẦN THIẾT CHO 1 CHU KÌ PWM
+    if (period_ticks < 2ULL) return false; /* Frequency too high */
+    //Để tạo nên 1 xung pwm có cạnh lên và xuống thì PWM cần ít nhất 2 nhịp
+
+    uint32_t psc = 0U; //gán luôn PSC = 0, 0U nghĩa là đây là số nguyên ko dấu vì thanh ghi ko nhận giá trị âm
+    uint32_t arr_plus_1 = (uint32_t)period_ticks; //ARR gánh luôn period_ticks vì
+
+    while (arr_plus_1 > 65536U) {
+    	//timer là 16bit nên giá trị tối đa ko chứa được là 2^16-1=65535
+    	//nếu ARR>655535 thì phải tăng bộ chia psc lên để có 1 thằng khác gánh cùng
+        psc++; //tăng giá trị PSC lên 1 lần mỗi vòng lặp
+        arr_plus_1 = (uint32_t)(period_ticks / (psc + 1U)); //tính lại tổng số nhịp ARR phải gánh
+        if (psc > 65535U) return false; /* Frequency too low */
+    }
+
+    *psc_out = psc;
+    *arr_out = arr_plus_1 - 1U;
+    return true;
+    //sau hàm này thì có được bộ psc nhỏ nhất và arr lớn nhất để tạo xung PWM có độ phân giải cao nhất
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//TÍNH SỐ XUNG PHÁT RA ĐỂ QUAY ĐƯỢC 1 VÒNG
+//struct Stepper_MicrostepMode_t đã khai báo ở file .h
+static uint16_t Stepper_PulsesPerRev(Stepper_MicrostepMode_t mode)
+{
+	//đem biến mode(chế độ vi bứoc hiện tại) đi kiểm tra
+    switch (mode) {
+        case STEPPER_MICROSTEP_FULL:   return 200U; //nếu mode đang là full thì trả về số 200, tg tự bên dưới
+        case STEPPER_MICROSTEP_HALF_A: return 400U;
+        case STEPPER_MICROSTEP_HALF_B: return 400U;
+        default:                       return 200U; //default là trả về số 200
+    }
+}
+
+/* ============================================================================
+ * PUBLIC API IMPLEMENTATION //MẤY THẰNG CÓ THỂ GỌI TỪ BẤT CỨ FILE NÀO KHÁC
+ * ============================================================================ */
+
+//Stepper_Status_t typedef trạng thái đã khai báo bên .h,
+Stepper_Status_t Stepper_Init(Stepper_Handle_t *hs) //hàm initial nhận vào con trỏ hs trỏ vào kiểu dữ liệu Stepper_Handle_t
+{
+	//nếu ko khai báo cấu trúc motor hoặc quên ko gán timer thì trả về lỗi
+    if (hs == NULL || hs->htim == NULL) return STEPPER_ERR_NULL;
+
+
+
+    /* Cache the timer clock — this is the cornerstone of flexibility.
+     *PHẦN NÀY DÙNG ĐỂ TỰ NHẬN DIỆN TẦN SỐ CLOCK MỖI KHI THAY ĐỔI TRONG CUBEMX
+     * User can change clock tree in CubeMX and this still works. */
+    hs->timer_clock_hz = Stepper_GetTimerClockHz(hs->htim);
+    if (hs->timer_clock_hz == 0U) return STEPPER_ERR_TIM_CONFIG;
+
+
+
+    /* Default state */ //CHẾ ĐỘ MẶC ĐỊNH
+    hs->microstep      = STEPPER_MICROSTEP_HALF_A;
+    hs->pulses_per_rev = 400U; //TRẢ VỀ GIÁ TRỊ RỒI DÙNG CON TRỎ HS ĐỂ LƯU VÀO MICROSTEP
+    hs->current_rpm    = 0.0f;
+    hs->running        = false;
+
+    /* Make sure motor is disabled and direction is known */
+    Stepper_Enable(hs, false);
+    Stepper_SetDirection(hs, STEPPER_DIR_CW);
+
+    hs->initialized = true;
+    return STEPPER_OK; //SAU BƯỚC CÀI ĐẶT CÁC GIÁ TRỊ MẶC ĐỊNH BAN ĐẦU THÌ BÁO CỜ OK
+}
+
+
+
+//HÀM CÓ NHIỆM VỤ THAY ĐỔI CHẾ ĐỘ VI BƯỚC CỦA ĐỘNG CƠ
+Stepper_Status_t Stepper_SetMicrostep(Stepper_Handle_t *hs,
+                                      Stepper_MicrostepMode_t mode)
+{
+	//nếu chưa khởi tạo thì hàm trả về ERROR
+    if (hs == NULL || !hs->initialized) return STEPPER_ERR_NULL;
+
+    if (mode != STEPPER_MICROSTEP_FULL &&
+        mode != STEPPER_MICROSTEP_HALF_A &&
+        mode != STEPPER_MICROSTEP_HALF_B) {
+        return STEPPER_ERR_RANGE;
+        //nếu giá trị không phải 3 mode chạy đã khai báo trước thì trả về lỗi RANGE ERROR
+    }
+
+    hs->microstep      = mode; //lưu chế độ vi bước vào biến quản lí (con trỏ struct trỏ vào biến quản lí đó)
+    hs->pulses_per_rev = Stepper_PulsesPerRev(mode); //tính số xung cần thiết để quay được 1 vòng
+
+    /* If already running, recompute PWM frequency for new pulses/rev
+     * so that RPM stays consistent. */
+    if (hs->running && hs->current_rpm > 0.0f) {
+        return Stepper_SetSpeedRPM(hs, hs->current_rpm);
+    }
+    return STEPPER_OK;
+}
+
+//cài đặt chiều quay
+Stepper_Status_t Stepper_SetDirection(Stepper_Handle_t *hs,
+                                      Stepper_Direction_t dir)
+{
+    if (hs == NULL) return STEPPER_ERR_NULL;
+    HAL_GPIO_WritePin(hs->dir_port, hs->dir_pin,
+                      (dir == STEPPER_DIR_CW) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+    /* TB6600 needs >= 5 us DIR setup before next PUL edge.
+     * If you call this right before Start() at 100+ kHz pulse rate, */
+    return STEPPER_OK;
+}
+
+
+
+//HÀM ĐỂ ĐIỀU KHIỂN ĐỘNG CƠ STEPPER BẰNG CÁCH CỐ ĐỊNH PSC VÀ THAY ĐỔI ARR
+void Stepper_UpdateCartFrequency(Stepper_Handle_t *hs, uint32_t target_freq_hz)
+{
+    /* === DỪNG MOTOR KHI TẦN SỐ = 0 ===
+     * KHÔNG dùng ARR=0 vì sẽ tạo xung tần số cực cao thay vì dừng.
+     * Gọi PWM_Stop để tắt hẳn output, counter vẫn chạy ngầm — OK. */
+    if (target_freq_hz == 0) {
+        HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel);
+        hs->running = false;
+        return;
+    }
+
+    /* === TÍNH ARR ===
+     * Đọc PSC thực tế từ thanh ghi (tin cậy hơn dùng macro vì
+     * PSC đã được CubeMX cố định và không thay đổi runtime)
+     *
+     * timer_counting_freq = fTIMER / (PSC + 1)
+     * ARR = (timer_counting_freq / target_freq_hz) - 1            */
+    uint32_t current_psc          = hs->htim->Instance->PSC;
+    uint32_t timer_counting_freq  = hs->timer_clock_hz / (current_psc + 1U);
+    uint32_t new_arr              = (timer_counting_freq / target_freq_hz) - 1U;
+
+    /* === GIỚI HẠN AN TOÀN ===
+     * ARR > 65535: tần số quá thấp so với PSC đã chọn -> giữ mức chậm nhất
+     * ARR < 2    : tần số quá cao                     -> giữ mức nhanh nhất an toàn */
+    if (new_arr > 65535U) new_arr = 65535U;
+    if (new_arr < 2U)     new_arr = 2U;
+
+    /* === CẬP NHẬT ARR VÀ CCR ===
+     * Duty cycle 50% đảm bảo độ rộng xung >= 5us ở mọi tần số
+     * trong dải hợp lệ (<= 100kHz với PSC = 89, fTIMER = 90MHz)
+     * TUYỆT ĐỐI KHÔNG có EGR = TIM_EGR_UG ở đây                 */
+ // PHẦN NÀY LÀ PHẦN THAY ĐỔI THANH GHI ARR
+    __HAL_TIM_SET_AUTORELOAD(hs->htim, new_arr);
+    __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (new_arr + 1U) / 2U);
+
+    /* Nếu trước đó motor bị dừng (rpm=0), khởi động lại PWM */
+    if (!hs->running) {
+        HAL_TIM_PWM_Start(hs->htim, hs->tim_channel);
+        hs->running = true;
+    }
+}
+
+//hàm điều khiển tốc độ động cơ
+Stepper_Status_t Stepper_SetSpeedRPM(Stepper_Handle_t *hs, float rpm)
+{
+    if (hs == NULL || !hs->initialized) return STEPPER_ERR_NULL;
+    if (rpm < 0.0f) return STEPPER_ERR_RANGE;
+
+    if (rpm == 0.0f) {
+        hs->current_rpm = 0.0f;
+        return Stepper_Stop(hs);
+    }
+    //3 thằng if ở trên dùng để đảm bảo ko bị 1. con trỏ hs được cấp phát 2. giá trị tốc độ quay ko được âm 3. nếu set tốc độ =0 thì ngắt pwm
+
+
+    //Phần chuyển RPM sang tần số xung để cấp vào chân pul
+    /* Convert RPM to pulse frequency:
+     *   f_pulse = (RPM / 60) * pulses_per_rev                      */
+
+    float freq_f = (rpm / 60.0f) * (float)hs->pulses_per_rev;
+    uint32_t target_freq = (uint32_t)roundf(freq_f); //làm tròn thành số nguyên gần nhất
+
+    //phần này dùng để kiểm tra giới hạn của phần cứng nếu tần số quá thấp hoặc quá cao
+    if (target_freq < TB6600_MIN_PULSE_FREQ_HZ ||
+        target_freq > TB6600_MAX_PULSE_FREQ_HZ) {
+        return STEPPER_ERR_RANGE;
+    }
+
+    //Phần này dùng để tính toán psc và arr bằng hàm computePscArr ở trên
+    uint32_t psc, arr;
+    if (!Stepper_ComputePscArr(hs->timer_clock_hz, target_freq, &psc, &arr)) {
+        return STEPPER_ERR_TIM_CONFIG;
+    }
+
+    /* Apply new PSC/ARR and set 50% duty cycle.
+     * 50% duty at <= 100 kHz gives pulse width >= 5 us, well above
+     * TB6600's 2.2 us minimum. */
+    __HAL_TIM_SET_PRESCALER(hs->htim, psc);
+    __HAL_TIM_SET_AUTORELOAD(hs->htim, arr);
+    __HAL_TIM_SET_COMPARE(hs->htim, hs->tim_channel, (arr + 1U) / 2U);
+
+    /* Force update so PSC takes effect immediately without glitch.
+     * Note: generating UEV resets counter; safe because TB6600 only
+     * cares about rising edges. */
+    hs->htim->Instance->EGR = TIM_EGR_UG;
+
+    hs->current_rpm = rpm;
+    return STEPPER_OK;
+}
+
+Stepper_Status_t Stepper_Start(Stepper_Handle_t *hs)
+{
+    if (hs == NULL || !hs->initialized) return STEPPER_ERR_NULL;
+    if (hs->current_rpm == 0.0f) return STEPPER_ERR_RANGE;
+
+    if (HAL_TIM_PWM_Start(hs->htim, hs->tim_channel) != HAL_OK) {
+        return STEPPER_ERR_HAL;
+    }
+    hs->running = true;
+    return STEPPER_OK;
+}
+
+Stepper_Status_t Stepper_Stop(Stepper_Handle_t *hs)
+{
+    if (hs == NULL || !hs->initialized) return STEPPER_ERR_NULL;
+    if (HAL_TIM_PWM_Stop(hs->htim, hs->tim_channel) != HAL_OK) {
+        return STEPPER_ERR_HAL;
+    }
+    hs->running = false;
+    return STEPPER_OK;
+}
+
+Stepper_Status_t Stepper_Enable(Stepper_Handle_t *hs, bool enable)
+{
+    if (hs == NULL) return STEPPER_ERR_NULL;
+    GPIO_PinState state;
+    if (hs->ena_active_low) {
+        state = enable ? GPIO_PIN_RESET : GPIO_PIN_SET;
+    } else {
+        state = enable ? GPIO_PIN_SET   : GPIO_PIN_RESET;
+    }
+    HAL_GPIO_WritePin(hs->ena_port, hs->ena_pin, state);
+    return STEPPER_OK;
+}
+
+Stepper_Status_t Stepper_GetMaxRPM(const Stepper_Handle_t *hs, float *max_rpm_out)
+{
+    if (hs == NULL || max_rpm_out == NULL || !hs->initialized) {
+        return STEPPER_ERR_NULL;
+    }
+    /* max_rpm = (max_pulse_freq / pulses_per_rev) * 60 */
+    *max_rpm_out = ((float)TB6600_MAX_PULSE_FREQ_HZ /
+                    (float)hs->pulses_per_rev) * 60.0f;
+    return STEPPER_OK;
+}

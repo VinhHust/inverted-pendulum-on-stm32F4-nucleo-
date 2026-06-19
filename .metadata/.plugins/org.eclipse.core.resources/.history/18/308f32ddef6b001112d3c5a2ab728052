@@ -1,0 +1,7 @@
+#include "LQR.h"
+#include <math.h>
+#define MAX_SPEED 2.0f
+#define DT 0.005f
+#define PI 3.14158265f
+
+static float LQR_tune[4] = {0,0,0,0};

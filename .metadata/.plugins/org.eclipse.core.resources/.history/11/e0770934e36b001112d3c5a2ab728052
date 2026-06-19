@@ -1,0 +1,26 @@
+#ifndef INC_INVERTED_PENDULUM_H_
+#define INC_INVERTED_PENDULUM_H_
+
+#include "l6474.h"
+#include "encoder.h"
+
+typedef enum
+{
+	IDLE_PENDULUM,
+	WAIT_ZERO_ANGLE,
+	SWITCH_CONTROL,
+	START_PENDULUM
+}pendulum_state;
+
+typedef struct
+{
+	pendulum_state state;
+	MotorSetTypedef *motor;
+	EncoderTypeDef *encoder;
+	uint16_t wait_time_counter;
+}InvertedPendulumTypeDef;
+
+void run_pendulum(InvertedPendulumTypeDef* pendulum);
+void init_pendulum(InvertedPendulumTypeDef* pendulum);
+void start_pendulum(InvertedPendulumTypeDef* pendulum);
+#endif /* INC_INVERTED_PENDULUM_H_ */

@@ -1,0 +1,28 @@
+#ifndef INC_INVERTED_PENDULUM_H_
+#define INC_INVERTED_PENDULUM_H_
+
+#include "thucdonencoder.h"
+
+typedef enum
+{
+	IDLE_PENDULUM,
+	LQR_CONTROL
+}pendulum_state;
+
+typedef struct
+{
+	Stepper_Handle_t *stepper;	 //con trỏ tới struct chứa các tham số của động cơ
+	EncoderTypeDef *pend_enc; //con trỏ tới struct chứa các biến của encoder cho pend
+	CartEncoderTypeDef *cart_enc; //con trỏ tới struct chứa các biến của encoder cho cart
+}InvertedPendulumTypeDef;
+
+
+//hàm khởi tạo trạng thái ban đầu của con lắc
+//pendulum là con trỏ trỏ
+void init_pendulum(InvertedPendulumTypeDef* pendulum);
+
+//hàm tín toán LQR và điều khiển động cơ, gọi trong ngắt lấy mẫu
+void run_pendulum(InvertedPendulumTypeDef* pendulum);
+
+
+#endif /* INC_INVERTED_PENDULUM_H_ */
