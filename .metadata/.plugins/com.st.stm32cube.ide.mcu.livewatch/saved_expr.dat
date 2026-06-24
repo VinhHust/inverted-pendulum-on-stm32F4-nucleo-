@@ -1,5 +1,3 @@
-angular_position_pendulum
-angular_velocity_pendulum
-TIM1->CNT
 cart_position
-cart_velocity
+angular_position_pendulum
+debug_freq_hz

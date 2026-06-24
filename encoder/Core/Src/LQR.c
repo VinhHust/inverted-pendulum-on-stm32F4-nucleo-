@@ -1,13 +1,14 @@
 #include "LQR.h"
 #include <math.h>
-#define MAX_SPEED 2.0f
+#define MAX_SPEED 1.5f //vận tốc tối đa của động cơ (m/s)
 #define DT 0.005f
-#define PI 3.14158265f
-#define MiliMtoM 0.001f
+#define PI 3.14159265f
+#define MiliMtoM 0.001f //hệ số chuyển từ mm sang m
+#define Maxacce 2.0f //giới hạn gia tốc
 
-static float LQR_tune[4] = {0,0,0,0};
+static float LQR_tune[4] = {350,60,20,15};
 static float reference_point = 0.0f;
-static float  target_speed = 0;
+static float  target_speed = 0.0f;
 //u=-K(X-Xref)=K(Xref-X)
 
 
@@ -18,8 +19,9 @@ void init_pendulum(InvertedPendulumTypeDef* pendulum) {
 	pendulum->state = IDLE_PENDULUM;
 	//con trỏ lồng con trỏ, con trỏ pendulum truy cập tới con trỏ steppẻ
 	Stepper_UpdateCartFrequency(pendulum->stepper, 0);
+	target_speed = 0.0f; //reset lại target speed mỗi khi từ LQR về lại IDLE
 }
-void run_pendulum(InvertedPendulumTypeDef* pendulum){
+float run_pendulum(InvertedPendulumTypeDef* pendulum){
 	//cập nhật dữ liệu của encoder thông qua 2 con trỏ pend_enc và cart_enc
 	update_encoder_pendulum(pendulum->pend_enc); //con trỏ pendulum truy cập vào con trỏ pend_enc trỏ tới kiểu dữ liệu EncoderTypeDef
 	update_encoder_cart(pendulum->cart_enc);
@@ -31,6 +33,8 @@ void run_pendulum(InvertedPendulumTypeDef* pendulum){
 			float current_angle = pendulum->pend_enc->angle_position; //khá hay
 
 			if(current_angle > (PI-0.17f) || current_angle < -(PI-0.17f) ){
+			reference_point = pendulum->cart_enc->linear_position * MiliMtoM;
+			target_speed = 0.0f; //phần này để reset nếu như mà ngã về idle từ lqr thì target speed sẽ reset về 0, đề không bị lỗi trong lần catch tiếp theo
 			pendulum->state = LQR_CONTROL;
 		}
 			break;
@@ -39,7 +43,7 @@ void run_pendulum(InvertedPendulumTypeDef* pendulum){
 			float current_angle = pendulum->pend_enc->angle_position;
 
 			//phần này để bảo vệ cơ khí nếu con lắc rủ xuống thấp quá
-			if(fabs(current_angle) < (PI*0.75f)){
+			if(fabsf(current_angle) < (PI*0.75f)){
 				pendulum->state = IDLE_PENDULUM;
 				break;
 			}
@@ -62,6 +66,14 @@ void run_pendulum(InvertedPendulumTypeDef* pendulum){
 			lqr_giatoc += LQR_tune[2] * (reference_point - current_cart_pos);
 			lqr_giatoc += LQR_tune[3] * (0 - current_cart_vel);
 
+			//GIỚI HẠN GIA TỐC
+			if (lqr_giatoc > Maxacce) {
+			    lqr_giatoc = Maxacce;
+			} else if (lqr_giatoc < -Maxacce) {
+			    lqr_giatoc = -Maxacce;
+			}
+
+			pendulum ->current_accel = lqr_giatoc; //ghi biến cục bộ vào currentaccel để debug
 			//TÍCH PHÂN THÀNH VẬN TỐC v = v0 + a.dT
 			target_speed = target_speed + (lqr_giatoc * DT);
 
@@ -74,6 +86,7 @@ void run_pendulum(InvertedPendulumTypeDef* pendulum){
 			break;
 		}
 	}
+	return target_speed;
 
 
 

@@ -15,8 +15,8 @@
 #include <stdbool.h>
 
 #define Resolution 400.0f
-#define chuvipuli 0.12f
-#define Kratio  (Resolution/chuvipuli)
+#define chuvipulimet 0.12f
+#define Kratio  (Resolution/chuvipulimet)
 
 //enum la dung de dinh nghia so nguyen cho 1 ten gi do
 typedef enum{

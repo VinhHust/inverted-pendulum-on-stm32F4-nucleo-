@@ -1,2 +1,2 @@
-LQR.c:17:6:init_pendulum	16	static
-LQR.c:22:6:run_pendulum	40	static
+LQR.c:18:6:init_pendulum	16	static
+LQR.c:24:7:run_pendulum	40	static

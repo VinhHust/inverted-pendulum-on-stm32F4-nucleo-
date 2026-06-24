@@ -14,7 +14,7 @@
 
 #define twopi 6.28318530718f
 #define DT 0.005f
-#define chuvipuli 120.0f
+#define chuvipulimilimet 120.0f
 
 //hàm reset và khởi tạo
 //hàm này gán giá trị ban đầu cho toàn bộ struct
@@ -26,15 +26,25 @@ void reset_encoder_pendulum(EncoderTypeDef *encoder, TIM_HandleTypeDef*timer){
 	//mũi tên tức là truy cập các thành viên nằm trong struct thông qua con trỏ encdoder
 	encoder->angle_speed=0;
 	encoder->angle_position=0;
-	encoder->encoder_scale=twopi/ENCODER_RESOLUTION;  //đơn vị là radian/xung
+	encoder->encoder_scale=twopi/8000;  //đơn vị là radian/xung
 	encoder->tim_handler=timer;
 	encoder->first_time=1; //first time=1 tức là chưa có dữ liệu gì cả
 }
+
+/* Vị trí cân bằng dưới là 0 độ, quay CCW thì là góc tăng lên vị trí dương, lên vị trí cân bằng trên là pi
+ * từ 0 độ quay CW thì góc giảm xuống, lên vị trí cân bằng trên là -pi */
 
 //hàm cập nhật góc
 void update_encoder_pendulum(EncoderTypeDef *encoder_pendulum){
 	//đọc số xung hiện tại từ timer 2 và dùng encoder scale để nhân chuyển xung sang radian
 	float new_angle = (float) __HAL_TIM_GET_COUNTER(encoder_pendulum->tim_handler)*encoder_pendulum->encoder_scale;
+
+	//góc trả về sau khi nhân với scale nằm trong khoảng (0,2pi)
+	//Wrap góc về logic (0->pi CCW) và (0-> -pi CW)
+	if (new_angle > twopi /2){
+		new_angle = new_angle - twopi;
+		//nếu góc vọt sang nửa bên kia thì lấy giá trị đó trừ cho 2pi, hợp lí hẹ hẹ
+	}
 
 	if(encoder_pendulum->first_time == 1){
 		//lần đầu tiên chạy
@@ -46,7 +56,6 @@ void update_encoder_pendulum(EncoderTypeDef *encoder_pendulum){
 	{
 		if(new_angle - encoder_pendulum->angle_position >twopi/2){
 			//new_angle là biến cục bộ trong hàm update encoder còn con trỏ encoder->angle_pos là thành phần trong struct gốc(dữ liệu góc cũ)
-			//phần if này để nếu góc vượt quá 2pi thì góc ko tiếp tục tăng mà sẽ nhảy về 0, đi quá 2pi thì sẽ trừ đi 2pi để về 0
 			encoder_pendulum->angle_speed = new_angle - encoder_pendulum->angle_position - twopi;
 		}
 		else if(new_angle - encoder_pendulum->angle_position < -twopi/2){
@@ -67,7 +76,7 @@ void reset_encoder_cart(CartEncoderTypeDef *encoder_cart, TIM_HandleTypeDef*time
 	//mũi tên tức là truy cập các thành viên nằm trong struct thông qua con trỏ encdoder
 	encoder_cart->linear_speed=0;
 	encoder_cart->linear_position=0;
-	encoder_cart->cart_scale=chuvipuli/ENCODER_RESOLUTION;  //đơn vị là mm/xung
+	encoder_cart->cart_scale=chuvipulimilimet/8000;  //đơn vị là mm/xung, 7999 là biến encoder_resolution
 	encoder_cart->tim_handler=timer;
 	encoder_cart->first_time=1; //flag first time bao la lan dau tien chay
 	encoder_cart->prev_counter = __HAL_TIM_GET_COUNTER(timer); //lay gia tri encoder ngay luc reset de luu vao prev_encoder

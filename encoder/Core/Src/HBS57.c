@@ -206,6 +206,8 @@ Stepper_Status_t Stepper_SetDirection(Stepper_Handle_t *hs,
 //nhận vào con trỏ hs trỏ tới kiểu stepper handle
 void Stepper_UpdateCartFrequency(Stepper_Handle_t *hs, uint32_t target_freq_hz)
 {
+
+
     /* === DỪNG MOTOR KHI TẦN SỐ = 0 ===
      * KHÔNG dùng ARR=0 vì sẽ tạo xung tần số cực cao thay vì dừng.
      * Gọi PWM_Stop để tắt hẳn output, counter vẫn chạy ngầm — OK. */

@@ -5,8 +5,8 @@ HBS57.c:135:18:Stepper_Init	16	static
 HBS57.c:167:18:Stepper_SetMicrostep	16	static
 HBS57.c:192:18:Stepper_SetDirection	16	static
 HBS57.c:207:6:Stepper_UpdateCartFrequency	32	static
-HBS57.c:250:18:Stepper_SetSpeedRPM	32	static
-HBS57.c:297:18:Stepper_Start	16	static
-HBS57.c:309:18:Stepper_Stop	16	static
-HBS57.c:319:18:Stepper_Enable	24	static
-HBS57.c:332:18:Stepper_GetMaxRPM	16	static
+HBS57.c:252:18:Stepper_SetSpeedRPM	32	static
+HBS57.c:299:18:Stepper_Start	16	static
+HBS57.c:311:18:Stepper_Stop	16	static
+HBS57.c:321:18:Stepper_Enable	24	static
+HBS57.c:334:18:Stepper_GetMaxRPM	16	static
