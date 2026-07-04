@@ -1,4 +1,0 @@
-#include "LQR.h"
-#include <math.h>
-#define MAX_SPEED
-

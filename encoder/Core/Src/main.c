@@ -18,7 +18,6 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <HBS57.h>
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -53,7 +52,7 @@ TIM_HandleTypeDef htim4;
 UART_HandleTypeDef huart2;
 DMA_HandleTypeDef hdma_usart2_tx;
 
-/* USER CODE BEGIN PV  */
+/* USER CODE BEGIN PV */
 //PrivateVariables
 
 volatile static EncoderTypeDef encoder_pendulum; //EncoderTypedef là kiểu dữ liệu đã định nghĩa ở file.h, gi�? g�?i ra và có tên biến là encoder_inverted với kiểu dữ liệu đã khai báo ở file.h
@@ -64,12 +63,16 @@ InvertedPendulumTypeDef vinh_pendulum; //quản lí LQR và state của con lắ
 //bien luu tru gia tri encoder cua pendulum
 volatile float angular_position_pendulum = 0.0;
 volatile float angular_velocity_pendulum = 0.0;
+float target_speed = 0.0;
 //biến của cart
 volatile float cart_position = 0.0;
 volatile float cart_velocity = 0.0;
 
 volatile uint8_t flag_print = 0;
 volatile float debug_freq_hz = 0.0f; //biến để debug tần số phát xung
+
+uint8_t rx_buffer[5];
+
 //2 biến này để lưu giá trị lôi ra từ struct
 
 /* USER CODE END PV */
@@ -126,14 +129,6 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM1_Init();
   MX_TIM4_Init();
-
-
-
-
-
-
-
-
   /* USER CODE BEGIN 2 */
   //KHỞI TẠO ENCODER
 //RESET CHO LẦN KHỞI TẠO �?ẦU TIÊN
@@ -158,30 +153,32 @@ stepper_cart.htim = &htim4;                    // TIM4 phát xung
   Stepper_Enable(&stepper_cart, true);           // Kích hoạt Driver (cấp dòng giữ motor)
 
 //vinh_pendulum là biến struct thật
-  vinh_pendulum.stepper = &stepper_cart; //con trỏ stepper trong struct vinh_pendulum trỏ vào địa chỉ của biến stepper_cart
+  vinh_pendulum.stepper = &stepper_cart; //con tr�? stepper trong struct vinh_pendulum tr�? vào địa chỉ của biến stepper_cart
   vinh_pendulum.pend_enc = (EncoderTypeDef*)&encoder_pendulum;
   vinh_pendulum.cart_enc = (CartEncoderTypeDef*)&encoder_cart;
-  //CÁI RẤT KHÓ HIỂU: TẠI SAO LẠI PHẢI ÉP KIỂU
+  //C�?I RẤT KHÓ HIỂU: TẠI SAO LẠI PHẢI ÉP KIỂU
 
 init_pendulum(&vinh_pendulum);
 
-HAL_TIM_Base_Start_IT(&htim3); 					//timer ngắt gián đoạn chu kì 5ms
+HAL_TIM_Base_Start_IT(&htim3); 	//timer ngắt gián đoạn chu kì 5ms
+
+//cho lqr tune
+HAL_UART_Receive_IT(&huart2, rx_buffer, 5);
 
   /* USER CODE END 2 */
 
-
-
-
-
-
-
-
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+uint32_t print_counter = 0; //  biến đếm
   while (1)
   {
-	  if (flag_print ==1){
-		  printf("%f %f\n", cart_position, angular_position_pendulum);
+
+	  if (flag_print == 1){
+	          flag_print = 0; // Xóa cờ ngay
+	          print_counter++;}
+
+	  if (flag_print >=20){
+		  printf("%f %f %f\n", cart_position, angular_position_pendulum,target_speed);
 		  flag_print = 0;
 	  }
     /* USER CODE END WHILE */
@@ -362,7 +359,7 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 89;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 4999;
+  htim3.Init.Period = 999;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
@@ -524,23 +521,23 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-//XỬ LÍ NGẮT ĐỂ LẤY MẪU VÀ ĐIỀU KHIỂN
+//XỬ L�? NGẮT �?Ể LẤY MẪU VÀ �?IỀU KHIỂN
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, ham nay giu dia chi vung nho cua bo timer. callback duoc goi moi khi bat ki timer nao tran
 {
 	if (htim->Instance==TIM3){
 		//LQR gia tốc rồi đạo hàm thành vận tốc
-		float target_speed = run_pendulum(&vinh_pendulum); //trả về vận tốc mục tiêu
+		float target_speed = run_pendulum(&vinh_pendulum); //trả v�? vận tốc mục tiêu
 
 		//lấy dữ liệu góc và vị trí cart
 		cart_position = vinh_pendulum.cart_enc->linear_position;
 		angular_position_pendulum = vinh_pendulum.pend_enc->angle_position;
 
-		//cờ in trong while
+		//c�? in trong while
 		flag_print = 1;
 
 		//chuyển đổi vận tốc sang tần số xung
 		stepper_command_t cmd = Func_VeltoFreq(target_speed);
-		debug_freq_hz = cmd.freq_hz; // COPY RA ĐỂ THEO DÕI
+		debug_freq_hz = cmd.freq_hz; // COPY RA �?Ể THEO DÕI
 		if (vinh_pendulum.state == IDLE_PENDULUM){
 			Stepper_UpdateCartFrequency(&stepper_cart, 0); //con lắc ở idle thì ngắt xung
 		}
@@ -559,9 +556,40 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, 
 //hàm này dùng cho in lên SMV để nhìn đồ thị
 int _write(int file, char *ptr, int len){
     for(int i = 0; i < len; i++){
-        ITM_SendChar(*ptr++);
-    }
+    	HAL_UART_Transmit(&huart2, (uint8_t*)ptr, len, HAL_MAX_DELAY);    }
     return len;
+}
+
+extern float LQR_tune[4];
+extern float angle_offset;
+extern float max_speed;
+extern float max_accel;
+
+//nhận data từ tuner trên python
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+    if (huart->Instance == USART2) {
+        uint8_t address = rx_buffer[0];
+
+        float value;
+        uint8_t *byte_ptr = (uint8_t*)&value;
+        byte_ptr[0] = rx_buffer[1];
+        byte_ptr[1] = rx_buffer[2];
+        byte_ptr[2] = rx_buffer[3];
+        byte_ptr[3] = rx_buffer[4];
+
+        switch (address) {
+            case 0x01: LQR_tune[0] = value; break;
+            case 0x02: LQR_tune[1] = value; break;
+            case 0x03: LQR_tune[2] = value; break;
+            case 0x04: LQR_tune[3] = value; break;
+            case 0x05: angle_offset = value; break;
+            // THÊM 2 CASE NÀY VÀO LÀ XONG:
+            case 0x06: max_speed = value; break;
+            case 0x07: max_accel = value; break;
+        }
+
+        HAL_UART_Receive_IT(&huart2, rx_buffer, 5);
+    }
 }
 /* USER CODE END 4 */
 
