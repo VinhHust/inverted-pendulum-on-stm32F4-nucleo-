@@ -3,15 +3,29 @@
 #define DT 0.001f
 #define PI 3.141592625f
 #define MiliMtoM 0.001f //hệ số chuyển từ mm sang m
-#define Ki 0.0f                 // hệ số tích phân, bắt đầu nhỏ
-#define INTEGRAL_CLAMP 3.0f     // chặn windup cho tích phân
+#define GRAVITY 9.81f
 
+//các tham số của hệ (DÙNG CHO SWING UP)
+float pendulum_mass = 0.1f;
+float pendulum_length = 0.15f;
+float pendulum_inertia = 0.00075f; //phần này có thể tune
 
+//các tham số cho phần SWING UP
+float k_swing = 1.0f;
+float max_swing_acce = 5.0f;
+float max_cart_limit = 0.25f;
+
+//các tham số cho phần KICK START
+float kick_acce = 5.0f;
+float kick_time = 0.08f;
+static float kick_counter = 0.0f; //static để lưu lại giá trị kick_counter để cộng dồn trong mỗi lần gọi hàm
+float max_kick_speed = 5.0f;
+
+//các tham số để tune LQR
 float LQR_tune[4] = {200,60,100,15};
 static float reference_point = 0.0f;
 static float  target_speed = 0.0f;
 static float pos_integral = 0.0f;   // biến tích lũy sai số vị trí
-float angle_offset = 0.0f;
 
 float max_speed = 2.5f;
 float max_accel = 2.5f;
@@ -36,20 +50,63 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 
 	switch(pendulum->state){
 
+		//TRẠNG THÁI NGHỈ CỦA PENDULUM
 		case IDLE_PENDULUM:{
-		Stepper_UpdateCartFrequency(pendulum->stepper, 0);
-		float current_angle = pendulum->pend_enc->angle_position - angle_offset;
+			Stepper_UpdateCartFrequency(pendulum->stepper, 0);
+			float current_angle = pendulum->pend_enc->angle_position;
 
 			if(current_angle > (PI-0.17f) || current_angle < -(PI-0.17f)){
-			reference_point = pendulum->cart_enc->linear_position * MiliMtoM;
-			target_speed = 0.0f; //phần này để reset nếu như mà ngã về idle từ lqr thì target speed sẽ reset về 0, đề không bị lỗi trong lần catch tiếp theo
-			pos_integral = 0.0f;   //  reset mỗi lần catch lại, không mang sai số cũ qua
-			pendulum->state = LQR_CONTROL;
+				reference_point = pendulum->cart_enc->linear_position * MiliMtoM;
+				target_speed = 0.0f; //phần này để reset nếu như mà ngã về idle từ lqr thì target speed sẽ reset về 0, đề không bị lỗi trong lần catch tiếp theo
+				pendulum->state = LQR_CONTROL;
 		}
+
+			if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_SET){
+				kick_counter = 0.0f;
+				target_speed = 0.0f;
+				pendulum->state = KICK_START;
+ 			}
 			break;
 	}
+
+		//TRẠNG THÁI KICKSTART CẤP GIA TỐC BAN ĐẦU
+		case KICK_START:{
+			kick_counter += DT; //CỘNG DỒN MỖI LẦN GỌI HÀM RUN_PENDULUM TRONG INTERRUPT Ở MAIN
+			target_speed = target_speed + (kick_acce * DT); //tích phân về vận tốc
+
+		if (kick_counter > kick_time){
+			pendulum -> state = SWING_UP;
+		}
+		}
+
+		//TRẠNG THÁI SWING UP
+		case SWING_UP:{
+
+			//chuyển trạng thái sang cân bằng
+			if(current_angle > (PI-0.17f) || current_angle < -(PI-0.17f)){
+							reference_point = pendulum->cart_enc->linear_position * MiliMtoM;
+							target_speed = 0.0f; //phần này để reset nếu như mà ngã về idle từ lqr thì target speed sẽ reset về 0, đề không bị lỗi trong lần catch tiếp theo
+							pendulum->state = LQR_CONTROL;}
+
+			float pend_velo = pendulum->pend_enc->angle_speed;
+
+			//các thành phần trong năng lượng của HỆ
+			float mlsquare = pendulum_mass * pendulum_length * pendulum_length; 	  // ml^2
+			float Ek =  0.5f * (pendulum_inertia + mlsquare) * (pend_velo*pend_velo); // 0.5(I+ml^2)
+			float Ep = pendulum_mass * GRAVITY *pendulum_length * (1.0f - cosf(current_angle)); // mgl(1-cos(theta))
+			float E = Ek + Ep;
+
+			//năng lượng MONG MUỐN
+			float Er = 2.0f * pendulum_mass * GRAVITY * pendulum_length; //năng lương mong muốn là 2mgl
+			float sign = pend_velo * cosf(current_angle);
+			float sign_val = 0.0f;
+
+			if(sign>0.0f)
+		}
+
+		//TRẠNG THÁI CÂN BẰNG
 		case LQR_CONTROL:{
-			float current_angle = pendulum->pend_enc->angle_position - angle_offset;
+			float current_angle = pendulum->pend_enc->angle_position;
 			//phần này để bảo vệ cơ khí nếu con lắc rủ xuống thấp quá
 			if(fabsf(current_angle) < (PI*0.75f)){
 				pendulum->state = IDLE_PENDULUM;
@@ -73,12 +130,6 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 			//VỊ TRÍ CART
 			lqr_giatoc += LQR_tune[2] * (reference_point - current_cart_pos);
 			lqr_giatoc += LQR_tune[3] * (0 - current_cart_vel);
-
-//			//thêm tích phân vị trí
-//			pos_integral += (reference_point - current_cart_pos) * DT;
-//			if (pos_integral > INTEGRAL_CLAMP) pos_integral = INTEGRAL_CLAMP;
-//			else if (pos_integral < -INTEGRAL_CLAMP) pos_integral = -INTEGRAL_CLAMP;
-//			lqr_giatoc += Ki * pos_integral;
 
 			//GIỚI HẠN GIA TỐC
 			if (lqr_giatoc > max_accel) {

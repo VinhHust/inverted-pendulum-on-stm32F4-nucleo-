@@ -5,7 +5,9 @@
 #include "HBS57.h"
 
 typedef enum
-{
+{ //4 phase
+	KICK_START,
+	SWING_UP,
 	IDLE_PENDULUM,
 	LQR_CONTROL
 }pendulum_state;

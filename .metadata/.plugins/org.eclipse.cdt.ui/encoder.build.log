@@ -1,4 +1,4 @@
-18:01:07 **** Incremental Build of configuration Debug for project encoder ****
+10:20:17 **** Incremental Build of configuration Debug for project encoder ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\LOQ\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
@@ -8,13 +8,13 @@ arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
 arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
 arm-none-eabi-size   encoder.elf 
    text	   data	    bss	    dec	    hex	filename
-  36900	    508	   2196	  39604	   9ab4	encoder.elf
+  37044	    516	   2196	  39756	   9b4c	encoder.elf
 Finished building: default.size.stdout
  
 Finished building: encoder.bin
- 
 Finished building: encoder.list
  
+ 
 
-18:01:09 Build Finished. 0 errors, 0 warnings. (took 1s.826ms)
+10:20:20 Build Finished. 0 errors, 0 warnings. (took 2s.195ms)
 

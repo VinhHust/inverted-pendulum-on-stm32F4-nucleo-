@@ -174,7 +174,7 @@ uint32_t print_counter = 0; //  biến đếm
   {
 
 	  if (flag_print == 1){
-	          flag_print = 0; // Xóa cờ ngay
+	          flag_print = 0; // Xóa c�? ngay
 	          print_counter++;}
 
 	  if (flag_print >=20){
@@ -268,7 +268,7 @@ static void MX_TIM1_Init(void)
   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
-  sConfig.IC1Filter = 5;
+  sConfig.IC1Filter = 8;
   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
@@ -317,7 +317,7 @@ static void MX_TIM2_Init(void)
   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
-  sConfig.IC1Filter = 5;
+  sConfig.IC1Filter = 8;
   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
@@ -582,8 +582,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
             case 0x02: LQR_tune[1] = value; break;
             case 0x03: LQR_tune[2] = value; break;
             case 0x04: LQR_tune[3] = value; break;
-            case 0x05: angle_offset = value; break;
-            // THÊM 2 CASE NÀY VÀO LÀ XONG:
             case 0x06: max_speed = value; break;
             case 0x07: max_accel = value; break;
         }

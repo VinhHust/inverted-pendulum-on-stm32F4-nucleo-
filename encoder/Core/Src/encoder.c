@@ -52,6 +52,7 @@ void update_encoder_pendulum(EncoderTypeDef *encoder_pendulum){
 		encoder_pendulum->first_time=0; //sau lần chạy đầu tiên thì gán cờ first time = 0
 		encoder_pendulum->angle_position=new_angle;
 	}
+
 	else //nếu ko phải lần đầu tiên
 	{
 		if(new_angle - encoder_pendulum->angle_position >twopi/2){
@@ -66,6 +67,8 @@ void update_encoder_pendulum(EncoderTypeDef *encoder_pendulum){
 		}
 		encoder_pendulum->angle_position = new_angle; //lưu góc hiện tại(new angle) thành góc cũ(thành phần góc trong struct là angle pos)
 		encoder_pendulum->angle_speed = (encoder_pendulum->angle_speed)/DT;
+
+		//bộ lọc EMA
 	}
 
 }
