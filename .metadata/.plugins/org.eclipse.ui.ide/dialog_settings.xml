@@ -7,6 +7,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\ST\STM32CubeIDE\Inverted pendulum"/>
 			<item value="C:\Users\LOQ\Desktop\stm32-stepper-motor-main\stm32-stepper-motor-main\firmware\STEPPER_MOTOR_CONTROL"/>
 			<item value="C:\Users\LOQ\Documents\GitHub\inverted-pendulum-on-stm32F4-nucleo-"/>
 		</list>

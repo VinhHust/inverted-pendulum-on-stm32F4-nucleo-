@@ -12,7 +12,7 @@ float pendulum_inertia = 0.00075f; //phần này có thể tune
 
 //các tham số cho phần SWING UP
 float k_swing = 1.0f;
-float max_swing_acce = 5.0f;
+float max_swing_acce = 10.0f;
 float max_cart_limit = 0.25f;
 
 //các tham số cho phần KICK START
@@ -61,7 +61,7 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 				pendulum->state = LQR_CONTROL;
 		}
 
-			if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_SET){
+			if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET){
 				kick_counter = 0.0f;
 				target_speed = 0.0f;
 				pendulum->state = KICK_START;
@@ -76,12 +76,14 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 
 		if (kick_counter > kick_time){
 			pendulum -> state = SWING_UP;
+			break;
 		}
+		break;
 		}
 
 		//TRẠNG THÁI SWING UP
 		case SWING_UP:{
-
+			float current_angle = pendulum->pend_enc->angle_position;
 			//chuyển trạng thái sang cân bằng
 			if(current_angle > (PI-0.17f) || current_angle < -(PI-0.17f)){
 							reference_point = pendulum->cart_enc->linear_position * MiliMtoM;
@@ -101,7 +103,36 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 			float sign = pend_velo * cosf(current_angle);
 			float sign_val = 0.0f;
 
-			if(sign>0.0f)
+			if(sign>0.001f){
+				sign_val = 1;
+			}
+			else if(sign<-0.001f){
+				sign_val = -1;
+			}
+			else{
+				sign_val = 0; //nếu như nằm ở khoảng giữa thì = 0 luôn để ko bị nhiễu
+			}
+
+			//a = k.(E-Eo).sign(theta'.costheta)
+			float aswing = k_swing * (E - Er) * sign_val;
+
+			//giới hạn vận tốc swing
+			if (aswing>max_swing_acce){
+				aswing = max_swing_acce;
+			}
+			else if (aswing<-max_swing_acce){
+				aswing = -max_swing_acce;
+			}
+			pendulum ->current_accel = aswing;
+			target_speed = target_speed + (aswing * DT); //tích phân về vận tốc
+
+			//giới hạn vận tốc
+			if(target_speed > max_speed){
+							target_speed = max_speed;}
+							else if(target_speed<-max_speed){
+							target_speed = -max_speed;
+						}
+			break;
 		}
 
 		//TRẠNG THÁI CÂN BẰNG
@@ -152,16 +183,4 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 		}
 	}
 	return target_speed;
-
-
-
-
-
-
-
-
-
-
-
-
 }

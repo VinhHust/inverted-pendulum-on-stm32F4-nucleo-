@@ -61,6 +61,8 @@ void Error_Handler(void);
 
 /* Private defines -----------------------------------------------------------*/
 #define ENCODER_RESOLUTION 7999
+#define sta_Pin GPIO_PIN_13
+#define sta_GPIO_Port GPIOC
 #define timer_encoder_c_a_pole_Pin GPIO_PIN_1
 #define timer_encoder_c_a_pole_GPIO_Port GPIOA
 #define CH_N_DIRECTION_Pin GPIO_PIN_5

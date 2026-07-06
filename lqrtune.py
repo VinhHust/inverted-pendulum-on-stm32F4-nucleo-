@@ -42,10 +42,10 @@ class LQRTunerApp:
 
         # 2. Các thanh trượt LQR & Offset
         self.sliders = {}
-        self.create_slider(left_frame, "Góc", 0x01, 0, 500, 350.0)
-        self.create_slider(left_frame, "Vận tốc Góc", 0x02, 0, 150, 60.0)
-        self.create_slider(left_frame, "Vị trí Xe", 0x03, 0, 300, 100.0)
-        self.create_slider(left_frame, "Vận tốc Xe", 0x04, 0, 100, 15.0)
+        self.create_slider(left_frame, "Góc", 0x01, -300, 500, 350.0)
+        self.create_slider(left_frame, "Vận tốc Góc", 0x02, -150, 150, 60.0)
+        self.create_slider(left_frame, "Vị trí Xe", 0x03, -200, 300, 100.0)
+        self.create_slider(left_frame, "Vận tốc Xe", 0x04, -100, 100, 15.0)
         self.create_slider(left_frame, "Angle Offset", 0x05, -0.2, 0.2, 0.0, 0.001)
 
         tk.Frame(left_frame, height=2, bg="gray").pack(fill=tk.X, pady=10) # Đường gạch ngang phân cách
