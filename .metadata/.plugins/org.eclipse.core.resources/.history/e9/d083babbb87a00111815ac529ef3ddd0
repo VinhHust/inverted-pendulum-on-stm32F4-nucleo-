@@ -574,8 +574,6 @@ extern float kick_acce;
 extern float max_kick_speed;
 extern float k_swing;
 extern float max_swing_acce;
-extern float k1_swing;
-extern float k2_swing;
 
 
 //nhận data từ tuner trên python
@@ -605,10 +603,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
           //data balance
             case 0x10: k_swing = value; break;
             case 0x11: max_swing_acce = value; break;
-          //data cho PD trong swing up
-            case 0x12: k1_swing = value; break;
-            case 0x13: k2_swing = value; break;
-
         }
 
         HAL_UART_Receive_IT(&huart2, rx_buffer, 5);

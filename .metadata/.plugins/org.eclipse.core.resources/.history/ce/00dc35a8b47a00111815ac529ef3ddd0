@@ -11,7 +11,7 @@ float pendulum_length = 0.15f;
 float pendulum_inertia = 0.00075f; //phần này có thể tune
 
 //các tham số cho phần SWING UP
-float k_swing = 20.0f;
+float k_swing = 1.0f;
 float max_swing_acce = 10.0f;
 float max_cart_limit = 0.25f;
 
@@ -30,11 +30,6 @@ static float pos_integral = 0.0f;   // biến tích lũy sai số vị trí
 float max_speed = 2.5f;
 float max_accel = 2.5f;
 //u=-K(X-Xref)=K(Xref-X)
-
-//bộ PD cho swing up
-float k1_swing = 1.5f; //gain để kéo vị trí quanh tâm
-float k2_swing = 0.5f; //gain để ko bị oscillate quá
-
 
 
 
@@ -65,7 +60,7 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 				target_speed = 0.0f; //phần này để reset nếu như mà ngã về idle từ lqr thì target speed sẽ reset về 0, đề không bị lỗi trong lần catch tiếp theo
 				pendulum->state = LQR_CONTROL;
 		}
-			//ấn nút PC13 trên mạch thì bay sang phần kickstart
+
 			if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET){
 				kick_counter = 0.0f;
 				target_speed = 0.0f;
@@ -88,15 +83,13 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 
 		//TRẠNG THÁI SWING UP
 		case SWING_UP:{
-			float current_cart_pos = pendulum->cart_enc->linear_position * MiliMtoM;
 			float current_angle = pendulum->pend_enc->angle_position;
-			float current_cart_vel = pendulum->cart_enc->linear_speed * MiliMtoM;
 			//chuyển trạng thái sang cân bằng
 			if(current_angle > (PI-0.17f) || current_angle < -(PI-0.17f)){
 							reference_point = pendulum->cart_enc->linear_position * MiliMtoM;
 							target_speed = 0.0f; //phần này để reset nếu như mà ngã về idle từ lqr thì target speed sẽ reset về 0, đề không bị lỗi trong lần catch tiếp theo
 							pendulum->state = LQR_CONTROL;}
-			break;
+
 			float pend_velo = pendulum->pend_enc->angle_speed;
 
 			//các thành phần trong năng lượng của HỆ
@@ -122,10 +115,6 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 
 			//a = k.(E-Eo).sign(theta'.costheta)
 			float aswing = k_swing * (E - Er) * sign_val;
-
-
-			//thêm bộ PD để giữ phần swing up loanh quanh tâm
-			aswing += (-k1_swing * current_cart_pos) - (k2_swing * current_cart_vel); //cộng thêm bộ PD
 
 			//giới hạn vận tốc swing
 			if (aswing>max_swing_acce){

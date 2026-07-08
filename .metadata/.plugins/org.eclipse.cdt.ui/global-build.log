@@ -2639,3 +2639,116 @@ arm-none-eabi-size   encoder.elf
   41464	    536	   2200	  44200	   aca8	encoder.elf
 Finished building: default.size.stdout
  
+17:06:17 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LQR.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/LQR.d" -MT"Core/Src/LQR.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LQR.o"
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\ST\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41464	    536	   2200	  44200	   aca8	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
+17:19:12 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LQR.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/LQR.d" -MT"Core/Src/LQR.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LQR.o"
+../Core/Src/LQR.c: In function 'run_pendulum':
+../Core/Src/LQR.c:124:27: error: 'current_cart_pos' undeclared (first use in this function)
+  124 |    aswing += (-k1_swing * current_cart_pos) - (k2_swing * current_cart_vel); //cộng thêm bộ PD
+      |                           ^~~~~~~~~~~~~~~~
+../Core/Src/LQR.c:124:27: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/LQR.c:124:59: error: 'current_cart_vel' undeclared (first use in this function); did you mean 'current_angle'?
+  124 |    aswing += (-k1_swing * current_cart_pos) - (k2_swing * current_cart_vel); //cộng thêm bộ PD
+      |                                                           ^~~~~~~~~~~~~~~~
+      |                                                           current_angle
+make: *** [Core/Src/subdir.mk:48: Core/Src/LQR.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+17:21:21 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LQR.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/LQR.d" -MT"Core/Src/LQR.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LQR.o"
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\ST\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37228	    516	   2196	  39940	   9c04	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
+17:32:30 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LQR.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/LQR.d" -MT"Core/Src/LQR.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LQR.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:596:24: error: 'kick_acce' undeclared (first use in this function)
+  596 |             case 0x08: kick_acce = value; break;
+      |                        ^~~~~~~~~
+../Core/Src/main.c:596:24: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:597:24: error: 'max_kick_speed' undeclared (first use in this function); did you mean 'max_speed'?
+  597 |             case 0x09: max_kick_speed = value; break;
+      |                        ^~~~~~~~~~~~~~
+      |                        max_speed
+../Core/Src/main.c:599:24: error: 'k_swing' undeclared (first use in this function)
+  599 |             case 0x10: k_swing = value; break;
+      |                        ^~~~~~~
+../Core/Src/main.c:600:24: error: 'max_swing_acce' undeclared (first use in this function)
+  600 |             case 0x11: max_swing_acce = value; break;
+      |                        ^~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:54: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+17:33:59 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\ST\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37316	    528	   2200	  40044	   9c6c	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
+17:35:26 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:606:24: error: 'max_swing_acce' undeclared (first use in this function)
+  606 |             case 0x11: max_swing_acce = value; break;
+      |                        ^~~~~~~~~~~~~~
+../Core/Src/main.c:606:24: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:54: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+17:35:56 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\ST\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37348	    536	   2200	  40084	   9c94	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 

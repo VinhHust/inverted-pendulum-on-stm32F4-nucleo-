@@ -125,6 +125,9 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 
 
 			//thêm bộ PD để giữ phần swing up loanh quanh tâm
+			float k1_swing = 1.5f; //gain để kéo vị trí quanh tâm
+			float k2_swing = 0.5f; //gain để ko bị oscillate quá
+
 			aswing += (-k1_swing * current_cart_pos) - (k2_swing * current_cart_vel); //cộng thêm bộ PD
 
 			//giới hạn vận tốc swing

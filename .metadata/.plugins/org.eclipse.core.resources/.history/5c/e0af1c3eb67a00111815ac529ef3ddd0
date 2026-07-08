@@ -31,11 +31,6 @@ float max_speed = 2.5f;
 float max_accel = 2.5f;
 //u=-K(X-Xref)=K(Xref-X)
 
-//bộ PD cho swing up
-float k1_swing = 1.5f; //gain để kéo vị trí quanh tâm
-float k2_swing = 0.5f; //gain để ko bị oscillate quá
-
-
 
 
 //hàm khởi tạo trạng thái ban đầu cho con lắc, hàm nào nhận vào con trỏ
@@ -88,9 +83,7 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 
 		//TRẠNG THÁI SWING UP
 		case SWING_UP:{
-			float current_cart_pos = pendulum->cart_enc->linear_position * MiliMtoM;
 			float current_angle = pendulum->pend_enc->angle_position;
-			float current_cart_vel = pendulum->cart_enc->linear_speed * MiliMtoM;
 			//chuyển trạng thái sang cân bằng
 			if(current_angle > (PI-0.17f) || current_angle < -(PI-0.17f)){
 							reference_point = pendulum->cart_enc->linear_position * MiliMtoM;
@@ -122,10 +115,6 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 
 			//a = k.(E-Eo).sign(theta'.costheta)
 			float aswing = k_swing * (E - Er) * sign_val;
-
-
-			//thêm bộ PD để giữ phần swing up loanh quanh tâm
-			aswing += (-k1_swing * current_cart_pos) - (k2_swing * current_cart_vel); //cộng thêm bộ PD
 
 			//giới hạn vận tốc swing
 			if (aswing>max_swing_acce){

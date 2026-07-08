@@ -573,7 +573,6 @@ extern float max_accel;
 extern float kick_acce;
 extern float max_kick_speed;
 extern float k_swing;
-extern float max_swing_acce;
 extern float k1_swing;
 extern float k2_swing;
 

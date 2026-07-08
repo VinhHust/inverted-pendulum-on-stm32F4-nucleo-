@@ -73,6 +73,7 @@ volatile float debug_freq_hz = 0.0f; //biến để debug tần số phát xung
 
 uint8_t rx_buffer[5];
 
+//2 biến này để lưu giá trị lôi ra từ struct
 
 /* USER CODE END PV */
 
@@ -570,13 +571,6 @@ extern float LQR_tune[4];
 extern float angle_offset;
 extern float max_speed;
 extern float max_accel;
-extern float kick_acce;
-extern float max_kick_speed;
-extern float k_swing;
-extern float max_swing_acce;
-extern float k1_swing;
-extern float k2_swing;
-
 
 //nhận data từ tuner trên python
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
@@ -591,24 +585,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
         byte_ptr[3] = rx_buffer[4];
 
         switch (address) {
-        //data LQR
             case 0x01: LQR_tune[0] = value; break;
             case 0x02: LQR_tune[1] = value; break;
             case 0x03: LQR_tune[2] = value; break;
             case 0x04: LQR_tune[3] = value; break;
-        //data tốc độ max balance
             case 0x06: max_speed = value; break;
             case 0x07: max_accel = value; break;
-         //data kickstart
-            case 0x08: kick_acce = value; break;
-            case 0x09: max_kick_speed = value; break;
-          //data balance
-            case 0x10: k_swing = value; break;
-            case 0x11: max_swing_acce = value; break;
-          //data cho PD trong swing up
-            case 0x12: k1_swing = value; break;
-            case 0x13: k2_swing = value; break;
-
         }
 
         HAL_UART_Receive_IT(&huart2, rx_buffer, 5);
