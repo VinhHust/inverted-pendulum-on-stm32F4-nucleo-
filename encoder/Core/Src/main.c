@@ -70,6 +70,7 @@ volatile float cart_velocity = 0.0;
 
 volatile uint8_t flag_print = 0;
 volatile float debug_freq_hz = 0.0f; //biến để debug tần số phát xung
+volatile uint8_t debug_state = 0;
 
 uint8_t rx_buffer[5];
 
@@ -533,6 +534,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, 
 	if (htim->Instance==TIM3){
 		//LQR gia tốc rồi đạo hàm thành vận tốc
 		float target_speed = run_pendulum(&vinh_pendulum); //trả v�? vận tốc mục tiêu
+		debug_state = (uint8_t)vinh_pendulum.state;
+
 
 		//lấy dữ liệu góc và vị trí cart
 		cart_position = vinh_pendulum.cart_enc->linear_position;

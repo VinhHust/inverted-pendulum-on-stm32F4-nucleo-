@@ -6,10 +6,10 @@
 
 typedef enum
 { //4 phase
-	KICK_START,
-	SWING_UP,
-	IDLE_PENDULUM,
-	LQR_CONTROL
+	KICK_START, //0
+	SWING_UP,//1
+	IDLE_PENDULUM,//2
+	LQR_CONTROL//3
 }pendulum_state;
 
 typedef struct

@@ -1,2 +1,7 @@
 cart_position
 angular_position_pendulum
+debug_sign_val
+debug_sign
+debug_pend_velo
+debug_state
+target_speed
