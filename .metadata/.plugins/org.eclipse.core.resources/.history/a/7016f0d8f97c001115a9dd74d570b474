@@ -22,8 +22,7 @@ static float kick_counter = 0.0f; //static để lưu lại giá trị kick_coun
 float max_kick_speed = 5.0f;
 
 //các tham số để tune LQR
-//LQR tương ứng theta,theta',x,x'
-float LQR_tune[4] = {504.3598,  95.0442, -111.8034,-128.0381};
+float LQR_tune[4] = {200,60,100,15};
 static float reference_point = 0.0f;
 static float  target_speed = 0.0f;
 
@@ -37,9 +36,7 @@ float k2_swing = 0.0f; //gain để ko bị oscillate quá
 float debug_sign_val = 0.0f; // Biến toàn cục để lôi sign_val ra ngoài
 float debug_sign = 0.0f; // Biến toàn cục để lôi sign_val ra ngoài
 float debug_pend_velo = 0.0f;
-
-//filter vận tốc
-float alpha = 0.8f;
+float alpha = 0.3f;
 static float filter_speed = 0.0f; // Biến lưu trữ vận tốc của chu kỳ trước
 
 //hàm khởi tạo trạng thái ban đầu cho con lắc, hàm nào nhận vào con trỏ
@@ -49,7 +46,6 @@ void init_pendulum(InvertedPendulumTypeDef* pendulum) {
 	//con trỏ lồng con trỏ, con trỏ pendulum truy cập tới con trỏ steppẻ
 	Stepper_UpdateCartFrequency(pendulum->stepper, 0);
 	target_speed = 0.0f; //reset lại target speed mỗi khi từ LQR về lại IDLE
-	filter_speed = 0.0f;
 
 }
 float run_pendulum(InvertedPendulumTypeDef* pendulum){
@@ -69,7 +65,6 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 				reference_point = pendulum->cart_enc->linear_position * MiliMtoM;
 				target_speed = 0.0f; //phần này để reset nếu như mà ngã về idle từ lqr thì target speed sẽ reset về 0, đề không bị lỗi trong lần catch tiếp theo
 				pendulum->state = LQR_CONTROL;
-				filter_speed = 0.0f; //reset lại filterspeed lúc ở LQR dể reset lại filter speed lúc LQR
 				break;
 		}
 			//TRƯÒNG HỢP 2
@@ -77,7 +72,6 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 			if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET){
 				kick_counter = 0.0f;
 				target_speed = 0.0f;
-				filter_speed = 0.0f;
 				pendulum->state = KICK_START;
  			}
 			break;
@@ -208,6 +202,6 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 	}
 	//bộ lọc EMA cho vận tốc
 	//alpha lớn thì ưu tiên vận tốc mới, alpha nhỏ thì ưu tiên vận tốc cũ
-	filter_speed = (alpha*target_speed) + ((1.0f-alpha)*filter_speed); //filter speed là vận tốc cũ, target speed là vận tốc mới
-	return filter_speed;
+	filter_speed = (alpha*target_speed) + ((1.0f-alpha)*filt)
+	return target_speed;
 }

@@ -544,8 +544,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //htim la 1 contro, 
 		//c�? in trong while
 		flag_print = 1;
 
-
-
 		//chuyển đổi vận tốc sang tần số xung
 		stepper_command_t cmd = Func_VeltoFreq(target_speed);
 		debug_freq_hz = cmd.freq_hz; // COPY RA �?Ể THEO DÕI

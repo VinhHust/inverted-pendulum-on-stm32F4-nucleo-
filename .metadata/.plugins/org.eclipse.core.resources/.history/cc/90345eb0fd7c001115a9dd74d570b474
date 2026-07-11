@@ -22,8 +22,7 @@ static float kick_counter = 0.0f; //static để lưu lại giá trị kick_coun
 float max_kick_speed = 5.0f;
 
 //các tham số để tune LQR
-//LQR tương ứng theta,theta',x,x'
-float LQR_tune[4] = {504.3598,  95.0442, -111.8034,-128.0381};
+float LQR_tune[4] = {200,60,100,15};
 static float reference_point = 0.0f;
 static float  target_speed = 0.0f;
 

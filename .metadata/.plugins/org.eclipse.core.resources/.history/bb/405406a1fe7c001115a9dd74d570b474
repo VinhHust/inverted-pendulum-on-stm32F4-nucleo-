@@ -23,7 +23,7 @@ float max_kick_speed = 5.0f;
 
 //các tham số để tune LQR
 //LQR tương ứng theta,theta',x,x'
-float LQR_tune[4] = {504.3598,  95.0442, -111.8034,-128.0381};
+float LQR_tune[4] = {385,79,-100,-88};
 static float reference_point = 0.0f;
 static float  target_speed = 0.0f;
 

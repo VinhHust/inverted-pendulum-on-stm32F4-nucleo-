@@ -8,6 +8,6 @@ main.c:450:13:MX_USART2_UART_Init	8	static
 main.c:481:13:MX_DMA_Init	16	static
 main.c:499:13:MX_GPIO_Init	48	static
 main.c:532:6:HAL_TIM_PeriodElapsedCallback	32	static
-main.c:566:5:_write	32	static
-main.c:585:6:HAL_UART_RxCpltCallback	32	static
-main.c:626:6:Error_Handler	4	static,ignoring_inline_asm
+main.c:568:5:_write	32	static
+main.c:587:6:HAL_UART_RxCpltCallback	32	static
+main.c:628:6:Error_Handler	4	static,ignoring_inline_asm

@@ -3137,3 +3137,165 @@ Finished building: encoder.bin
  
 Finished building: encoder.list
  
+14:26:37 **** Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LQR.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/LQR.d" -MT"Core/Src/LQR.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LQR.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\ST\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41776	    548	   2220	  44544	   ae00	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
+14:28:46 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LQR.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/LQR.d" -MT"Core/Src/LQR.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LQR.o"
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\ST\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41808	    548	   2220	  44576	   ae20	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
+14:32:34 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LQR.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/LQR.d" -MT"Core/Src/LQR.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LQR.o"
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\ST\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41808	    548	   2220	  44576	   ae20	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
+14:32:36 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41808	    548	   2220	  44576	   ae20	encoder.elf
+Finished building: default.size.stdout
+ 
+14:33:08 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41808	    548	   2220	  44576	   ae20	encoder.elf
+Finished building: default.size.stdout
+ 
+14:33:35 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41808	    548	   2220	  44576	   ae20	encoder.elf
+Finished building: default.size.stdout
+ 
+14:35:02 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41808	    548	   2220	  44576	   ae20	encoder.elf
+Finished building: default.size.stdout
+ 
+14:37:06 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LQR.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/LQR.d" -MT"Core/Src/LQR.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LQR.o"
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\ST\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41808	    548	   2220	  44576	   ae20	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
+14:41:45 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LQR.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/LQR.d" -MT"Core/Src/LQR.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LQR.o"
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\ST\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41808	    548	   2220	  44576	   ae20	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
+14:54:21 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LQR.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/LQR.d" -MT"Core/Src/LQR.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LQR.o"
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\ST\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41808	    548	   2220	  44576	   ae20	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
+14:54:40 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41808	    548	   2220	  44576	   ae20	encoder.elf
+Finished building: default.size.stdout
+ 
+15:00:51 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LQR.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/LQR.d" -MT"Core/Src/LQR.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LQR.o"
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\ST\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41808	    548	   2220	  44576	   ae20	encoder.elf
+Finished building: default.size.stdout
+ 
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
+15:01:11 **** Incremental Build of configuration Debug for project encoder ****
+make -j8 all 
+arm-none-eabi-size   encoder.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41808	    548	   2220	  44576	   ae20	encoder.elf
+Finished building: default.size.stdout
+ 
