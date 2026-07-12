@@ -11,8 +11,8 @@ float pendulum_length = 0.15f;
 float pendulum_inertia = 0.00075f; //phần này có thể tune
 
 //các tham số cho phần SWING UP
-float k_swing = 8.0f;
-float max_swing_acce = 12.0f;
+float k_swing = 10.0f;
+float max_swing_acce = 15.0f;
 float max_cart_limit = 0.25f;
 
 //các tham số cho phần KICK START
@@ -28,7 +28,7 @@ static float reference_point = 0.0f;
 static float  target_speed = 0.0f;
 
 float max_speed = 10.0f;
-float max_accel = 6.0f;
+float max_accel = 2.5f;
 //u=-K(X-Xref)=K(Xref-X)
 
 //bộ PD cho swing up

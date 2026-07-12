@@ -11,12 +11,12 @@ float pendulum_length = 0.15f;
 float pendulum_inertia = 0.00075f; //phần này có thể tune
 
 //các tham số cho phần SWING UP
-float k_swing = 8.0f;
-float max_swing_acce = 12.0f;
+float k_swing = 20.0f;
+float max_swing_acce = 15.0f;
 float max_cart_limit = 0.25f;
 
 //các tham số cho phần KICK START
-float kick_acce = 2.5f;
+float kick_acce = 8.0f;
 float kick_time = 0.05f;
 static float kick_counter = 0.0f; //static để lưu lại giá trị kick_counter để cộng dồn trong mỗi lần gọi hàm
 float max_kick_speed = 5.0f;
@@ -28,12 +28,12 @@ static float reference_point = 0.0f;
 static float  target_speed = 0.0f;
 
 float max_speed = 10.0f;
-float max_accel = 6.0f;
+float max_accel = 2.5f;
 //u=-K(X-Xref)=K(Xref-X)
 
 //bộ PD cho swing up
-float k1_swing = 3.0f; //gain để kéo vị trí quanh tâm
-float k2_swing = 2.0f; //gain để ko bị oscillate quá
+float k1_swing = 5.0f; //gain để kéo vị trí quanh tâm
+float k2_swing = 0.0f; //gain để ko bị oscillate quá
 float debug_sign_val = 0.0f; // Biến toàn cục để lôi sign_val ra ngoài
 float debug_sign = 0.0f; // Biến toàn cục để lôi sign_val ra ngoài
 float debug_pend_velo = 0.0f;
@@ -121,10 +121,10 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 			float sign = pend_velo * cosf(current_angle);
 			float sign_val = 0.0f;
 
-			if(sign>0.0f){ //thử tăng giới hạn đổi dấu của sign
+			if(sign>0.1f){ //thử tăng giới hạn đổi dấu của sign
 				sign_val = 1;
 			}
-			else if(sign<-0.0f){
+			else if(sign<-0.1f){
 				sign_val = -1;
 			}
 			else{

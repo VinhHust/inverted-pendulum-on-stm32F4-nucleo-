@@ -1,10 +1,10 @@
-15:01:11 **** Incremental Build of configuration Debug for project encoder ****
+14:54:38 **** Incremental Build of configuration Debug for project encoder ****
 make -j8 all 
 arm-none-eabi-size   encoder.elf 
    text	   data	    bss	    dec	    hex	filename
-  41808	    548	   2220	  44576	   ae20	encoder.elf
+  41784	    552	   2216	  44552	   ae08	encoder.elf
 Finished building: default.size.stdout
  
 
-15:01:12 Build Finished. 0 errors, 0 warnings. (took 341ms)
+14:54:38 Build Finished. 0 errors, 0 warnings. (took 407ms)
 
