@@ -1,6 +1,6 @@
 #include "LQR.h"
 #include <math.h>
-#define DT 0.001f
+#define DT 0.005f
 #define PI 3.141592625f
 #define MiliMtoM 0.001f //hệ số chuyển từ mm sang m
 #define GRAVITY 9.81f
@@ -23,7 +23,7 @@ float max_kick_speed = 5.0f;
 
 //các tham số để tune LQR
 //LQR tương ứng theta,theta',x,x'
-float LQR_tune[4] = {504.3598,  95.0442, -111.8034,-128.0381};
+float LQR_tune[4] = {525.2304,  96.8291,-132.2876,-137.9898};
 static float reference_point = 0.0f;
 static float  target_speed = 0.0f;
 
@@ -38,7 +38,20 @@ float debug_sign_val = 0.0f; // Biến toàn cục để lôi sign_val ra ngoài
 float debug_sign = 0.0f; // Biến toàn cục để lôi sign_val ra ngoài
 float debug_pend_velo = 0.0f;
 
-//filter vận tốc
+//CÁC THAM SỐ TUNE PHẦN SWING DOWN
+float k_angle_down = 8.0f;
+float k_position_down = 12.0f;
+float k_vel_down = 8.0f;
+float max_swingdown_accel = 5.0f;
+
+//THAM SỐ CHO PHẦN NGƯỠNG DỪNG HẲN VÀ VỀ IDLE THAY VÌ DAO ĐỘNG MÃI MÃI
+float down_angle_ok = 0.08f;   //rad
+float down_omega_ok = 0.5f;    //rad/s
+float down_x_ok     = 0.015f;  //m
+float down_v_ok     = 0.05f;   //m/s
+static float down_hold_timer  = 0.0f; //đếm thời gian con lắc đứng yên liên tục
+
+//EMA FILTER CHO VẬN TỐC
 float alpha = 0.8f;
 static float filter_speed = 0.0f; // Biến lưu trữ vận tốc của chu kỳ trước
 
@@ -202,6 +215,55 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 				target_speed = max_speed;}
 				else if(target_speed<-max_speed){
 				target_speed = -max_speed;
+			}
+			break;
+		}
+
+		case SWING_DOWN:{
+			float theta = pendulum->pend_enc->angle_position; 			//lấy góc
+			float w  = pendulum->pend_enc->angle_speed;					//lấy vận tốc góc
+			float x  = pendulum->cart_enc->linear_position * MiliMtoM;  //lấy vị trí
+			float v  = pendulum->cart_enc->linear_speed    * MiliMtoM;  //lấy vận tốc dài
+
+			float mauso = 1.0f + (1.0f - cosf(theta))*5.0f;
+			float a_down = (k_angle_down * sinf(0 - theta)) / mauso
+						             + (k_position_down * (0 - x))
+						             + (k_vel_down * (0 - v));
+
+			//GIỚI HẠN GIA TỐC
+			if (a_down > max_swingdown_accel) {
+					a_down = max_swingdown_accel;
+			} else if (a_down < -max_swingdown_accel) {
+					a_down = -max_swingdown_accel;
+			}
+
+			pendulum ->current_accel = a_down; //ghi biến cục bộ vào currentaccel để debug
+
+			target_speed = target_speed + (a_down * DT);
+
+			//giới hạn vận tốc
+			if(target_speed > max_speed){
+				target_speed = max_speed;}
+			else if(target_speed<-max_speed){
+				target_speed = -max_speed;}
+
+			/* điều kiện để thoát swing down và sang idle: con lắc và cart đứng yên liên tục trong 1s  */
+			if (fabsf(theta) < down_angle_ok &&
+				fabsf(w) < down_omega_ok &&
+				fabsf(x) < down_x_ok &&
+				fabsf(v) < down_v_ok) {
+
+				down_hold_timer += DT; //nếu nhỏ hơn các gía trị đã đặt LIÊN TỤC thì cứ LIÊN TỤC cộng dồn DT vào biến
+			}
+			else{
+				down_hold_timer = 0.0f; //nếu lớn hơn thì lại reset biến đếm này về 0
+			}
+			if (down_hold_timer > 1.0f){
+				target_speed = 0.0f;
+				filter_speed = 0.0f;
+				pendulum->state = IDLE_PENDULUM;
+				break;
+
 			}
 			break;
 		}

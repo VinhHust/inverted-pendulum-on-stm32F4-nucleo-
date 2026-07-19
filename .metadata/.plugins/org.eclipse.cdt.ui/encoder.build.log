@@ -1,10 +1,24 @@
-14:54:38 **** Incremental Build of configuration Debug for project encoder ****
+11:13:37 **** Incremental Build of configuration Debug for project encoder ****
 make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LQR.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/LQR.d" -MT"Core/Src/LQR.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LQR.o"
+../Core/Src/LQR.c: In function 'run_pendulum':
+../Core/Src/LQR.c:127:10: warning: unused variable 'mlsquare' [-Wunused-variable]
+  127 |    float mlsquare = pendulum_mass * pendulum_length * pendulum_length;    // ml^2 //thử b�? ml bình này đi
+      |          ^~~~~~~~
+arm-none-eabi-gcc -o "encoder.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\ST\STM32CubeIDE\Inverted pendulum\encoder\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder.elf
+ 
+arm-none-eabi-objdump -h -S  encoder.elf  > "encoder.list"
+arm-none-eabi-objcopy  -O binary  encoder.elf  "encoder.bin"
 arm-none-eabi-size   encoder.elf 
    text	   data	    bss	    dec	    hex	filename
-  41784	    552	   2216	  44552	   ae08	encoder.elf
+  42516	    584	   2216	  45316	   b104	encoder.elf
 Finished building: default.size.stdout
  
+Finished building: encoder.bin
+ 
+Finished building: encoder.list
+ 
 
-14:54:38 Build Finished. 0 errors, 0 warnings. (took 407ms)
+11:13:39 Build Finished. 0 errors, 1 warnings. (took 1s.602ms)
 

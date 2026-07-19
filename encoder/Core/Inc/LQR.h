@@ -9,7 +9,8 @@ typedef enum
 	KICK_START, //0
 	SWING_UP,//1
 	IDLE_PENDULUM,//2
-	LQR_CONTROL//3
+	LQR_CONTROL,//3
+	SWING_DOWN //4
 }pendulum_state;
 
 typedef struct
