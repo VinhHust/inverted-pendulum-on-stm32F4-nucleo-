@@ -11,7 +11,7 @@ float pendulum_length = 0.15f;
 float pendulum_inertia = 0.00075f; //phần này có thể tune
 
 //các tham số cho phần SWING UP
-float k_swing = 8.0f;
+float k_swing = 12.0f;
 float max_swing_acce = 12.0f;
 float max_cart_limit = 0.25f;
 
@@ -27,7 +27,7 @@ float LQR_tune[4] = {525.2304,  96.8291,-132.2876,-137.9898};
 static float reference_point = 0.0f;
 static float  target_speed = 0.0f;
 
-float max_speed = 10.0f;
+float max_speed = 8.0f;
 float max_accel = 6.0f;
 //u=-K(X-Xref)=K(Xref-X)
 
@@ -39,10 +39,11 @@ float debug_sign = 0.0f; // Biến toàn cục để lôi sign_val ra ngoài
 float debug_pend_velo = 0.0f;
 
 //CÁC THAM SỐ TUNE PHẦN SWING DOWN
-float k_angle_down = 8.0f;
-float k_position_down = 12.0f;
-float k_vel_down = 8.0f;
-float max_swingdown_accel = 5.0f;
+float k_angle_down = 3.0f;
+float k_position_down = 4.0f;
+float k_vel_down = 3.0f;
+float k_w_down = 2.0f;
+float max_swingdown_accel = 6.5f;
 
 //THAM SỐ CHO PHẦN NGƯỠNG DỪNG HẲN VÀ VỀ IDLE THAY VÌ DAO ĐỘNG MÃI MÃI
 float down_angle_ok = 0.08f;   //rad
@@ -52,7 +53,7 @@ float down_v_ok     = 0.05f;   //m/s
 static float down_hold_timer  = 0.0f; //đếm thời gian con lắc đứng yên liên tục
 
 //EMA FILTER CHO VẬN TỐC
-float alpha = 0.8f;
+float alpha = 0.6f;
 static float filter_speed = 0.0f; // Biến lưu trữ vận tốc của chu kỳ trước
 
 //hàm khởi tạo trạng thái ban đầu cho con lắc, hàm nào nhận vào con trỏ
@@ -63,7 +64,6 @@ void init_pendulum(InvertedPendulumTypeDef* pendulum) {
 	Stepper_UpdateCartFrequency(pendulum->stepper, 0);
 	target_speed = 0.0f; //reset lại target speed mỗi khi từ LQR về lại IDLE
 	filter_speed = 0.0f;
-
 }
 float run_pendulum(InvertedPendulumTypeDef* pendulum){
 	//cập nhật dữ liệu của encoder thông qua 2 con trỏ pend_enc và cart_enc
@@ -115,7 +115,7 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 			float current_cart_vel = pendulum->cart_enc->linear_speed * MiliMtoM;
 
 			//chuyển trạng thái sang cân bằng
-			if(current_angle > (PI-0.17f) || current_angle < -(PI-0.17f)){
+			if(current_angle > (PI-0.35f) || current_angle < -(PI-0.35f)){
 							reference_point = pendulum->cart_enc->linear_position * MiliMtoM;
 							target_speed = 0.0f; //phần này để reset nếu như mà ngã về idle từ lqr thì target speed sẽ reset về 0, đề không bị lỗi trong lần catch tiếp theo
 							pendulum->state = LQR_CONTROL;
@@ -124,7 +124,6 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 			float pend_velo = pendulum->pend_enc->angle_speed;
 
 			//các thành phần trong năng lượng của HỆ
-			float mlsquare = pendulum_mass * pendulum_length * pendulum_length; 	  // ml^2 //thử bỏ ml bình này đi
 			float Ek =  0.5f * (pendulum_inertia) * (pend_velo*pend_velo); // 0.5(I+ml^2)
 			float Ep = pendulum_mass * GRAVITY *pendulum_length * (1.0f - cosf(current_angle)); // mgl(1-cos(theta))
 			float E = Ek + Ep;
@@ -180,6 +179,15 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 				pendulum->state = IDLE_PENDULUM;
 				break;
 			}
+
+			if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET){
+							kick_counter = 0.0f;
+							target_speed = 0.0f;
+							filter_speed = 0.0f;
+							pendulum->state = SWING_DOWN;
+							break;
+			 			}
+
 			float lqr_giatoc = 0.0f;
 
 			//VỊ TRÍ GÓC
@@ -225,11 +233,10 @@ float run_pendulum(InvertedPendulumTypeDef* pendulum){
 			float x  = pendulum->cart_enc->linear_position * MiliMtoM;  //lấy vị trí
 			float v  = pendulum->cart_enc->linear_speed    * MiliMtoM;  //lấy vận tốc dài
 
-			float mauso = 1.0f + (1.0f - cosf(theta))*5.0f;
-			float a_down = (k_angle_down * sinf(0 - theta)) / mauso
-						             + (k_position_down * (0 - x))
-						             + (k_vel_down * (0 - v));
-
+			float mauso = 1.0f + (1.0f - cosf(theta)) * 8.0f;
+			float a_down = (k_angle_down * sinf(theta) + k_w_down * w) / mauso
+						             - (k_position_down * x)
+						             - (k_vel_down * v);
 			//GIỚI HẠN GIA TỐC
 			if (a_down > max_swingdown_accel) {
 					a_down = max_swingdown_accel;
